@@ -1,4 +1,6 @@
 export const METADATA = {
-    title: "Urban Vidovič | Portofolio",
+  root: {
+    title: "Urban Vidovič | Portfolio",
     description: "Urban Vidovič is a computer science engineer ...",
-}
+  },
+};

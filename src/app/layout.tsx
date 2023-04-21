@@ -1,11 +1,9 @@
-import ExoticNavbar from "@/components/ExoticNavbar";
 import "./globals.css";
 import { METADATA } from "../constants/metadata";
+import Header from "@/components/Header";
+// import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: METADATA.title,
-  description: METADATA.description,
-};
+export const metadata = METADATA.root;
 
 export default function RootLayout({
   children,
@@ -14,9 +12,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen text-cappuccino bg-black">
-        <ExoticNavbar />
+      <body className="min-h-screen text-cappuccino bg-gradient-to-tr from-black to-gray-800">
+        {/* <Header /> */}
         {children}
+        {/* <Footer /> */}
       </body>
     </html>
   );
