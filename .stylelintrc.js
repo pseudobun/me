@@ -1,20 +1,20 @@
 module.exports = {
-  "extends": ["stylelint-config-standard-scss", "stylelint-config-css-modules"],
-  "rules": {
+  extends: ["stylelint-config-standard-scss", "stylelint-config-css-modules"],
+  rules: {
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": [
+        ignoreAtRules: [
           "apply",
           "layer",
           "responsive",
           "screen",
           "tailwind",
-          "variants"
-        ]
-      }
+          "variants",
+        ],
+      },
     ],
-    "no-descending-specificity": null
-  }
-}
+    "no-descending-specificity": null,
+  },
+};
