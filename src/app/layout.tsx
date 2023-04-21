@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen text-cappuccino bg-gradient-to-tr from-black to-gray-800">
-        {/* <Header /> */}
+        <Header />
         {children}
         {/* <Footer /> */}
       </body>
