@@ -1,8 +1,8 @@
 // https://simpleicons.org/
-import Github from "./Icons/github.svg";
-import Twitter from "./Icons/twitter.svg";
-import LinkedIn from "./Icons/linkedin.svg";
-import Mail from "./Icons/gmail.svg";
+import Github from "../Icons/github.svg";
+import Twitter from "../Icons/twitter.svg";
+import LinkedIn from "../Icons/linkedin.svg";
+import Mail from "../Icons/gmail.svg";
 
 type ICON_KEYS = "github" | "twitter" | "linkedin" | "gmail";
 
