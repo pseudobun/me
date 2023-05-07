@@ -7,6 +7,8 @@ type ProfileCardProps = {
   className?: string;
 };
 
+const animation="hover:animate-bounce"
+
 export default function ProfileCard({ className }: ProfileCardProps) {
   return (
     <div className={clsx(className)}>
@@ -25,7 +27,7 @@ export default function ProfileCard({ className }: ProfileCardProps) {
         <span className="text-xl flex">
           <a
             href={PERSONAL.companyUrl}
-            className="text-cappuccino"
+            className="text-cappuccino hover:text-wave"
             target="_blank"
           >
             {" "}
@@ -34,10 +36,10 @@ export default function ProfileCard({ className }: ProfileCardProps) {
         </span>
       </div>
       <div className="mt-2 justify-center flex text-center align-middle items-center space-x-4">
-        <SocialIcon icon="github" href={PERSONAL.github as string} />
-        <SocialIcon icon="twitter" href={PERSONAL.twitter as string} />
-        <SocialIcon icon="linkedin" href={PERSONAL.linkedin as string} />
-        <SocialIcon icon="gmail" href={PERSONAL.email as string} />
+        <SocialIcon className={animation} icon="github" href={PERSONAL.github as string} />
+        <SocialIcon className={animation} icon="twitter" href={PERSONAL.twitter as string} />
+        <SocialIcon className={animation} icon="linkedin" href={PERSONAL.linkedin as string} />
+        <SocialIcon className={animation} icon="gmail" href={PERSONAL.email as string} />
       </div>
     </div>
   );

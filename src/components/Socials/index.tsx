@@ -3,6 +3,7 @@ import Github from "../Icons/github.svg";
 import Twitter from "../Icons/twitter.svg";
 import LinkedIn from "../Icons/linkedin.svg";
 import Mail from "../Icons/gmail.svg";
+import clsx from "clsx";
 
 type ICON_KEYS = "github" | "twitter" | "linkedin" | "gmail";
 
@@ -14,11 +15,12 @@ const Icons: Record<ICON_KEYS, any> = {
 };
 
 type SocialIconProps = {
+  className?: string;
   icon: ICON_KEYS;
   href: string;
 };
 
-export default function SocialIcon({ icon, href }: SocialIconProps) {
+export default function SocialIcon({ className, icon, href }: SocialIconProps) {
   const Icon = Icons[icon];
   if (icon == "gmail") {
     href = `mailto:${href}`;
@@ -30,6 +32,7 @@ export default function SocialIcon({ icon, href }: SocialIconProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      className={clsx(className)}
     >
       <Icon className={`h-[32px] w-[32px]`} />
     </a>

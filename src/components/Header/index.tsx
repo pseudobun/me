@@ -2,7 +2,7 @@ import ExoticNavbar from "../ExoticNavbar";
 
 export default function Header() {
   return (
-    <header>
+    <header className="filter-none">
       <ExoticNavbar />
     </header>
   );
