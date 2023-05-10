@@ -3,15 +3,17 @@ import Github from "../Icons/github.svg";
 import Twitter from "../Icons/twitter.svg";
 import LinkedIn from "../Icons/linkedin.svg";
 import Mail from "../Icons/gmail.svg";
+import Telegram from "../Icons/telegram.svg";
 import clsx from "clsx";
 
-type ICON_KEYS = "github" | "twitter" | "linkedin" | "gmail";
+type ICON_KEYS = "github" | "twitter" | "linkedin" | "gmail" | "telegram";
 
 const Icons: Record<ICON_KEYS, any> = {
   github: Github,
   twitter: Twitter,
   linkedin: LinkedIn,
   gmail: Mail,
+  telegram: Telegram,
 };
 
 type SocialIconProps = {
