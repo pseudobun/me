@@ -39,6 +39,7 @@ export default function ProfileCard({ className }: ProfileCardProps) {
         <SocialIcon className={animation} icon="github" href={PERSONAL.github as string} />
         <SocialIcon className={animation} icon="twitter" href={PERSONAL.twitter as string} />
         <SocialIcon className={animation} icon="linkedin" href={PERSONAL.linkedin as string} />
+        <SocialIcon className={animation} icon="telegram" href={PERSONAL.telegram as string} />
         <SocialIcon className={animation} icon="gmail" href={PERSONAL.email as string} />
       </div>
     </div>

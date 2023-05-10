@@ -4,6 +4,7 @@ export const PERSONAL = {
   fullName: "Urban Vidovič",
   email: "urbanfoundit@gmail.com",
   linkedin: "https://www.linkedin.com/in/urbanvidovic",
+  telegram: "https://t.me/plesasta_pevka",
   github: "https://github.com/plesastapevka",
   twitter: "https://twitter.com/plesasta_pevka",
   company: "Blockchain Lab:UM",
