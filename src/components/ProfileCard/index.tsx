@@ -17,11 +17,11 @@ export default function ProfileCard({ className }: ProfileCardProps) {
           width={256}
           height={256}
           className="w-256 h-256 mb-3 rounded-full shadow-lg"
-          src="/academic.JPG"
-          alt="Urban Vidovič profile picture"
+          src="/me.JPG"
+          alt="Urban's profile picture"
         />
         <h5 className="mb-1 font-bold text-center text-3xl tracking-wider ">
-          {PERSONAL.fullName}
+          {PERSONAL.name}
         </h5>
         <span className="text-xl flex text-center">{PERSONAL.position}</span>
         <span className="text-xl flex">
