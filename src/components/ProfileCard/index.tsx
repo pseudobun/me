@@ -7,7 +7,7 @@ type ProfileCardProps = {
   className?: string;
 };
 
-const animation="hover:animate-bounce"
+const animation = "hover:animate-bounce";
 
 export default function ProfileCard({ className }: ProfileCardProps) {
   return (
@@ -36,11 +36,31 @@ export default function ProfileCard({ className }: ProfileCardProps) {
         </span>
       </div>
       <div className="mt-2 justify-center flex text-center align-middle items-center space-x-4">
-        <SocialIcon className={animation} icon="github" href={PERSONAL.github as string} />
-        <SocialIcon className={animation} icon="twitter" href={PERSONAL.twitter as string} />
-        <SocialIcon className={animation} icon="linkedin" href={PERSONAL.linkedin as string} />
-        <SocialIcon className={animation} icon="telegram" href={PERSONAL.telegram as string} />
-        <SocialIcon className={animation} icon="gmail" href={PERSONAL.email as string} />
+        <SocialIcon
+          className={animation}
+          icon="github"
+          href={PERSONAL.github as string}
+        />
+        <SocialIcon
+          className={animation}
+          icon="twitter"
+          href={PERSONAL.twitter as string}
+        />
+        <SocialIcon
+          className={animation}
+          icon="linkedin"
+          href={PERSONAL.linkedin as string}
+        />
+        <SocialIcon
+          className={animation}
+          icon="telegram"
+          href={PERSONAL.telegram as string}
+        />
+        <SocialIcon
+          className={animation}
+          icon="gmail"
+          href={PERSONAL.email as string}
+        />
       </div>
     </div>
   );
