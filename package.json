@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
     "@svgr/webpack": "^7.0.0",
     "@types/marked": "^4.0.8",
     "@types/node": "18.15.11",
@@ -21,6 +23,7 @@
     "eslint": "8.37.0",
     "eslint-config-next": "13.3.0",
     "gray-matter": "^4.0.3",
+    "hamburger-react": "^2.5.0",
     "marked": "^4.3.0",
     "next": "13.3.0",
     "postcss": "8.4.21",
@@ -30,6 +33,7 @@
     "typescript": "5.0.3"
   },
   "devDependencies": {
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "stylelint-config-css-modules": "^4.2.0",
     "stylelint-config-standard": "^33.0.0",
     "stylelint-config-standard-scss": "^8.0.0",
