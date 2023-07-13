@@ -1,25 +1,26 @@
 "use client";
 
-import ProfileCard from "@/components/ProfileCard";
-import { LANDING_PAGE } from "@/constants/data";
+import { Transition } from "@headlessui/react";
+import Bunny from "../components/Icons/bunnysden.svg";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    setShow(true);
+  }, []);
   return (
-    <main className=" font-cabin items-center flex justify-center text-gray-200 dark:text-deep px-12">
-      <div
-        id="mainContent"
-        className="sm:flex sm:flex-row sm:m-auto mt-6 md:mt-24 max-w-5xl justify-center"
-      >
-        <div className="sm:order-2 basis-1/3">
-          <ProfileCard className="w-full min-w-sm max-w-lg" />
-        </div>
-        <div className="my-12 sm:m-12 basis-2/3 sm:order-1">
-          <h1>
-            <span className="text-3xl font-bold">{LANDING_PAGE.greeting}</span>
-          </h1>
-          <p className="text-xl">{LANDING_PAGE.intro}</p>
-        </div>
-      </div>
-    </main>
+    <Transition
+      show={show}
+      enter="transition duration-1000 ease-out"
+      enterFrom="transform scale-30 opacity-0"
+      enterTo="transform scale-100 opacity-100"
+      leave="transition duration-75 ease-out"
+      leaveFrom="transform scale-100 opacity-100"
+      leaveTo="transform scale-95 opacity-0"
+      className="flex h-full w-full flex-col items-center"
+    >
+      <Bunny className="h-1/3 w-1/3 flex-1" />
+    </Transition>
   );
 }

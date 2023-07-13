@@ -16,15 +16,15 @@ export default function ProfileCard({ className }: ProfileCardProps) {
         <Image
           width={256}
           height={256}
-          className="w-256 h-256 mb-3 rounded-full shadow-lg"
+          className="mb-3 rounded-full shadow-lg"
           src="/me.JPG"
           alt="Urban's profile picture"
         />
-        <h5 className="mb-1 font-bold text-center text-3xl tracking-wider ">
+        <h5 className="mb-1 text-center text-3xl font-bold tracking-wider ">
           {PERSONAL.name}
         </h5>
-        <span className="text-xl flex text-center">{PERSONAL.position}</span>
-        <span className="text-xl flex">
+        <span className="flex text-center text-xl">{PERSONAL.position}</span>
+        <span className="flex text-xl">
           <a
             href={PERSONAL.companyUrl}
             className="text-cappuccino hover:text-wave"
@@ -35,7 +35,7 @@ export default function ProfileCard({ className }: ProfileCardProps) {
           </a>
         </span>
       </div>
-      <div className="mt-2 justify-center flex text-center align-middle items-center space-x-4">
+      <div className="mt-2 flex items-center justify-center space-x-4 text-center align-middle">
         <SocialIcon
           className={animation}
           icon="github"
