@@ -20,7 +20,7 @@ export default function Home() {
       leaveTo="transform scale-95 opacity-0"
       className="flex h-full w-full flex-col items-center"
     >
-      <Bunny className="h-1/3 w-1/3 flex-1" />
+      <Bunny className="h-4/5 w-4/5 flex-1 md:h-1/3 md:w-1/3" />
     </Transition>
   );
 }
