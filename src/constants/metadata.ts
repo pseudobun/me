@@ -28,5 +28,10 @@ export const METADATA: ExtendedMetadata = {
       creator: "@pseudourban",
       images: ["https://me.bunnysden.si/api/og"],
     },
+    icons: {
+      icon: "/favicon.ico",
+      shortcut: "/favicon.ico",
+      apple: "/favicon.ico",
+    },
   },
 };
