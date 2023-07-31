@@ -14,7 +14,10 @@ export async function GET(request: Request) {
     ).then((res) => res.arrayBuffer());
     const { searchParams } = new URL(request.url);
     const values = Object.fromEntries(searchParams);
-    const { title, description } = values;
+    const {
+      title = METADATA?.root?.openGraph?.title,
+      description = METADATA?.root?.openGraph?.description,
+    } = values;
 
     return new ImageResponse(
       (
