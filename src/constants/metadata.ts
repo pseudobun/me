@@ -21,5 +21,12 @@ export const METADATA: ExtendedMetadata = {
       locale: "en_US",
       type: "website",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: "Bunny's Den",
+      description: "Urban's personal website. Written with 🤍.",
+      creator: "@pseudourban",
+      images: ["https://me.bunnysden.si/api/og"],
+    },
   },
 };
