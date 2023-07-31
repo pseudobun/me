@@ -14,8 +14,7 @@ export async function GET(request: Request) {
     ).then((res) => res.arrayBuffer());
     const { searchParams } = new URL(request.url);
     const values = Object.fromEntries(searchParams);
-    const { title = METADATA.og.title, description = METADATA.og.description } =
-      values;
+    const { title, description } = values;
 
     return new ImageResponse(
       (
