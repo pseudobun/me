@@ -15,8 +15,9 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const values = Object.fromEntries(searchParams);
     const {
-      title = METADATA?.root?.openGraph?.title,
-      description = METADATA?.root?.openGraph?.description,
+      title = METADATA.root.openGraph?.title || "Bunny's Den",
+      description = METADATA.root.openGraph?.description ||
+        "Urban's personal website.",
     } = values;
 
     return new ImageResponse(
