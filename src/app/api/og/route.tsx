@@ -44,7 +44,7 @@ export async function GET(request: Request) {
               <p tw="text-white text-5xl" style={{ fontFamily: '"Ubuntu"' }}>
                 {title}
               </p>
-              <p tw="text-white text-xl" style={{ fontFamily: '"Cabin"' }}>
+              <p tw="text-white text-3xl" style={{ fontFamily: '"Cabin"' }}>
                 {description}
               </p>
             </div>
