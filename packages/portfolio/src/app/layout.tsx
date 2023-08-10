@@ -1,6 +1,6 @@
 import "./globals.css";
 import { METADATA } from "../constants/metadata";
-import Navigation from "@/components/Navigation";
+import Navigation from "../components/Navigation";
 import { Analytics } from "@vercel/analytics/react";
 // import Footer from "@/components/Footer";
 

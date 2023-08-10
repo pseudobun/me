@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [show, setShow] = useState(false);
+  const test = () => {
+    console.log("hey");
+  };
   useEffect(() => {
     setShow(true);
   }, []);

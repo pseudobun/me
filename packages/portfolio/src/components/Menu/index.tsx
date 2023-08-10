@@ -1,4 +1,4 @@
-import { MENUS } from "@/config";
+import { MENUS } from "../../config";
 import { Transition } from "@headlessui/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
