@@ -1,0 +1,24 @@
+{
+  "name": "@pseudobun/me-monorepo",
+  "description": "Personal monorepo.",
+  "keywords": [
+    "Computer Science",
+    "Portfolio"
+  ],
+  "homepage": "https://me.bunnysden.si",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "libs/*"
+  ],
+  "author": {
+    "name": "Urban Vidovič",
+    "email": "urban@bunnysden.si",
+    "url": "https://me.bunnysden.si"
+  },
+  "license": "(Apache-2.0 AND MIT)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pseudobun/me.git"
+  }
+}

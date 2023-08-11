@@ -1,0 +1,21 @@
+{
+  "name": "@pseudobun/encryption",
+  "version": "1.0.0",
+  "description": "Encryption library written in Rust.",
+  "files": [
+    "./pkg/encryption_bg.wasm",
+    "./pkg/encryption.js",
+    "./pkg/encryption.d.ts"
+  ],
+  "module": "./pkg/encryption.js",
+  "types": "./pkg/encryption.d.ts",
+  "sideEffects": [
+    "./pkg/snippets/*"
+  ],
+  "scripts": {
+    "build": "wasm-pack build --target bundler",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Urban Vidovič",
+  "license": "ISC"
+}
