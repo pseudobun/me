@@ -9,13 +9,32 @@
   ],
   "module": "./pkg/encryption.js",
   "types": "./pkg/encryption.d.ts",
-  "sideEffects": [
-    "./pkg/snippets/*"
-  ],
   "scripts": {
-    "build": "wasm-pack build --target bundler",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "pnpm build:node && pnpm build:web",
+    "build:node": "wasm-pack build --target nodejs --out-dir pkg_node",
+    "build:web": "wasm-pack build --target bundler --out-dir pkg",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "clean": "cargo clean"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "mjs"
+    ],
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "wasm_encryption": "<rootDir>/pkg_node"
+    }
   },
   "author": "Urban Vidovič",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2"
+  }
 }

@@ -16,6 +16,10 @@
     "email": "urban@bunnysden.si",
     "url": "https://me.bunnysden.si"
   },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
   "license": "(Apache-2.0 AND MIT)",
   "repository": {
     "type": "git",

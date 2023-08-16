@@ -14,6 +14,18 @@ export default function Navigation() {
     setIsOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const genKeyPar = async () => {
+      const { generate_keypair } = await import("@pseudobun/encryption");
+      const pair = await generate_keypair();
+      console.log(
+        "🚀 ~ file: index.tsx:23 ~ useEffect ~ pair: ",
+        JSON.parse(pair)
+      );
+    };
+    genKeyPar();
+  }, []);
+
   return (
     <>
       <div className="fixed left-6 top-6 z-40">

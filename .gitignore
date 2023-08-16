@@ -7,7 +7,7 @@ dist/
 
 # rust
 target/
-pkg/
+pkg*/
 
 # vs code
 .vscode/
