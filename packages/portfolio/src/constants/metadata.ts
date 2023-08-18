@@ -9,11 +9,11 @@ export const METADATA: ExtendedMetadata = {
     openGraph: {
       title: "Bunny's Den",
       description: "Urban's personal website. Written with 🤍.",
-      url: "https://me.bunnysden.si",
+      url: "https://pseudobun.dev",
       siteName: "Bunny's Den",
       images: [
         {
-          url: "https://me.bunnysden.si/api/og",
+          url: "https://pseudobun.dev/api/og",
           width: 1200,
           height: 630,
         },
@@ -26,7 +26,7 @@ export const METADATA: ExtendedMetadata = {
       title: "Bunny's Den",
       description: "Urban's personal website. Written with 🤍.",
       creator: "@pseudourban",
-      images: ["https://me.bunnysden.si/api/og"],
+      images: ["https://pseudobun.dev/api/og"],
     },
     verification: {
       google: "6FH2mAeC6dWc9Y5PCXe_dec8X3SvLKRZx-aZ1I7fanY",
