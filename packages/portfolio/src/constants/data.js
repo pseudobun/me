@@ -1,8 +1,8 @@
 export const PERSONAL = {
   name: "Urban",
   lastName: "Vidovič",
-  fullName: "Urban Vidovič",
-  email: "urban@bunnysden.si",
+  fullName: `${PERSONAL.name} ${PERSONAL.lastName}`,
+  email: "urban@bunnys.cloud",
   linkedin: "https://www.linkedin.com/in/urbanvidovic",
   telegram: "https://t.me/pseudobun",
   github: "https://github.com/pseudobun",
