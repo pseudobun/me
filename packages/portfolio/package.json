@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@nextui-org/react": "^2.2.9",
     "@svgr/webpack": "^7.0.0",
     "@types/marked": "^4.3.2",
     "@types/node": "18.15.11",
@@ -22,6 +23,7 @@
     "dompurify": "^3.0.6",
     "eslint": "8.37.0",
     "eslint-config-next": "13.3.0",
+    "framer-motion": "^10.16.5",
     "gray-matter": "^4.0.3",
     "hamburger-react": "^2.5.0",
     "marked": "^4.3.0",
