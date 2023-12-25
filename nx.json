@@ -13,15 +13,12 @@
   },
   "targetDefaults": {
     "build": {
-      "inputs": ["production", "^production"],
-      "dependsOn": ["^build"],
+      "dependsOn": ["^lint"],
       "outputs": ["{projectRoot}/dist"],
       "cache": true
     },
     "lint": {
-      "inputs": ["default", "^production"],
-      "dependsOn": ["^build"],
-      "outputs": [],
+      "dependsOn": ["^lint"],
       "cache": true
     },
     "lint:fix": {
