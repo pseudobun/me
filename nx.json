@@ -1,13 +1,31 @@
 {
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": ["build", "test", "lint", "test:ci", "test:cron"]
+      }
+    }
+  },
+  "extends": "nx/presets/npm.json",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "origin/main"
+  },
   "targetDefaults": {
-    "lint": {
-      "dependsOn": ["^lint"],
+    "build": {
+      "inputs": ["production", "^production"],
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"],
       "cache": true
     },
-    "build": {
+    "lint": {
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "outputs": [],
       "cache": true
     },
     "lint:fix": {
+      "dependsOn": ["^build"],
       "cache": true
     },
     "lint:next": {
@@ -22,9 +40,6 @@
     "lint:tsc": {
       "cache": true
     }
-  },
-  "affected": {
-    "defaultBase": "main"
   },
   "nxCloudAccessToken": "Y2M2OWVmODMtNzY3OC00MDFmLTkyMDYtNWQ3YTNkOGE0YmJlfHJlYWQ="
 }
