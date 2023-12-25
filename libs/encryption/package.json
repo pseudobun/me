@@ -1,15 +1,14 @@
 {
   "name": "@plesastapevka/encryption",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Encryption library written in Rust.",
   "license": "ISC",
   "author": "Urban Vidovič",
   "module": "./pkg/encryption.js",
   "types": "./pkg/encryption.d.ts",
   "files": [
-    "./pkg/encryption_bg.wasm",
-    "./pkg/encryption.js",
-    "./pkg/encryption.d.ts"
+    "pkg",
+    "pkg_node"
   ],
   "scripts": {
     "build": "pnpm build:node && pnpm build:web",
