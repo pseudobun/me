@@ -1,6 +1,6 @@
 {
-  "name": "@pseudobun/encryption",
-  "version": "1.0.0",
+  "name": "@plesastapevka/encryption",
+  "version": "0.1.0",
   "description": "Encryption library written in Rust.",
   "license": "ISC",
   "author": "Urban Vidovič",
