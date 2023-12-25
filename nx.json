@@ -42,6 +42,11 @@
     },
     "lint:fix": {
       "dependsOn": ["^build"]
+    },
+    "test": {
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "outputs": []
     }
   },
   "nxCloudAccessToken": "Y2M2OWVmODMtNzY3OC00MDFmLTkyMDYtNWQ3YTNkOGE0YmJlfHJlYWQ="

@@ -24,14 +24,14 @@ jobs:
     with:
       pnpm-version: 8.11
       node-version: 20.10.0
-      number-of-agents: 3
+      number-of-agents: 4
       main-branch-name: 'main'
       init-commands: |
         npx nx-cloud record -- pnpm exec prettier . --ignore-path .ci.prettierignore --check
       parallel-commands-on-agents: |
-        pnpm exec nx run-many --target=lint --parallel=3
-        pnpm exec nx run-many --target=build --parallel=3
-        pnpm exec nx run-many --target=test --parallel=3
+        pnpm exec nx run-many --target=lint --parallel=4
+        pnpm exec nx run-many --target=build --parallel=4
+        pnpm exec nx run-many --target=test --parallel=4
 
   agents:
     name: Nx Cloud - Agents
@@ -39,6 +39,6 @@ jobs:
     secrets:
       NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
     with:
-      number-of-agents: 3
+      number-of-agents: 4
       pnpm-version: 8.11
       node-version: 20.10.0
