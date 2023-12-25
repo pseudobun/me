@@ -17,7 +17,7 @@ export default function Navigation() {
   useEffect(() => {
     const genKeyPar = async () => {
       const { generate_keypair: generateKeypair } = await import(
-        '@pseudobun/encryption'
+        '@plesastapevka/encryption'
       );
       const pair = await generateKeypair();
       // eslint-disable-next-line no-console
