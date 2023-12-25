@@ -100,7 +100,7 @@ dependencies = [
 
 [[package]]
 name = "encryption"
-version = "0.1.0"
+version = "0.1.0-beta.2"
 dependencies = [
  "getrandom",
  "hex-literal",
