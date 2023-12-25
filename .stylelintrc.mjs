@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   extends: ['stylelint-config-standard-scss', 'stylelint-config-css-modules'],
   rules: {
     'at-rule-no-unknown': null,
