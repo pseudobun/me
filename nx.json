@@ -1,9 +1,7 @@
 {
   "tasksRunnerOptions": {
     "default": {
-      "options": {
-        "cacheableOperations": ["build", "test", "lint", "test:ci", "test:cron"]
-      }
+      "options": {}
     }
   },
   "extends": "nx/presets/npm.json",
@@ -11,18 +9,33 @@
   "affected": {
     "defaultBase": "origin/main"
   },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/tests/**/*",
+      "!{projectRoot}/coverage/**/*",
+      "!{projectRoot}/dist/**/*",
+      "!{projectRoot}/.next/**/*",
+      "!{projectRoot}/.lintstagedrc.cjs",
+      "!{projectRoot}/.prettierignore",
+      "!{projectRoot}/.env.*"
+    ]
+  },
   "targetDefaults": {
     "build": {
+      "inputs": ["production", "^production"],
       "dependsOn": ["^build"],
-      "cache": true
+      "outputs": ["{projectRoot}/dist"]
     },
     "lint": {
+      "inputs": ["default", "^production"],
       "dependsOn": ["^build"],
-      "cache": true
+      "outputs": []
     },
     "lint:fix": {
-      "dependsOn": ["^build"],
-      "cache": true
+      "dependsOn": ["^build"]
     },
     "lint:next": {
       "cache": true
@@ -34,6 +47,15 @@
       "cache": true
     },
     "lint:tsc": {
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "test:ci": {
+      "cache": true
+    },
+    "test:cron": {
       "cache": true
     }
   },
