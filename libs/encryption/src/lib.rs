@@ -41,7 +41,7 @@ pub fn encrypt(pub_key_pem: String, data: String) -> Vec<u8> {
     let data: &[u8] = data.as_bytes();
     let pub_key: RsaPublicKey = RsaPublicKey::from_public_key_pem(&pub_key_pem).unwrap();
     pub_key
-        .encrypt(&mut rng, Pkcs1v15Encrypt, &data[..])
+        .encrypt(&mut rng, Pkcs1v15Encrypt, data)
         .expect("failed to encrypt")
 }
 
