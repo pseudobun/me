@@ -29,7 +29,11 @@
     "build": {
       "inputs": ["production", "^production"],
       "dependsOn": ["^build"],
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/.next/**",
+        "!{projectRoot}/.next/cache/**"
+      ]
     },
     "lint": {
       "inputs": ["default", "^production"],
