@@ -1,5 +1,6 @@
 {
   "name": "@pseudobun/me-monorepo",
+  "private": true,
   "description": "Personal monorepo.",
   "keywords": [
     "Computer Science",
@@ -9,30 +10,35 @@
     "Portfolio"
   ],
   "homepage": "https://pseudobun.dev",
-  "private": true,
-  "workspaces": [
-    "packages/**",
-    "libs/**"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pseudobun/me.git"
+  },
+  "license": "(Apache-2.0 AND MIT)",
   "author": {
     "name": "Urban Vidovič",
     "email": "urban@bunnys.cloud",
     "url": "https://pseudobun.dev"
   },
-  "engines": {
-    "node": ">=20.10",
-    "pnpm": ">=8.12"
-  },
-  "license": "(Apache-2.0 AND MIT)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pseudobun/me.git"
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm nx run-many --target=build",
+    "lint": "pnpm prettier --ignore-path .ci.prettierignore && pnpm nx run-many --target=lint",
+    "lint:fix": "pnpm prettier --ignore-path .ci.prettierignore && pnpm nx run-many --target=lint:fix",
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "test": "pnpm nx run-many --target=test",
+    "test:ci": "pnpm nx run-many --target=test:ci",
+    "test:cron": "cross-env CRON=true pnpm nx run-many --target=test:cron"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
-    "@nx/js": "17.2.6",
+    "@nx/js": "17.2.7",
+    "@types/node": "20.10.5",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -43,10 +49,15 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "nx": "17.2.6",
+    "nx": "17.2.7",
     "prettier": "^3.1.1",
     "prettier-plugin-packagejson": "^2.4.7",
-    "prettier-plugin-tailwindcss": "^0.5.9"
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "typescript": "5.3.3"
   },
-  "packageManager": "pnpm@8.12.1"
+  "packageManager": "pnpm@8.12.1",
+  "engines": {
+    "node": ">=20.10",
+    "pnpm": ">=8.12"
+  }
 }
