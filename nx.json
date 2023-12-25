@@ -1,0 +1,48 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": ["build", "test", "lint"]
+      }
+    }
+  },
+  "extends": "nx/presets/npm.json",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "affected": {
+    "defaultBase": "origin/main"
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/tests/**/*",
+      "!{projectRoot}/coverage/**/*",
+      "!{projectRoot}/dist/**/*",
+      "!{projectRoot}/.next/**/*",
+      "!{projectRoot}/.lintstagedrc.cjs",
+      "!{projectRoot}/.prettierignore",
+      "!{projectRoot}/.env.*"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "inputs": ["production", "^production"],
+      "dependsOn": ["^build"],
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/.next/**",
+        "!{projectRoot}/.next/cache/**"
+      ]
+    },
+    "lint": {
+      "inputs": ["default", "^production"],
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"]
+    }
+  },
+  "nxCloudAccessToken": "Y2M2OWVmODMtNzY3OC00MDFmLTkyMDYtNWQ3YTNkOGE0YmJlfHJlYWQ="
+}

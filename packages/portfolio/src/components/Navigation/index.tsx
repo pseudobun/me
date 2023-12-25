@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Sling as Hamburger } from "hamburger-react";
-import { useEffect, useState } from "react";
-import Menu from "../Menu";
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { Sling as Hamburger } from 'hamburger-react';
+import Menu from '../Menu';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,13 +16,17 @@ export default function Navigation() {
 
   useEffect(() => {
     const genKeyPar = async () => {
-      const { generate_keypair } = await import("@pseudobun/encryption");
-      const pair = await generate_keypair();
+      const { generate_keypair: generateKeypair } = await import(
+        '@pseudobun/encryption'
+      );
+      const pair = await generateKeypair();
+      // eslint-disable-next-line no-console
       console.log(
-        "🚀 ~ file: index.tsx:23 ~ useEffect ~ pair: ",
+        '🚀 ~ file: index.tsx:23 ~ useEffect ~ pair: ',
         JSON.parse(pair)
       );
     };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     genKeyPar();
   }, []);
 

@@ -2,35 +2,37 @@
   "name": "@pseudobun/encryption",
   "version": "1.0.0",
   "description": "Encryption library written in Rust.",
+  "license": "ISC",
+  "author": "Urban Vidovič",
+  "module": "./pkg/encryption.js",
+  "types": "./pkg/encryption.d.ts",
   "files": [
     "./pkg/encryption_bg.wasm",
     "./pkg/encryption.js",
     "./pkg/encryption.d.ts"
   ],
-  "module": "./pkg/encryption.js",
-  "types": "./pkg/encryption.d.ts",
   "scripts": {
     "build": "pnpm build:node && pnpm build:web",
     "build:node": "wasm-pack build --target nodejs --out-dir pkg_node",
     "build:web": "wasm-pack build --target bundler --out-dir pkg",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "clean": "cargo clean"
+    "clean": "cargo clean",
+    "lint": "cargo clippy",
+    "lint:fix": "cargo clippy --fix",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "jest": {
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "moduleFileExtensions": [
       "js",
       "mjs"
     ],
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
-    "testEnvironment": "node",
     "moduleNameMapper": {
       "wasm_encryption": "<rootDir>/pkg_node"
-    }
+    },
+    "testEnvironment": "node"
   },
-  "author": "Urban Vidovič",
-  "license": "ISC",
   "dependencies": {
     "cross-env": "^7.0.3"
   },

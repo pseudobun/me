@@ -4,7 +4,6 @@ use rsa::pkcs8::{
 };
 use rsa::{Pkcs1v15Encrypt, RsaPrivateKey, RsaPublicKey};
 use serde::{Deserialize, Serialize};
-use serde_json;
 use wasm_bindgen::prelude::*;
 
 #[derive(Serialize, Deserialize)]

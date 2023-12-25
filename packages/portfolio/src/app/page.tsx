@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Transition } from "@headlessui/react";
-import Bunny from "../components/Icons/bunnysden.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import { Transition } from '@headlessui/react';
+import Bunny from '../components/Icons/bunnysden.svg';
 
 export default function Home() {
   const [show, setShow] = useState(false);

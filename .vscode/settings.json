@@ -1,6 +1,6 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "typescript.tsdk": "../../node_modules/.pnpm/typescript@5.0.3/node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "json.format.enable": true
 }

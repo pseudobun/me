@@ -1,5 +1,5 @@
-import ProfileCard from "../../components/ProfileCard";
-import { LANDING_PAGE } from "../../constants/data";
+import ProfileCard from '../../components/ProfileCard';
+import { LANDING_PAGE } from '../../constants/data.mjs';
 
 export default function About() {
   return (

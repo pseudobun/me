@@ -1,12 +1,12 @@
-import { MENUS, MenuInput } from "../../config";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import { Transition } from "@headlessui/react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Transition } from '@headlessui/react';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { MenuInput, MENUS } from '../../config';
 
-type MenuProps = {
+interface MenuProps {
   isOpen: boolean;
-};
+}
 
 export default function Menu({ isOpen }: MenuProps) {
   const pathname = usePathname();
@@ -29,7 +29,7 @@ export default function Menu({ isOpen }: MenuProps) {
                 key={menu.label}
                 href={menu.href}
                 target="_blank"
-                className={`underline hover:text-wave hover:opacity-80 
+                className={`hover:text-wave underline hover:opacity-80 
               active:opacity-50`}
               >
                 {menu.label}
@@ -41,7 +41,7 @@ export default function Menu({ isOpen }: MenuProps) {
               key={menu.label}
               href={menu.href}
               className={`hover:text-wave hover:opacity-80 active:opacity-50 ${
-                pathname === menu.href ? "text-wave underline" : ""
+                pathname === menu.href ? 'text-wave underline' : ''
               }`}
             >
               {menu.label}
