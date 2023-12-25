@@ -36,27 +36,6 @@
     },
     "lint:fix": {
       "dependsOn": ["^build"]
-    },
-    "lint:next": {
-      "cache": true
-    },
-    "lint:prettier": {
-      "cache": true
-    },
-    "lint:stylelint": {
-      "cache": true
-    },
-    "lint:tsc": {
-      "cache": true
-    },
-    "test": {
-      "cache": true
-    },
-    "test:ci": {
-      "cache": true
-    },
-    "test:cron": {
-      "cache": true
     }
   },
   "nxCloudAccessToken": "Y2M2OWVmODMtNzY3OC00MDFmLTkyMDYtNWQ3YTNkOGE0YmJlfHJlYWQ="
