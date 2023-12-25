@@ -1,5 +1,9 @@
-module.exports = {
-  extends: ['stylelint-config-standard-scss', 'stylelint-config-css-modules'],
+export default {
+  extends: [
+    'stylelint-config-standard-scss',
+    'stylelint-config-prettier-scss',
+    'stylelint-config-css-modules',
+  ],
   rules: {
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': [
@@ -15,6 +19,7 @@ module.exports = {
         ],
       },
     ],
+    'declaration-block-trailing-semicolon': null,
     'no-descending-specificity': null,
   },
 };

@@ -14,6 +14,22 @@ export default function Navigation() {
     setIsOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const genKeyPar = async () => {
+      const { generate_keypair: generateKeypair } = await import(
+        '@plesastapevka/encryption'
+      );
+      const pair = await generateKeypair();
+      // eslint-disable-next-line no-console
+      console.log(
+        '🚀 ~ file: index.tsx:23 ~ useEffect ~ pair: ',
+        JSON.parse(pair)
+      );
+    };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    genKeyPar();
+  }, []);
+
   return (
     <>
       <div className="fixed left-6 top-6 z-40">

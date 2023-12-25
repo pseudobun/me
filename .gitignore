@@ -5,6 +5,15 @@
 
 # next.js
 .next/
+out/
+dist/
+
+# rust
+target/
+pkg*/
+
+# vs code
+.vscode/
 
 # dependencies
 node_modules
