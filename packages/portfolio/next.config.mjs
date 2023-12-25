@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const StylelintPlugin = require('stylelint-webpack-plugin');
+import StylelintPlugin from 'stylelint-webpack-plugin';
 
 const nextConfig = {
   reactStrictMode: true,
@@ -26,4 +26,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
