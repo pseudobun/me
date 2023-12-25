@@ -1,0 +1,30 @@
+{
+  "targetDefaults": {
+    "lint": {
+      "dependsOn": ["^lint"],
+      "cache": true
+    },
+    "build": {
+      "cache": true
+    },
+    "lint:fix": {
+      "cache": true
+    },
+    "lint:next": {
+      "cache": true
+    },
+    "lint:prettier": {
+      "cache": true
+    },
+    "lint:stylelint": {
+      "cache": true
+    },
+    "lint:tsc": {
+      "cache": true
+    }
+  },
+  "affected": {
+    "defaultBase": "main"
+  },
+  "nxCloudAccessToken": "Y2M2OWVmODMtNzY3OC00MDFmLTkyMDYtNWQ3YTNkOGE0YmJlfHJlYWQ="
+}
