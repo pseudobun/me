@@ -17,7 +17,7 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
     "@nextui-org/react": "^2.2.9",
-    "@plesastapevka/encryption": "^0.1.1",
+    "@plesastapevka/encryption": "^0.1.0-beta.1",
     "@svgr/webpack": "^8.1.0",
     "@types/marked": "^6.0.0",
     "@types/react": "18.2.45",

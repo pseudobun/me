@@ -1,19 +1,24 @@
 {
   "name": "@plesastapevka/encryption",
-  "version": "0.1.1",
+  "version": "0.1.0-beta.1",
   "description": "Encryption library written in Rust.",
   "license": "ISC",
   "author": "Urban Vidovič",
+  "type": "module",
+  "main": "./dist/index.js",
   "module": "./pkg/encryption.js",
+  "source": "./src/lib.rs",
   "types": "./pkg/encryption.d.ts",
   "files": [
-    "pkg",
-    "pkg_node"
+    "pkg/encryption_bg.wasm",
+    "pkg/encryption.js",
+    "pkg/encryption_bg.js",
+    "pkg/encryption.d.ts"
   ],
   "scripts": {
     "build": "pnpm build:node && pnpm build:web",
-    "build:node": "wasm-pack build --target nodejs --out-dir pkg_node",
-    "build:web": "wasm-pack build --target bundler --out-dir pkg",
+    "build:node": "wasm-pack build --target nodejs --out-dir pkg_node --scope plesastapevka --no-pack",
+    "build:web": "wasm-pack build --target bundler --out-dir pkg --scope plesastapevka --no-pack",
     "clean": "cargo clean",
     "lint": "cargo clippy",
     "lint:fix": "cargo clippy --fix",
