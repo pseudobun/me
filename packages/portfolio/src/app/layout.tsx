@@ -1,8 +1,9 @@
-import "./globals.css";
-import { METADATA } from "../constants/metadata";
-import Navigation from "../components/Navigation";
-import { Analytics } from "@vercel/analytics/react";
-import { Providers } from "./providers";
+import './globals.css';
+import { Analytics } from '@vercel/analytics/react';
+import Navigation from '../components/Navigation';
+import { METADATA } from '../constants/metadata';
+import { Providers } from './providers';
+
 // import Footer from "@/components/Footer";
 
 export const metadata = METADATA.root;

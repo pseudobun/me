@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { Sling as Hamburger } from "hamburger-react";
-import { useEffect, useState } from "react";
-import Menu from "../Menu";
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { Sling as Hamburger } from 'hamburger-react';
+import Menu from '../Menu';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);

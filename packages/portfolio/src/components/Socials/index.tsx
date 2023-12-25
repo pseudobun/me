@@ -1,14 +1,14 @@
 // https://simpleicons.org/
-import Github from "../Icons/github.svg";
-import Twitter from "../Icons/twitter.svg";
-import LinkedIn from "../Icons/linkedin.svg";
-import Mail from "../Icons/gmail.svg";
-import Telegram from "../Icons/telegram.svg";
-import clsx from "clsx";
+import clsx from 'clsx';
+import Github from '../Icons/github.svg';
+import Mail from '../Icons/gmail.svg';
+import LinkedIn from '../Icons/linkedin.svg';
+import Telegram from '../Icons/telegram.svg';
+import Twitter from '../Icons/twitter.svg';
 
-type ICON_KEYS = "github" | "twitter" | "linkedin" | "gmail" | "telegram";
+type IconKeys = 'github' | 'twitter' | 'linkedin' | 'gmail' | 'telegram';
 
-const Icons: Record<ICON_KEYS, any> = {
+const Icons: Record<IconKeys, any> = {
   github: Github,
   twitter: Twitter,
   linkedin: LinkedIn,
@@ -16,15 +16,16 @@ const Icons: Record<ICON_KEYS, any> = {
   telegram: Telegram,
 };
 
-type SocialIconProps = {
+interface SocialIconProps {
   className?: string;
-  icon: ICON_KEYS;
+  icon: IconKeys;
   href: string;
-};
+}
 
 export default function SocialIcon({ className, icon, href }: SocialIconProps) {
   const Icon = Icons[icon];
-  if (icon == "gmail") {
+  if (icon === 'gmail') {
+    // eslint-disable-next-line no-param-reassign
     href = `mailto:${href}`;
   }
 

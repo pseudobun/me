@@ -1,13 +1,13 @@
-import clsx from "clsx";
-import { PERSONAL } from "../../constants/data";
-import SocialIcon from "../Socials";
-import Image from "next/image";
+import Image from 'next/image';
+import clsx from 'clsx';
+import { PERSONAL } from '../../constants/data.mjs';
+import SocialIcon from '../Socials';
 
-type ProfileCardProps = {
+interface ProfileCardProps {
   className?: string;
-};
+}
 
-const animation = "hover:animate-bounce";
+const animation = 'hover:animate-bounce';
 
 export default function ProfileCard({ className }: ProfileCardProps) {
   return (
@@ -30,7 +30,7 @@ export default function ProfileCard({ className }: ProfileCardProps) {
             className="text-cappuccino hover:text-wave"
             target="_blank"
           >
-            {" "}
+            {' '}
             {PERSONAL.company}
           </a>
         </span>
@@ -39,28 +39,24 @@ export default function ProfileCard({ className }: ProfileCardProps) {
         <SocialIcon
           className={animation}
           icon="github"
-          href={PERSONAL.github as string}
+          href={PERSONAL.github}
         />
         <SocialIcon
           className={animation}
           icon="twitter"
-          href={PERSONAL.twitter as string}
+          href={PERSONAL.twitter}
         />
         <SocialIcon
           className={animation}
           icon="linkedin"
-          href={PERSONAL.linkedin as string}
+          href={PERSONAL.linkedin}
         />
         <SocialIcon
           className={animation}
           icon="telegram"
-          href={PERSONAL.telegram as string}
+          href={PERSONAL.telegram}
         />
-        <SocialIcon
-          className={animation}
-          icon="gmail"
-          href={PERSONAL.email as string}
-        />
+        <SocialIcon className={animation} icon="gmail" href={PERSONAL.email} />
       </div>
     </div>
   );

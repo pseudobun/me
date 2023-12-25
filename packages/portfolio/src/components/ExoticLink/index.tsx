@@ -1,10 +1,10 @@
-import clsx from "clsx";
+import clsx from 'clsx';
 
-type ExoticLinkProps = {
+interface ExoticLinkProps {
   href: string;
   destination: string;
   className?: string;
-};
+}
 
 export default function ExoticLink({
   href,
@@ -12,7 +12,7 @@ export default function ExoticLink({
   className,
 }: ExoticLinkProps) {
   return (
-    <a href={href} className={(clsx(className), "hover:text-wave")}>
+    <a href={href} className={(clsx(className), 'hover:text-wave')}>
       {destination}
     </a>
   );
