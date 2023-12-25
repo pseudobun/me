@@ -1,7 +1,9 @@
 {
   "tasksRunnerOptions": {
     "default": {
-      "options": {}
+      "options": {
+        "cacheableOperations": ["build", "test", "lint"]
+      }
     }
   },
   "extends": "nx/presets/npm.json",
