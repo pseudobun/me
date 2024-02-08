@@ -57,6 +57,11 @@ export default function ProfileCard({ className }: ProfileCardProps) {
           href={PERSONAL.telegram}
         />
         <SocialIcon className={animation} icon="gmail" href={PERSONAL.email} />
+        <SocialIcon
+          className={animation}
+          icon="farcaster"
+          href={PERSONAL.farcaster}
+        />
       </div>
     </div>
   );

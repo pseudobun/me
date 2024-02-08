@@ -1,12 +1,19 @@
 // https://simpleicons.org/
 import clsx from 'clsx';
+import Farcaster from '../Icons/farcaster.svg';
 import Github from '../Icons/github.svg';
 import Mail from '../Icons/gmail.svg';
 import LinkedIn from '../Icons/linkedin.svg';
 import Telegram from '../Icons/telegram.svg';
 import Twitter from '../Icons/twitter.svg';
 
-type IconKeys = 'github' | 'twitter' | 'linkedin' | 'gmail' | 'telegram';
+type IconKeys =
+  | 'github'
+  | 'twitter'
+  | 'linkedin'
+  | 'gmail'
+  | 'telegram'
+  | 'farcaster';
 
 const Icons: Record<IconKeys, any> = {
   github: Github,
@@ -14,6 +21,7 @@ const Icons: Record<IconKeys, any> = {
   linkedin: LinkedIn,
   gmail: Mail,
   telegram: Telegram,
+  farcaster: Farcaster,
 };
 
 interface SocialIconProps {

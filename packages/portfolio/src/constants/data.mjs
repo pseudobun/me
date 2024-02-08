@@ -5,6 +5,7 @@ export const PERSONAL = {
   email: 'urban@bunnys.cloud',
   linkedin: 'https://www.linkedin.com/in/urbanvidovic',
   telegram: 'https://t.me/pseudobun',
+  farcaster: 'https://warpcast.com/pseudobun.eth',
   github: 'https://github.com/pseudobun',
   twitter: 'https://twitter.com/pseudourban',
   company: 'Blockchain Lab:UM',
