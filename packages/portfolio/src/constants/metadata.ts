@@ -5,7 +5,7 @@ type ExtendedMetadata = Record<string, Metadata>;
 export const METADATA: ExtendedMetadata = {
   root: {
     metadataBase: new URL('https://pseudobun.dev'),
-    title: 'Urban Vidovič | Portfolio',
+    title: { template: 'Urban | %s', default: 'Urban | Portfolio' },
     description:
       "Delve into the innovative world of blockchain and Web3 with Urban Vidovič (Urban Vidovic), known online as pseudobun. With a Master's Degree in Computer Science, Urban, a skilled Research and Development (R&D) Engineer at Blockchain Lab:UM, specializes in decentralization, Ethereum, and the verifiable web and contributes to open-source software. His expertise extends to cybersecurity, cryptography, and networking. Discover Urban's groundbreaking work and insights at pseudobun.dev.",
     openGraph: {

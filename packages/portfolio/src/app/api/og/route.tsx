@@ -1,4 +1,4 @@
-import { ImageResponse } from 'next/server';
+import { ImageResponse } from 'next/og';
 import Bunny from '../../../components/Icons/bunnysden.svg';
 import { METADATA } from '../../../constants/metadata';
 
