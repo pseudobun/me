@@ -24,7 +24,7 @@
     "decorators-legacy",
     "importAssertions"
   ],
-  "importOrderTypeScriptVersion": "5.2.2",
+  "importOrderTypeScriptVersion": "5.3.3",
   "plugins": [
     "prettier-plugin-packagejson",
     "@ianvs/prettier-plugin-sort-imports",
