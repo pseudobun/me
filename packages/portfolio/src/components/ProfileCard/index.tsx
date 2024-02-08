@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import clsx from 'clsx';
 import { PERSONAL } from '../../constants/data.mjs';
-import SocialIcon from '../Socials';
+import SocialIcon from '../SocialIcon';
 
 interface ProfileCardProps {
   className?: string;

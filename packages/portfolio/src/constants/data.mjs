@@ -14,6 +14,6 @@ export const PERSONAL = {
 };
 
 export const LANDING_PAGE = {
-  greeting: 'Hello, World!',
+  greeting: 'gm 🌱',
   intro: `I'm Urban, a Software Engineer from Maribor, Slovenia. I'm currently working at ${PERSONAL.company} as a ${PERSONAL.position}. This page is currently under construction, but you can check out my socials in the meantime.`,
 };

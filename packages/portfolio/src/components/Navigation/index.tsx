@@ -16,7 +16,7 @@ export default function Navigation() {
 
   return (
     <>
-      <div className="fixed left-6 top-6 z-40">
+      <div className="fixed left-6 top-6 z-50">
         <Hamburger
           toggled={isOpen}
           toggle={setIsOpen}
@@ -24,7 +24,9 @@ export default function Navigation() {
           rounded={true}
         />
       </div>
-      <Menu isOpen={isOpen} />
+      <div className="z-40">
+        <Menu isOpen={isOpen} />
+      </div>
     </>
   );
 }
