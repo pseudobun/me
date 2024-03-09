@@ -1,8 +1,9 @@
 {
+  "nxCloudAccessToken": "Y2M2OWVmODMtNzY3OC00MDFmLTkyMDYtNWQ3YTNkOGE0YmJlfHJlYWQ=",
   "tasksRunnerOptions": {
     "default": {
       "options": {
-        "cacheableOperations": ["build", "test", "lint"]
+        "cacheableOperations": ["build", "lint"]
       }
     }
   },
@@ -15,9 +16,6 @@
     "default": ["{projectRoot}/**/*"],
     "production": [
       "default",
-      "!{projectRoot}/**/*.spec.ts",
-      "!{projectRoot}/tests/**/*",
-      "!{projectRoot}/coverage/**/*",
       "!{projectRoot}/dist/**/*",
       "!{projectRoot}/.next/**/*",
       "!{projectRoot}/.lintstagedrc.cjs",
@@ -28,11 +26,7 @@
     "build": {
       "inputs": ["production", "^production"],
       "dependsOn": ["^build"],
-      "outputs": [
-        "{projectRoot}/dist",
-        "{projectRoot}/.next/**",
-        "!{projectRoot}/.next/cache/**"
-      ]
+      "outputs": ["{projectRoot}/dist"]
     },
     "lint": {
       "inputs": ["default", "^production"],
@@ -43,5 +37,5 @@
       "dependsOn": ["^build"]
     }
   },
-  "nxCloudAccessToken": "Y2M2OWVmODMtNzY3OC00MDFmLTkyMDYtNWQ3YTNkOGE0YmJlfHJlYWQ="
+  "defaultBase": "main"
 }

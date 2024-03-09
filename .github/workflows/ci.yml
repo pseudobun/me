@@ -29,8 +29,8 @@ jobs:
       init-commands: |
         npx nx-cloud record -- pnpm exec biome check --config-path configs .
       parallel-commands-on-agents: |
-        pnpm exec nx run-many --target=lint --parallel=3
-        pnpm exec nx run-many --target=build --parallel=3
+        pnpm exec nx run-many --target=lint --parallel=2
+        pnpm exec nx run-many --target=build --parallel=2
 
   agents:
     name: Nx Cloud - Agents
