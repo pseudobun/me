@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Transition } from '@headlessui/react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { MenuInput, MENUS } from '../../config';
+import { type MenuInput, MENUS } from '../../config';
 
 interface MenuProps {
   isOpen: boolean;
@@ -31,6 +31,7 @@ export default function Menu({ isOpen }: MenuProps) {
                 target="_blank"
                 className={`hover:text-wave underline hover:opacity-80 
               active:opacity-50`}
+                rel="noreferrer"
               >
                 {menu.label}
               </a>

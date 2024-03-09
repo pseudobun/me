@@ -29,6 +29,7 @@ export default function ProfileCard({ className }: ProfileCardProps) {
             href={PERSONAL.companyUrl}
             className="text-cappuccino hover:text-wave"
             target="_blank"
+            rel="noreferrer"
           >
             {' '}
             {PERSONAL.company}

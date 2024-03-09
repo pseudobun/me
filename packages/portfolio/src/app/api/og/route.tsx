@@ -21,36 +21,34 @@ export async function GET(request: Request) {
     } = values;
 
     return new ImageResponse(
-      (
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(to top right, black, #1f2937)',
+          backgroundAttachment: 'fixed',
+        }}
+      >
         <div
-          style={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(to top right, black, #1f2937)',
-            backgroundAttachment: 'fixed',
-          }}
+          tw="flex flex-1 px-50 text-center items-center"
+          className=""
+          style={{ justifyContent: 'space-between' }}
         >
-          <div
-            tw="flex flex-1 px-50 text-center items-center"
-            className=""
-            style={{ justifyContent: 'space-between' }}
-          >
-            <Bunny tw="h-64 w-64" />
-            <div tw="h-[128px] w-[2px] bg-gray-600 mx-8" />
-            <div tw="flex flex-col">
-              <p tw="text-white text-5xl" style={{ fontFamily: '"Ubuntu"' }}>
-                {title}
-              </p>
-              <p tw="text-white text-3xl" style={{ fontFamily: '"Cabin"' }}>
-                {description}
-              </p>
-            </div>
+          <Bunny tw="h-64 w-64" />
+          <div tw="h-[128px] w-[2px] bg-gray-600 mx-8" />
+          <div tw="flex flex-col">
+            <p tw="text-white text-5xl" style={{ fontFamily: '"Ubuntu"' }}>
+              {title}
+            </p>
+            <p tw="text-white text-3xl" style={{ fontFamily: '"Cabin"' }}>
+              {description}
+            </p>
           </div>
         </div>
-      ),
+      </div>,
       {
         width: 1200,
         height: 630,
@@ -69,7 +67,7 @@ export async function GET(request: Request) {
       }
     );
   } catch (error) {
-    return new Response(`Failed to generate image`, {
+    return new Response('Failed to generate image', {
       status: 500,
     });
   }

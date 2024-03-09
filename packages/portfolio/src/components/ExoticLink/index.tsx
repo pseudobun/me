@@ -12,6 +12,7 @@ export default function ExoticLink({
   className,
 }: ExoticLinkProps) {
   return (
+    // biome-ignore lint/style/noCommaOperator: <explanation>
     <a href={href} className={(clsx(className), 'hover:text-wave')}>
       {destination}
     </a>

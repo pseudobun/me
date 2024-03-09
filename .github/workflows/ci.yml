@@ -27,7 +27,7 @@ jobs:
       number-of-agents: 3
       main-branch-name: 'main'
       init-commands: |
-        npx nx-cloud record -- pnpm exec prettier . --ignore-path .ci.prettierignore --check
+        npx nx-cloud record -- pnpm exec biome check --config-path configs .
       parallel-commands-on-agents: |
         pnpm exec nx run-many --target=lint --parallel=3
         pnpm exec nx run-many --target=build --parallel=3
