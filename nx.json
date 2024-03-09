@@ -21,7 +21,6 @@
       "!{projectRoot}/dist/**/*",
       "!{projectRoot}/.next/**/*",
       "!{projectRoot}/.lintstagedrc.cjs",
-      "!{projectRoot}/.prettierignore",
       "!{projectRoot}/.env.*"
     ]
   },

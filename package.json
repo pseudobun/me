@@ -2,13 +2,7 @@
   "name": "@pseudobun/me-monorepo",
   "private": true,
   "description": "Personal monorepo.",
-  "keywords": [
-    "Computer Science",
-    "Rust",
-    "Typescript",
-    "NextJS",
-    "Portfolio"
-  ],
+  "keywords": ["Computer Science", "Rust", "Typescript", "NextJS", "Portfolio"],
   "homepage": "https://pseudobun.dev",
   "repository": {
     "type": "git",
@@ -20,42 +14,27 @@
     "email": "urban@bunnys.cloud",
     "url": "https://pseudobun.dev"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "scripts": {
     "build": "pnpm nx run-many --target=build",
-    "lint": "pnpm prettier --ignore-path .ci.prettierignore && pnpm nx run-many --target=lint",
-    "lint:fix": "pnpm prettier --ignore-path .ci.prettierignore && pnpm nx run-many --target=lint:fix",
+    "lint": "biome check --config-path configs . && pnpm nx run-many --target=lint",
+    "lint:fix": "biome check --config-path configs --apply . && pnpm nx run-many --target=lint:fix",
     "prepare": "is-ci || husky install",
-    "prettier": "prettier --write .",
     "test": "pnpm nx run-many --target=test",
     "test:ci": "pnpm nx run-many --target=test:ci",
     "test:cron": "cross-env CRON=true pnpm nx run-many --target=test:cron"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.6.0",
     "@commitlint/cli": "^18.6.0",
     "@commitlint/config-conventional": "^18.6.0",
-    "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@nx/js": "18.0.3",
     "@types/node": "20.11.16",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.56.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.1.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jest": "^27.6.3",
-    "eslint-plugin-jest-extended": "^2.0.0",
-    "eslint-plugin-unused-imports": "^3.0.0",
     "husky": "^9.0.10",
     "is-ci": "^3.0.1",
     "lint-staged": "^15.2.2",
     "nx": "18.0.3",
-    "prettier": "^3.2.5",
-    "prettier-plugin-packagejson": "^2.4.10",
-    "prettier-plugin-tailwindcss": "^0.5.11",
+    "rimraf": "^5.0.5",
     "typescript": "5.3.3"
   },
   "packageManager": "pnpm@8.12.1",

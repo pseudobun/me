@@ -33,7 +33,6 @@ interface SocialIconProps {
 export default function SocialIcon({ className, icon, href }: SocialIconProps) {
   const Icon = Icons[icon];
   if (icon === 'gmail') {
-    // eslint-disable-next-line no-param-reassign
     href = `mailto:${href}`;
   }
 
@@ -45,7 +44,7 @@ export default function SocialIcon({ className, icon, href }: SocialIconProps) {
       rel="noopener noreferrer"
       className={clsx(className)}
     >
-      <Icon className={`h-[32px] w-[32px]`} />
+      <Icon className={'h-[32px] w-[32px]'} />
     </a>
   );
 }
