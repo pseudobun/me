@@ -8,7 +8,9 @@ on:
       - develop
   pull_request:
     types: [opened, synchronize, reopened]
-
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   main:
     name: Nx Cloud - Main Job
