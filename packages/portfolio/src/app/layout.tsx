@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/react';
 import Navigation from '../components/Navigation';
 import { METADATA } from '../constants/metadata';
 import { Providers } from './providers';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // import Footer from "@/components/Footer";
 
@@ -22,6 +23,7 @@ export default function RootLayout({
             {children}
             {/* <Footer /> */}
             <Analytics />
+            <SpeedInsights />
           </main>
         </Providers>
       </body>
