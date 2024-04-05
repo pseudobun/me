@@ -24,18 +24,20 @@ export default function Menu({ isOpen }: MenuProps) {
       <div className="flex flex-1 flex-col items-center justify-center space-y-4 text-2xl">
         {MENUS.map((menu: MenuInput) =>
           menu?.external ? (
-            <div key={menu.label} className="flex space-x-2">
+            <div
+              key={menu.label}
+              className="flex space-x-2 hover:text-wave underline hover:opacity-80 
+            active:opacity-50"
+            >
               <a
                 key={menu.label}
                 href={menu.href}
                 target="_blank"
-                className={`hover:text-wave underline hover:opacity-80 
-              active:opacity-50`}
                 rel="noreferrer"
               >
                 {menu.label}
               </a>
-              <ArrowTopRightOnSquareIcon width={20} />
+              <ArrowTopRightOnSquareIcon width={16} />
             </div>
           ) : (
             <Link

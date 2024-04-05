@@ -10,6 +10,7 @@ export const PERSONAL = {
   twitter: 'https://twitter.com/pseudourban',
   company: 'Blockchain Lab:UM',
   companyUrl: 'https://blockchain-lab.um.si/?lang=en',
+  hey: 'https://hey.xyz/u/pseudobun',
   position: 'Research & Development Engineer',
 };
 

@@ -11,6 +11,8 @@ node_modules
 /.pnp
 .pnp.js
 
+sitemap**.xml
+
 # testing
 /coverage
 
@@ -39,6 +41,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
 
 .nx/cache

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import { PERSONAL } from '../../constants/data.mjs';
 import SocialIcon from '../SocialIcon';
+import me from './me.jpg';
 
 interface ProfileCardProps {
   className?: string;
@@ -17,7 +18,8 @@ export default function ProfileCard({ className }: ProfileCardProps) {
           width={256}
           height={256}
           className="mb-3 rounded-full shadow-lg"
-          src="/me.JPG"
+          placeholder="blur"
+          src={me}
           alt="Urban's profile picture"
         />
         <h5 className="mb-1 text-center text-3xl font-bold tracking-wider ">
@@ -63,6 +65,7 @@ export default function ProfileCard({ className }: ProfileCardProps) {
           icon="farcaster"
           href={PERSONAL.farcaster}
         />
+        <SocialIcon className={animation} icon="hey" href={PERSONAL.hey} />
       </div>
     </div>
   );
