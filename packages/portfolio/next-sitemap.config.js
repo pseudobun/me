@@ -2,7 +2,7 @@
 const config = {
   siteUrl: 'https://pseudobun.dev',
   generateRobotsTxt: false,
-  generateIndexSitemap: true,
+  generateIndexSitemap: false,
   sitemapSize: 1000,
 };
 
