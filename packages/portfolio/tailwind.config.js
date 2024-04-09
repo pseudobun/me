@@ -318,7 +318,7 @@ module.exports = {
       ubuntu: ['Ubuntu', 'sans-serif'],
       cabin: ['Cabin', 'sans-serif'],
       serif: ['"Times New Roman"'],
-      mono: ['JetBrains Mono'],
+      mono: ['JetBrainsMono', 'monospace'],
     },
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],

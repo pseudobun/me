@@ -5,8 +5,6 @@ import { METADATA } from '../constants/metadata';
 import { Providers } from './providers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
-// import Footer from "@/components/Footer";
-
 export const metadata = METADATA.root;
 
 export default function RootLayout({
