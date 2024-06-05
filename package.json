@@ -2,7 +2,13 @@
   "name": "@pseudobun/me-monorepo",
   "private": true,
   "description": "Personal monorepo.",
-  "keywords": ["Computer Science", "Rust", "Typescript", "NextJS", "Portfolio"],
+  "keywords": [
+    "Computer Science",
+    "Rust",
+    "Typescript",
+    "NextJS",
+    "Portfolio"
+  ],
   "homepage": "https://pseudobun.dev",
   "repository": {
     "type": "git",
@@ -14,7 +20,9 @@
     "email": "urban@bunnys.cloud",
     "url": "https://pseudobun.dev"
   },
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "pnpm nx run-many --target=build",
     "lint": "biome check --config-path configs . && pnpm nx run-many --target=lint",
@@ -25,17 +33,17 @@
     "test:cron": "cross-env CRON=true pnpm nx run-many --target=test:cron"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.6.0",
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
-    "@nx/js": "18.0.8",
-    "@types/node": "20.11.25",
+    "@biomejs/biome": "1.8.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@nx/js": "19.2.0",
+    "@types/node": "20.14.2",
     "husky": "^9.0.11",
     "is-ci": "^3.0.1",
-    "lint-staged": "^15.2.2",
-    "nx": "18.0.8",
-    "rimraf": "^5.0.5",
-    "typescript": "5.4.2"
+    "lint-staged": "^15.2.5",
+    "nx": "19.2.0",
+    "rimraf": "^5.0.7",
+    "typescript": "5.4.5"
   },
   "packageManager": "pnpm@9.1.1",
   "engines": {

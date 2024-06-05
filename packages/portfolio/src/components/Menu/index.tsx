@@ -10,6 +10,7 @@ interface MenuProps {
 
 export default function Menu({ isOpen }: MenuProps) {
   const pathname = usePathname();
+
   return (
     <Transition
       show={isOpen}
@@ -44,7 +45,7 @@ export default function Menu({ isOpen }: MenuProps) {
               key={menu.label}
               href={menu.href}
               className={`hover:text-wave hover:opacity-80 active:opacity-50 ${
-                pathname === menu.href ? 'text-wave underline' : ''
+                pathname === `${menu.href}` ? 'text-wave underline' : ''
               }`}
             >
               {menu.label}

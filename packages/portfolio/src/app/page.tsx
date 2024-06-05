@@ -6,6 +6,7 @@ import Typewriter from 'typewriter-effect';
 export default function Home() {
   return (
     <Transition
+      as="div"
       show={true}
       appear={true}
       enter="transform transition ease-out"

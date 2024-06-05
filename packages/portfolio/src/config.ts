@@ -10,7 +10,7 @@ export const MENUS = [
   },
   {
     label: 'About',
-    href: '/about',
+    href: '/about/',
   },
   {
     label: 'Blog',
