@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <main className="font-cabin text-cappuccino no-scrollbar flex h-full min-h-screen w-full flex-col items-center justify-center bg-gradient-to-tr from-black to-gray-800 bg-fixed p-6">
+          <main className="font-cabin text-cappuccino no-scrollbar flex h-full min-h-screen w-full flex-col items-center justify-center bg-gradient-to-tr from-black to-gray-800 bg-fixed sm:p-24 p-6 pt-20">
             <Navigation />
             {children}
             {/* <Footer /> */}

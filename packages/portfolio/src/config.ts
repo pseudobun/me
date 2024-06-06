@@ -13,12 +13,12 @@ export const MENUS = [
     href: '/about/',
   },
   {
+    label: 'Projects',
+    href: '/projects/',
+  },
+  {
     label: 'Blog',
     href: 'https://mirror.xyz/0x32B1172E786a31A65b46710Cd946b2521e13ac96',
     external: true,
   },
-  // {
-  //   label: "Contact",
-  //   href: "/contact",
-  // },
 ];

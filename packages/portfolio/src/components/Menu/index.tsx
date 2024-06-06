@@ -13,6 +13,7 @@ export default function Menu({ isOpen }: MenuProps) {
 
   return (
     <Transition
+      as="div"
       show={isOpen}
       enter="transition duration-500 ease-out"
       enterFrom="transform scale-60 opacity-0"

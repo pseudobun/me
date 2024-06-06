@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { PERSONAL } from '../../constants/data.mjs';
 import SocialIcon from '../SocialIcon';
 import me from './me.jpg';
+import Link from 'next/link';
 
 interface ProfileCardProps {
   className?: string;
@@ -26,16 +27,24 @@ export default function ProfileCard({ className }: ProfileCardProps) {
           {PERSONAL.name}
         </h5>
         <span className="flex text-center text-xl">{PERSONAL.position}</span>
-        <span className="flex text-xl">
-          <a
+        <span className="flex text-xl flex-col items-center">
+          <Link
             href={PERSONAL.companyUrl}
             className="text-cappuccino hover:text-wave"
             target="_blank"
             rel="noreferrer"
           >
-            {' '}
             {PERSONAL.company}
-          </a>
+          </Link>
+          <Link
+            href={PERSONAL.company2Url}
+            className="text-cappuccino hover:text-wave"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {' '}
+            {PERSONAL.company2}
+          </Link>
         </span>
       </div>
       <div className="mt-2 flex items-center justify-center space-x-4 text-center align-middle">
