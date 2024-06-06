@@ -20,6 +20,7 @@ export const PERSONAL = {
   company2Url: 'https://lutralabs.io',
   hey: 'https://hey.xyz/u/pseudobun',
   position: 'Research & Development Engineer',
+  universityUrl: 'https://feri.um.si/en/',
 };
 
 export const PROJECTS = [

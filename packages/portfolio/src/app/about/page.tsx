@@ -33,8 +33,16 @@ export default function About() {
             >
               {PERSONAL.company2}
             </Link>{' '}
-            as a {PERSONAL.position}. This page is currently under construction,
-            but you can check out my socials in the meantime.
+            as a {PERSONAL.position}. I have a Master's degree in Computer
+            Science, acquired at{' '}
+            <Link
+              className="text-cappuccino hover:text-wave"
+              href={PERSONAL.universityUrl}
+            >
+              Faculty of Electrical Engineering and Computer Science, University
+              of Maribor
+            </Link>
+            .
           </p>
         </div>
       </div>
