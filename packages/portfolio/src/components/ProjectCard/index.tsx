@@ -44,7 +44,12 @@ export default function ProjectCard({
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
       {/* Front face */}
-      <Card className="dark h-96 w-full" isPressable onPress={handleClick}>
+      <Card
+        className="dark h-96 w-full bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
+        isPressable
+        isBlurred
+        onPress={handleClick}
+      >
         <CardHeader className="flex gap-3 h-[4rem] text-left">
           <div className="flex flex-col">
             <p className="text-lg sm:text-xl">{title}</p>
@@ -76,7 +81,11 @@ export default function ProjectCard({
       </Card>
 
       {/* Back face */}
-      <Card className="h-96 w-full dark" isPressable onPress={handleClick}>
+      <Card
+        className="h-96 w-full dark bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
+        isPressable
+        onPress={handleClick}
+      >
         <CardHeader className="flex gap-3 h-[4rem] text-left">
           <div className="flex flex-col">
             <p className="text-lg sm:text-xl">Description</p>
