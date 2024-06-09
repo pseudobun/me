@@ -25,10 +25,6 @@ export default function ProfileCard() {
       card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
 
-    const handleTouchStart = (event: TouchEvent) => {
-      event.preventDefault();
-    };
-
     const handleTouchMove = (event: TouchEvent) => {
       if (event.touches.length > 1) return;
       const touch = event.touches[0];
@@ -51,14 +47,12 @@ export default function ProfileCard() {
 
     card.addEventListener('mousemove', handleMouseMove);
     card.addEventListener('mouseleave', handleMouseLeave);
-    card.addEventListener('touchstart', handleTouchStart, { passive: false });
     card.addEventListener('touchmove', handleTouchMove, { passive: false });
     card.addEventListener('touchend', handleTouchEnd);
 
     return () => {
       card.removeEventListener('mousemove', handleMouseMove);
       card.removeEventListener('mouseleave', handleMouseLeave);
-      card.removeEventListener('touchstart', handleTouchStart);
       card.removeEventListener('touchmove', handleTouchMove);
       card.removeEventListener('touchend', handleTouchEnd);
     };

@@ -24,7 +24,7 @@ export default function About() {
           leave="transition duration-75 ease-out"
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
-          className="mt-12 flex-1 md:order-1 md:m-12 md:w-2/3"
+          className="mt-12 flex-1 md:order-1 md:m-12 md:w-2/3 pb-12 lg:pb-0"
         >
           <h1 className="mb-2">
             <span className="text-3xl font-bold">gm 🌱</span>

@@ -17,7 +17,6 @@ import {
   ScrollShadow,
 } from '@nextui-org/react';
 import Github from '../Icons/github.svg';
-import clsx from 'clsx';
 
 interface ProjectCardProps {
   title: string;
@@ -28,6 +27,8 @@ interface ProjectCardProps {
   orgUrl: string;
   github: string | undefined;
   delay: number;
+  showOverlay: boolean;
+  onCardClick: () => void;
 }
 
 export default function ProjectCard({
@@ -39,11 +40,14 @@ export default function ProjectCard({
   orgUrl,
   image,
   delay,
+  showOverlay,
+  onCardClick,
 }: ProjectCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const cardRef = useRef(null);
   const handleClick = () => {
     setIsFlipped(!isFlipped);
+    onCardClick();
   };
   useEffect(() => {
     const card = cardRef.current as unknown as HTMLElement;
@@ -52,8 +56,8 @@ export default function ProjectCard({
       const rect = (card as Element).getBoundingClientRect();
       const x = event.clientX - rect.left - rect.width / 2;
       const y = event.clientY - rect.top - rect.height / 2;
-      const rotateX = (-y / rect.height) * 30;
-      const rotateY = (x / rect.width) * 30;
+      const rotateX = (-y / rect.height) * 10;
+      const rotateY = (x / rect.width) * 10;
 
       card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
@@ -80,67 +84,75 @@ export default function ProjectCard({
         className="transition-transform duration-100 transform-gpu"
         style={{ transformStyle: 'preserve-3d' }}
       >
+        {showOverlay && (
+          <div className="absolute flex backdrop-blur-md h-full w-full inset-0 z-10 rounded-lg bg-gradient-to-b from-black/50 to-gray-900/50 items-center justify-center">
+            Click me for more info!
+          </div>
+        )}
+
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
           {/* Front face */}
           <Card
-            className="dark h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
+            isFooterBlurred
+            className="dark border-none h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
             isBlurred
             isPressable
             onPress={handleClick}
           >
-            <CardHeader className="flex gap-3 h-[4rem] text-left">
+            <CardHeader className="justify-between py-1 absolute rounded-xl bg-gradient-to-bl from-gray-700/90 to-gray-800/80 top-1  w-[calc(100%_-_8px)] shadow-lg ml-1 z-10">
               <div className="flex flex-col">
-                <p className="text-lg sm:text-xl">{title}</p>
+                <p className="text-lg items-start sm:text-xl">{title}</p>
+              </div>
+              <div className="flex gap-x-2">
+                {website && (
+                  <Link href={website} target="_blank">
+                    <GlobeAltIcon
+                      color="white"
+                      className={'h-[28px] w-[28px]'}
+                    />
+                  </Link>
+                )}
+                {github && (
+                  <Link href={github} target="_blank">
+                    <Github className={'h-[24px] w-[24px]'} />
+                  </Link>
+                )}
               </div>
             </CardHeader>
+            <Image
+              alt="nextui logo"
+              src={image}
+              placeholder="blur"
+              width={460}
+              className="z-0 w-full h-full object-cover rounded-lg backdrop-blur-sm"
+            />
             <Divider />
-            <CardBody>
-              <Image
-                alt="nextui logo"
-                width={460}
-                src={image}
-                placeholder="blur"
-                className="rounded-lg"
-              />
-            </CardBody>
-            <Divider />
-            <CardFooter className="justify-end gap-x-2 h-[3rem]">
-              {website && (
-                <Link href={website} target="_blank">
-                  <GlobeAltIcon color="white" className={'h-[36px] w-[36px]'} />
-                </Link>
-              )}
-              {github && (
-                <Link href={github} target="_blank">
-                  <Github className={'h-[32px] w-[32px]'} />
-                </Link>
-              )}
-            </CardFooter>
           </Card>
 
           {/* Back face */}
           <Card
-            className="h-96 w-full max-w-[460px] dark bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
+            className="dark h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
             isPressable
+            disableRipple
             onPress={handleClick}
           >
-            <CardHeader className="flex gap-3 h-[4rem] text-left">
+            <CardHeader className="flex gap-3 text-left">
               <div className="flex flex-col">
                 <p className="text-lg sm:text-xl">Description</p>
               </div>
             </CardHeader>
             <Divider />
             <CardBody>
-              <ScrollShadow className="m-2 no-scrollbar text-md sm:text-lg">
-                <p className="pt-2">{description}</p>
+              <ScrollShadow className="no-scrollbar text-md sm:text-lg">
+                <p>{description}</p>
               </ScrollShadow>
             </CardBody>
             <Divider />
-            <CardFooter className="justify-start gap-x-2 h-[3rem]">
-              <p className="text-sm sm:text-md">
+            <CardFooter className="justify-start gap-x-2 h-[3rem] text-sm sm:text-md">
+              <p>
                 Developed at{' '}
                 <Link href={orgUrl} target="_blank" className="gap-x-1">
-                  <span className="text-sm sm:text-md text-wave">{org}</span>
+                  <span className="text-wave">{org}</span>
                   <ArrowTopRightOnSquareIcon className="text-wave" width={12} />
                 </Link>
               </p>

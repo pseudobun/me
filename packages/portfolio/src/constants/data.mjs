@@ -35,7 +35,7 @@ export const PROJECTS = [
   {
     title: 'Masca',
     description:
-      'A MetaMask snap, bringing decentralized identity capabilites to the MetaMask wallet.',
+      'A MetaMask snap, bringing decentralized identity capabilites to the MetaMask wallet. Manage your DIDs and VCs, choose where to store received credentials, and share customized VPs.',
     website: 'https://masca.io',
     github: 'https://github.com/blockchain-lab-um/masca',
     image: masca,
@@ -45,7 +45,7 @@ export const PROJECTS = [
   {
     title: 'EduCTX V2',
     description:
-      'Issue and receive educational Verifiable Credentials conforming to the latest W3C decentralized identity standards.',
+      'Issue and receive educational Verifiable Credentials conforming to the latest W3C decentralized identity standards, and store them in Masca.',
     website: 'https://platform2.eductx.org',
     // github: 'https://github.com/blockchain-lab-um/issuer-platform-EduCTX',
     image: eductxv2,
@@ -55,7 +55,7 @@ export const PROJECTS = [
   {
     title: 'EduCTX V1',
     description:
-      'Issue and receive on-chain verifiable educational microcertificates.',
+      'Issue and receive on-chain verifiable educational microcertificates on consortium EduCTX EVM network. Your certificates are verifiable, encrypted, and stored on-chain.',
     website: 'https://platform2.eductx.org',
     github: 'https://github.com/blockchain-lab-um/issuer',
     image: eductxv1,
