@@ -1,6 +1,6 @@
 'use client';
 import { Transition } from '@headlessui/react';
-import Bunny from '../components/Icons/bunnysden.svg';
+import Bunny from '@/components/Icons/bunnysden.svg';
 import Typewriter from 'typewriter-effect';
 
 export default function Home() {

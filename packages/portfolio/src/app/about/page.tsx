@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import ProfileCard from '../../components/ProfileCard';
-import { PERSONAL } from '../../constants/data.mjs';
+import ProfileCard from '@/components/ProfileCard';
+import { PERSONAL } from '@/constants/data.mjs';
 import { Transition } from '@headlessui/react';
 
 export const metadata = {
@@ -46,7 +46,7 @@ export default function About() {
               {PERSONAL.company2}
             </Link>{' '}
             as a {PERSONAL.position}. I have a Master's degree in Computer
-            Science, acquired at{' '}
+            Science from{' '}
             <Link
               className="text-cappuccino hover:text-wave"
               href={PERSONAL.universityUrl}

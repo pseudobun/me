@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
-import Bunny from '../../../components/Icons/bunnysden.svg';
-import { METADATA } from '../../../constants/metadata';
+import Bunny from '@/components/Icons/bunnysden.svg';
+import { METADATA } from '@/constants/metadata';
 
 export const runtime = 'edge';
 

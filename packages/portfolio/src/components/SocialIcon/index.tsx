@@ -1,14 +1,13 @@
 // https://simpleicons.org/
 import clsx from 'clsx';
-import Farcaster from '../Icons/farcaster.svg';
-import Github from '../Icons/github.svg';
-import Mail from '../Icons/gmail.svg';
-import LinkedIn from '../Icons/linkedin.svg';
-import Telegram from '../Icons/telegram.svg';
-import Twitter from '../Icons/twitter.svg';
-import Hey from '../Icons/hey.svg';
+import Farcaster from '@/components/Icons/farcaster.svg';
+import Github from '@/components/Icons/github.svg';
+import Mail from '@/components/Icons/gmail.svg';
+import LinkedIn from '@/components/Icons/linkedin.svg';
+import Telegram from '@/components/Icons/telegram.svg';
+import Twitter from '@/components/Icons/twitter.svg';
+import Hey from '@/components/Icons/hey.svg';
 import Link from 'next/link';
-// import Hey from '../Icons/hey.svg';
 
 type IconKeys =
   | 'github'

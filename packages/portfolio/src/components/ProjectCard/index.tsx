@@ -16,7 +16,7 @@ import {
   Link,
   ScrollShadow,
 } from '@nextui-org/react';
-import Github from '../Icons/github.svg';
+import Github from '@/components/Icons/github.svg';
 
 interface ProjectCardProps {
   title: string;
@@ -27,8 +27,7 @@ interface ProjectCardProps {
   orgUrl: string;
   github: string | undefined;
   delay: number;
-  showOverlay: boolean;
-  onCardClick: () => void;
+  firstInRow?: boolean;
 }
 
 export default function ProjectCard({
@@ -40,14 +39,14 @@ export default function ProjectCard({
   orgUrl,
   image,
   delay,
-  showOverlay,
-  onCardClick,
+  firstInRow,
 }: ProjectCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [showClickMe, setShowClickMe] = useState(firstInRow);
   const cardRef = useRef(null);
   const handleClick = () => {
     setIsFlipped(!isFlipped);
-    onCardClick();
+    setShowClickMe(false);
   };
   useEffect(() => {
     const card = cardRef.current as unknown as HTMLElement;
@@ -74,6 +73,15 @@ export default function ProjectCard({
       card.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
+  useEffect(() => {
+    if (firstInRow) {
+      const timer = setTimeout(() => {
+        setShowClickMe(false);
+      }, 10000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [firstInRow]);
   return (
     <div
       style={{ perspective: '1000px', animationDelay: `${delay}s` }}
@@ -84,9 +92,9 @@ export default function ProjectCard({
         className="transition-transform duration-100 transform-gpu"
         style={{ transformStyle: 'preserve-3d' }}
       >
-        {showOverlay && (
+        {showClickMe && (
           <div className="absolute flex backdrop-blur-md h-full w-full inset-0 z-10 rounded-lg bg-gradient-to-b from-black/50 to-gray-900/50 items-center justify-center">
-            Click me for more info!
+            <p className="animate-pulse text-xl">Click me for more info!</p>
           </div>
         )}
 

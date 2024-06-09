@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Bunny from '../components/Icons/bunnysden.svg';
+import Bunny from '@/components/Icons/bunnysden.svg';
 
 export default function NotFound() {
   return (

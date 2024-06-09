@@ -1,8 +1,8 @@
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
-import Navigation from '../components/Navigation';
-import { METADATA } from '../constants/metadata';
-import { Providers } from './providers';
+import Navigation from '@/components/Navigation';
+import { METADATA } from '@/constants/metadata';
+import { Providers } from '@/app/providers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = METADATA.root;

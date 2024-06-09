@@ -1,8 +1,8 @@
-import masca from '../project-screenshots/masca.png';
-import eductxv2 from '../project-screenshots/eductxv2.png';
-import eductxv1 from '../project-screenshots/eductxv1.png';
-import moodleEductx from '../project-screenshots/moodle-eductx.png';
-import solo from '../project-screenshots/solo.png';
+import masca from '@/project-screenshots/masca.png';
+import eductxv2 from '@/project-screenshots/eductxv2.png';
+import eductxv1 from '@/project-screenshots/eductxv1.png';
+import moodleEductx from '@/project-screenshots/moodle-eductx.png';
+import solo from '@/project-screenshots/solo.png';
 
 export const PERSONAL = {
   name: 'Urban',

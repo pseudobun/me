@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
-import { PERSONAL } from '../../constants/data.mjs';
-import SocialIcon from '../SocialIcon';
+import { PERSONAL } from '@/constants/data.mjs';
+import SocialIcon from '@/components/SocialIcon';
 import me from './me.jpg';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
@@ -19,8 +19,8 @@ export default function ProfileCard() {
       const rect = card.getBoundingClientRect();
       const x = event.clientX - rect.left - rect.width / 2;
       const y = event.clientY - rect.top - rect.height / 2;
-      const rotateX = (-y / rect.height) * 30;
-      const rotateY = (x / rect.width) * 30;
+      const rotateX = (-y / rect.height) * 10;
+      const rotateY = (x / rect.width) * 10;
 
       card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     };
