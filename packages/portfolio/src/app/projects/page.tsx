@@ -13,13 +13,14 @@ export default function About() {
         <p className="sm:text-xl text-xl">I 🤍 building things.</p>
       </div>
       <div className="flex flex-wrap justify-center gap-4 w-full items-center">
-        {PROJECTS.map((project) => (
+        {PROJECTS.map((project, index) => (
           <div
             key={project.title}
             className="w-full xl:w-1/3  flex justify-center"
           >
             <ProjectCard
               key={project.title}
+              delay={index * 0.3}
               github={project.github}
               org={project.org}
               orgUrl={project.orgUrl}

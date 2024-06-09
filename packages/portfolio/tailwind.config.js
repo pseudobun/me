@@ -14,6 +14,28 @@ module.exports = {
       ...theme('colors'),
       auto: 'auto',
     }),
+    extend: {
+      keyframes: {
+        fall3D: {
+          '0%': {
+            top: '-100vh',
+            transform: 'rotateX(60deg) translateZ(-100vh)',
+            opacity: 0,
+          },
+          '50%': {
+            opacity: 1,
+          },
+          '100%': {
+            top: 'calc(100vh - 150px)',
+            transform: 'translateZ(0)',
+            opacity: 1,
+          },
+        },
+      },
+      animation: {
+        fall3D: 'fall3D 1s cubic-bezier(0.8, 1.1, 0.7, 1.2) forwards',
+      },
+    },
     animation: {
       none: 'none',
       spin: 'spin 1s linear infinite',
