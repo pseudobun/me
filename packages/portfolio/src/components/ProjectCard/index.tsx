@@ -43,12 +43,20 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showClickMe, setShowClickMe] = useState(firstInRow);
+  const [hideProjectCardOverlay, setHideProjectCardOverlay] = useState(false);
   const cardRef = useRef(null);
   const handleClick = () => {
     setIsFlipped(!isFlipped);
     setShowClickMe(false);
+    localStorage.setItem('hideProjectCardOverlay', 'true');
   };
   useEffect(() => {
+    const hideProjectCardOverlay = localStorage.getItem(
+      'hideProjectCardOverlay'
+    );
+    if (hideProjectCardOverlay === 'true') {
+      setHideProjectCardOverlay(true);
+    }
     const card = cardRef.current as unknown as HTMLElement;
     const handleMouseMove = (event: MouseEvent) => {
       if (event.clientX < 0 || event.clientY < 0) return;
@@ -77,6 +85,8 @@ export default function ProjectCard({
     if (firstInRow) {
       const timer = setTimeout(() => {
         setShowClickMe(false);
+        setHideProjectCardOverlay(false);
+        localStorage.setItem('hideProjectCardOverlay', 'true');
       }, 10000);
 
       return () => clearTimeout(timer);
@@ -92,12 +102,6 @@ export default function ProjectCard({
         className="transition-transform duration-100 transform-gpu"
         style={{ transformStyle: 'preserve-3d' }}
       >
-        {showClickMe && (
-          <div className="absolute flex backdrop-blur-md h-full w-full inset-0 z-10 rounded-lg bg-gradient-to-b from-black/50 to-gray-900/50 items-center justify-center">
-            <p className="animate-pulse text-xl">Click me for more info!</p>
-          </div>
-        )}
-
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
           {/* Front face */}
           <Card
@@ -107,6 +111,14 @@ export default function ProjectCard({
             isPressable
             onPress={handleClick}
           >
+            {showClickMe &&
+              (hideProjectCardOverlay ? null : (
+                <div className="absolute flex backdrop-blur-md h-full w-full inset-0 z-10 rounded-lg bg-gradient-to-b from-black/50 to-gray-900/50 items-center justify-center">
+                  <p className="animate-pulse text-xl">
+                    Click me for more info!
+                  </p>
+                </div>
+              ))}
             <CardHeader className="justify-between py-1 absolute rounded-xl bg-gradient-to-bl from-gray-700/90 to-gray-800/80 top-1  w-[calc(100%_-_8px)] shadow-lg ml-1 z-10">
               <div className="flex flex-col">
                 <p className="text-lg items-start sm:text-xl">{title}</p>
