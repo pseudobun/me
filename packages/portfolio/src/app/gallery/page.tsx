@@ -17,12 +17,14 @@ async function getImageUrls() {
   }
   const urls: string[] = [];
   data.data!.map((item) => {
+    const url = supabaseClient.storage.from('images').getPublicUrl(item.name)
+      .data.publicUrl;
+    if (url.includes('.emptyFolderPlaceholder')) return;
     urls.push(
       supabaseClient.storage.from('images').getPublicUrl(item.name).data
         .publicUrl
     );
   });
-  // await new Promise((r) => setTimeout(r, 2000));
   return urls;
 }
 
@@ -34,9 +36,7 @@ export default async function Gallery() {
         <p className="sm:text-3xl text-3xl">Gallery</p>
         <p className="sm:text-xl text-xl">Sometimes I 📸 stuff.</p>
       </div>
-      <Suspense fallback={<GallerySkeleton />}>
-        <GalleryGrid urls={urls} />
-      </Suspense>
+      <GalleryGrid urls={urls} />
     </div>
   );
 }
