@@ -4,7 +4,7 @@ import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 const useImages = (initialData: { src: string; placeholder: string }[]) => {
   return useInfiniteQuery({
     queryKey: ['images'],
-    queryFn: async ({ pageParam = 0 }) => {
+    queryFn: async ({ pageParam }) => {
       const res = await getImageUrls(5, pageParam);
       return res;
     },

@@ -55,12 +55,12 @@ export default function GalleryGrid({
               width: '100%',
               height: 'auto',
             }}
-            width={1000}
+            width={512}
             placeholder="blur"
             blurDataURL={item.placeholder}
-            height={1000}
+            height={512}
             sizes="100vw"
-            className="rounded-xl object-fit"
+            className="rounded-xl object-fit shadow-lg"
           />
         )}
       />
