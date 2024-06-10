@@ -14,7 +14,6 @@ export default async function Gallery() {
         <p className="sm:text-xl text-xl">Sometimes I 📸 stuff.</p>
       </div>
       <GalleryGrid data={urls} />
-      {/* {loading && <p>Loading more images...</p>} */}
     </div>
   );
 }

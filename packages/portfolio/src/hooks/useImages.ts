@@ -6,7 +6,6 @@ const useImages = (initialData: { src: string; placeholder: string }[]) => {
     queryKey: ['images'],
     queryFn: async ({ pageParam = 0 }) => {
       const res = await getImageUrls(20, pageParam);
-      console.log(res);
       return res;
     },
     staleTime: Number.POSITIVE_INFINITY,
