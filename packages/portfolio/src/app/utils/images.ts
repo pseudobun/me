@@ -42,7 +42,6 @@ export async function getImageUrls() {
       .data.publicUrl;
     if (url.includes('.emptyFolderPlaceholder')) continue;
     const placeholder = await getPlaceholderImage(url);
-    console.log('🚀 ~ getImageUrls ~ placeholder: ', placeholder);
     urls.push(placeholder);
   }
   return urls;
