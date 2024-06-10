@@ -11,9 +11,7 @@ export default function Projects() {
         <p className="sm:text-3xl text-3xl">Projects</p>
         <p className="sm:text-xl text-xl">I 🤍 building things.</p>
       </div>
-      <div className="flex flex-wrap justify-center gap-4 w-full items-center">
-        <ProjectsGrid />
-      </div>
+      <ProjectsGrid />
     </div>
   );
 }

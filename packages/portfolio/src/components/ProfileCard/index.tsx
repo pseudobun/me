@@ -100,7 +100,7 @@ export default function ProfileCard() {
             </Link>
           </span>
         </div>
-        <div className="mt-2 flex items-center justify-center space-x-4 text-center align-middle">
+        <div className="mt-2 flex flex-wrap gap-y-2 items-center w-full justify-center space-x-4 text-center align-middle">
           <SocialIcon
             className={animation}
             icon="github"
