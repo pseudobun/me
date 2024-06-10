@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Transition } from '@headlessui/react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
-import { type MenuInput, MENUS } from '@/config';
+import { type MenuInput, MENUS } from '@/config/menu';
 
 interface MenuProps {
   isOpen: boolean;

@@ -3,6 +3,9 @@
 # nx
 .nx
 
+# supabase
+supabase/
+
 # next.js
 .next/
 out/
