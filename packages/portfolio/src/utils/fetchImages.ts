@@ -28,10 +28,11 @@ async function getPlaceholderImage(filepath: string) {
   }
 }
 
-export async function getImageUrls() {
-  const { data, error } = await supabaseClient.storage
+export async function getImageUrls(limit = 20, offset = 0) {
+  const response = await supabaseClient.storage
     .from('images')
-    .list('', { limit: 100, offset: 0 });
+    .list('', { limit, offset });
+  const { data, error } = response;
   if (error) {
     console.error(error);
     throw new Error('Error fetching images');

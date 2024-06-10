@@ -1,5 +1,5 @@
 import GalleryGrid from '@/components/GalleryGrid';
-import { getImageUrls } from '../utils/images';
+import { getImageUrls } from '@/utils/fetchImages';
 
 export const metadata = {
   title: 'Gallery',
@@ -14,6 +14,7 @@ export default async function Gallery() {
         <p className="sm:text-xl text-xl">Sometimes I 📸 stuff.</p>
       </div>
       <GalleryGrid data={urls} />
+      {/* {loading && <p>Loading more images...</p>} */}
     </div>
   );
 }
