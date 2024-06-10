@@ -42,8 +42,13 @@ export async function getImageUrls(limit = 5, offset = 0) {
     const url = supabaseClient.storage.from('images').getPublicUrl(item.name)
       .data.publicUrl;
     if (url.includes('.emptyFolderPlaceholder')) continue;
-    const placeholder = await getPlaceholderImage(url);
-    urls.push(placeholder);
+    // TODO: continue when vercel has more than 10s of free tier timeout for server functions
+    // const placeholder = await getPlaceholderImage(url);
+    urls.push({
+      src: url,
+      placeholder:
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg==',
+    });
   }
   return urls;
 }
