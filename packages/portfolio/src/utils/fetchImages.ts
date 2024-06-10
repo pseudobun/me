@@ -28,7 +28,7 @@ async function getPlaceholderImage(filepath: string) {
   }
 }
 
-export async function getImageUrls(limit = 20, offset = 0) {
+export async function getImageUrls(limit = 10, offset = 0) {
   const response = await supabaseClient.storage
     .from('images')
     .list('', { limit, offset });
