@@ -7,7 +7,10 @@ function bufferToBase64(buffer: Buffer): string {
 }
 
 async function getFileBufferRemote(url: string) {
-  const response = await fetch(url, { cache: 'no-cache' });
+  const response = await fetch(url, {
+    cache: 'no-cache',
+    next: { revalidate: 60 * 60 * 24 * 7 },
+  });
   return Buffer.from(await response.arrayBuffer());
 }
 

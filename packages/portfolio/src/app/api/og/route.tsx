@@ -7,10 +7,16 @@ export const runtime = 'edge';
 export async function GET(request: Request) {
   try {
     const ubuntuFont = await fetch(
-      new URL('../../../../public/fonts/Ubuntu-Regular.ttf', import.meta.url)
+      new URL('../../../../public/fonts/Ubuntu-Regular.ttf', import.meta.url),
+      {
+        next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
+      }
     ).then((res) => res.arrayBuffer());
     const cabinFont = await fetch(
-      new URL('../../../../public/fonts/Cabin-Regular.ttf', import.meta.url)
+      new URL('../../../../public/fonts/Cabin-Regular.ttf', import.meta.url),
+      {
+        next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
+      }
     ).then((res) => res.arrayBuffer());
     const { searchParams } = new URL(request.url);
     const values = Object.fromEntries(searchParams);
