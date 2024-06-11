@@ -4,6 +4,7 @@ import { getImageUrls } from '@/utils/fetchImages';
 export const metadata = {
   title: 'Gallery',
 };
+export const revalidate = 604800;
 
 export default async function Gallery() {
   const urls = await getImageUrls();
