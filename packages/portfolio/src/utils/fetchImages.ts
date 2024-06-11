@@ -8,8 +8,7 @@ function bufferToBase64(buffer: Buffer): string {
 
 async function getFileBufferRemote(url: string) {
   const response = await fetch(url, {
-    cache: 'no-cache',
-    next: { revalidate: 60 * 60 * 24 * 7 },
+    next: { revalidate: 604800 }, // 1 week
   });
   return Buffer.from(await response.arrayBuffer());
 }
@@ -46,12 +45,13 @@ export async function getImageUrls(limit = 5, offset = 0) {
       .data.publicUrl;
     if (url.includes('.emptyFolderPlaceholder')) continue;
     // TODO: continue when vercel has more than 10s of free tier timeout for server functions
-    // const placeholder = await getPlaceholderImage(url);
-    urls.push({
-      src: url,
-      placeholder:
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg==',
-    });
+    const placeholder = await getPlaceholderImage(url);
+    urls.push(placeholder);
+    // urls.push({
+    //   src: url,
+    //   placeholder:
+    //     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOsa2yqBwAFCAICLICSyQAAAABJRU5ErkJggg==',
+    // });
   }
   return urls;
 }
