@@ -17,6 +17,7 @@ import {
   ScrollShadow,
 } from '@nextui-org/react';
 import Github from '@/components/Icons/github.svg';
+import clsx from 'clsx';
 
 interface ProjectCardProps {
   title: string;
@@ -28,6 +29,7 @@ interface ProjectCardProps {
   github: string | undefined;
   delay: number;
   firstInRow?: boolean;
+  highlight?: boolean;
 }
 
 export default function ProjectCard({
@@ -40,6 +42,7 @@ export default function ProjectCard({
   image,
   delay,
   firstInRow,
+  highlight,
 }: ProjectCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showClickMe, setShowClickMe] = useState(firstInRow);
@@ -106,7 +109,10 @@ export default function ProjectCard({
           {/* Front face */}
           <Card
             isFooterBlurred
-            className="dark border-none h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
+            className={clsx(
+              'dark border-none h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              highlight ? 'animate-glow' : ''
+            )}
             isBlurred
             isPressable
             onPress={handleClick}
@@ -151,7 +157,10 @@ export default function ProjectCard({
 
           {/* Back face */}
           <Card
-            className="dark h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50"
+            className={clsx(
+              'dark border-none h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              highlight ? 'animate-glow' : ''
+            )}
             isPressable
             disableRipple
             onPress={handleClick}

@@ -31,9 +31,14 @@ module.exports = {
             opacity: 1,
           },
         },
+        glow: {
+          '0%, 100%': { boxShadow: '0 0 15px rgba(234, 209, 134, 0.8)' },
+          '50%': { boxShadow: '0 0 30px rgba(234, 209, 134, 1)' },
+        },
       },
       animation: {
         fall3D: 'fall3D 1s cubic-bezier(0.8, 1.1, 0.7, 1.2) forwards',
+        glow: 'glow 1.5s ease-in-out infinite',
       },
     },
     animation: {

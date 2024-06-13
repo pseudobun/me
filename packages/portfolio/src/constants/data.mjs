@@ -3,6 +3,7 @@ import eductxv2 from '@/project-screenshots/eductxv2.png';
 import eductxv1 from '@/project-screenshots/eductxv1.png';
 import moodleEductx from '@/project-screenshots/moodle-eductx.png';
 import solo from '@/project-screenshots/solo.png';
+import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
 
 export const PERSONAL = {
   name: 'Urban',
@@ -24,14 +25,17 @@ export const PERSONAL = {
 };
 
 export const PROJECTS = [
-  // {
-  //   title: 'EES - Ethereum Endorsement Service',
-  //   description:
-  //     'Make on-chain endorsements, see social graphs, build reputation and more.',
-  //   website: 'https://endorse.fun',
-  //   github: 'https://github.com/lutralabs/ees',
-  //   image: masca,
-  // },
+  {
+    title: 'endorse.fun',
+    description:
+      "Endorse your favorite creators, builders, hackers and various other types of Web3 participants onchain. Whether they're known via ENS, Farcaster, or Lens, show your appreciation and help build a stronger community.",
+    website: 'https://endorse.fun',
+    github: 'https://github.com/lutralabs/ees',
+    image: endorsedotfun,
+    highlight: true,
+    org: 'Lutra Labs',
+    orgUrl: 'https://lutralabs.io',
+  },
   {
     title: 'Masca',
     description:

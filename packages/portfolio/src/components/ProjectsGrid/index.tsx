@@ -13,8 +13,9 @@ export default function ProjectsGrid() {
             key={project.title}
             delay={index * 0.3}
             github={project.github}
-            org={project.org}
-            orgUrl={project.orgUrl}
+            org={project.org!}
+            orgUrl={project.orgUrl!}
+            highlight={project.highlight}
             title={project.title}
             description={project.description}
             website={project.website}
