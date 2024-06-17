@@ -19,7 +19,7 @@ export async function GET(request: Request) {
 
     const ubuntuFontData = await ubuntuFont.arrayBuffer();
     const cabinFont = await fetch(
-      new URL('../../../../public/fonts/Cabin-Regular.woff2', import.meta.url),
+      new URL('../../../../public/fonts/Cabin-Regular.ttf', import.meta.url),
       {
         next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
       }
