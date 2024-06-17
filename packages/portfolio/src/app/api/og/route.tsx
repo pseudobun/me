@@ -11,13 +11,25 @@ export async function GET(request: Request) {
       {
         next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
       }
-    ).then((res) => res.arrayBuffer());
+    );
+
+    if (!ubuntuFont.ok) {
+      throw new Error('Failed to fetch the font file');
+    }
+
+    const ubuntuFontData = await ubuntuFont.arrayBuffer();
     const cabinFont = await fetch(
-      new URL('../../../../public/fonts/Cabin-Regular.ttf', import.meta.url),
+      new URL('../../../../public/fonts/Cabin-Regular.woff2', import.meta.url),
       {
         next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
       }
-    ).then((res) => res.arrayBuffer());
+    );
+
+    if (!cabinFont.ok) {
+      throw new Error('Failed to fetch the font file');
+    }
+
+    const cabinFontData = await cabinFont.arrayBuffer();
     const { searchParams } = new URL(request.url);
     const values = Object.fromEntries(searchParams);
     const {
@@ -49,7 +61,7 @@ export async function GET(request: Request) {
             <p tw="text-gray-200 text-5xl" style={{ fontFamily: '"Ubuntu"' }}>
               {title}
             </p>
-            <p tw="text-gray-200 text-3xl" style={{ fontFamily: '"Cabin"' }}>
+            <p tw="text-gray-200 text-3xl" style={{ fontFamily: '"Sofia"' }}>
               {description}
             </p>
           </div>
@@ -61,13 +73,14 @@ export async function GET(request: Request) {
         fonts: [
           {
             name: 'Ubuntu',
-            data: ubuntuFont,
+            data: ubuntuFontData,
             style: 'normal',
           },
           {
-            name: 'Cabin',
-            data: cabinFont,
+            name: 'Sofia',
+            data: cabinFontData,
             style: 'normal',
+            weight: 400,
           },
         ],
       }
