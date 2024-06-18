@@ -1,3 +1,4 @@
+import { GoTrueAdminApi } from '@supabase/supabase-js';
 import localFont from 'next/font/local';
 
 export const portfolioFont = localFont({
@@ -22,4 +23,17 @@ export const portfolioFont = localFont({
     },
   ],
   style: 'normal',
+});
+
+export const monoFont = localFont({
+  display: 'swap',
+  fallback: ['monospace'],
+  preload: true,
+  src: [
+    {
+      path: '../public/fonts/JetBrainsMono.ttf',
+      style: 'normal',
+      weight: '400',
+    },
+  ],
 });
