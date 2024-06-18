@@ -50,7 +50,7 @@ export default function GalleryGrid({
           <Image
             key={idx}
             src={item.src}
-            alt={`/Gallery image at: ${item}`}
+            alt={`Gallery image at: ${item}`}
             style={{
               width: '100%',
               height: 'auto',

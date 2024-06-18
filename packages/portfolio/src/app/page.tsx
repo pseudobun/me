@@ -1,6 +1,6 @@
 'use client';
 import { Transition } from '@headlessui/react';
-import Bunny from '@/components/Icons/bunnysden.svg';
+import { MemoizedSVG } from '@/components/MemoizedSVG';
 import Typewriter from 'typewriter-effect';
 
 export default function Home() {
@@ -17,7 +17,11 @@ export default function Home() {
       leaveTo="transform scale-95 opacity-0"
       className="flex h-full w-full flex-col gap-y-2 items-center"
     >
-      <Bunny className="h-4/5 w-4/5 flex-1 md:h-1/3 md:w-1/3" />
+      <MemoizedSVG
+        aria-label="Bunnys Den logo"
+        src="bunnysden.svg"
+        className="h-4/5 w-4/5 flex-1 md:h-1/3 md:w-1/3"
+      />
       <div className="font-mono text-2xl text-gray-300 max-w-full">
         <Typewriter
           options={{ cursor: '█' }}

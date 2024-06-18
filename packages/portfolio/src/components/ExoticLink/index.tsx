@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Link from 'next/link';
 
 interface ExoticLinkProps {
   href: string;
@@ -12,9 +13,12 @@ export default function ExoticLink({
   className,
 }: ExoticLinkProps) {
   return (
-    // biome-ignore lint/style/noCommaOperator: <explanation>
-    <a href={href} className={(clsx(className), 'hover:text-wave')}>
+    <Link
+      aria-label={`link to ${destination}`}
+      href={href}
+      className={clsx(className)}
+    >
       {destination}
-    </a>
+    </Link>
   );
 }

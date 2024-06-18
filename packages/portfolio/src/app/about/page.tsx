@@ -33,6 +33,7 @@ export default function About() {
             I'm Urban, a Software Engineer from Maribor, Slovenia. I currently
             work at{' '}
             <Link
+              aria-label="Go to company website"
               href={PERSONAL.companyUrl}
               className="text-cappuccino hover:text-wave"
             >
@@ -40,6 +41,7 @@ export default function About() {
             </Link>{' '}
             and{' '}
             <Link
+              aria-label="Go to company website"
               className="text-cappuccino hover:text-wave"
               href={PERSONAL.company2Url}
             >
@@ -48,6 +50,7 @@ export default function About() {
             as a {PERSONAL.position}. I have a Master's degree in Computer
             Science from{' '}
             <Link
+              aria-label="Go to university website"
               className="text-cappuccino hover:text-wave"
               href={PERSONAL.universityUrl}
             >

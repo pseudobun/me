@@ -146,7 +146,7 @@ export default function ProjectCard({
               </div>
             </CardHeader>
             <Image
-              alt="nextui logo"
+              alt="project image"
               src={image}
               placeholder="blur"
               width={460}

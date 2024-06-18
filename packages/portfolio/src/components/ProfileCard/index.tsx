@@ -74,7 +74,7 @@ export default function ProfileCard() {
             className="mb-3 rounded-full shadow-lg"
             placeholder="blur"
             src={me}
-            alt="Urban's profile picture"
+            alt="Profile picture"
           />
           <h5 className="mb-1 text-center text-3xl font-bold tracking-wider">
             {PERSONAL.name}

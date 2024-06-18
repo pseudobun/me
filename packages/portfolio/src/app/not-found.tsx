@@ -1,14 +1,23 @@
 import Link from 'next/link';
-import Bunny from '@/components/Icons/bunnysden.svg';
+import bunny from '../../public/bunnysden.svg';
+import { MemoizedSVG } from '@/components/MemoizedSVG';
 
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full">
-      <Bunny className="h-2/5 w-2/5 flex-1 md:h-1/5 md:w-1/5" />
+      <MemoizedSVG
+        aria-label="Bunnys Den logo"
+        src="bunnysden.svg"
+        className="h-4/5 w-4/5 flex-1 md:h-1/3 md:w-1/3 animate-pulse"
+      />
       <p className="text-md text-center md:text-xl text-gray-200">
         404: You ain't gonna find anything here
       </p>
-      <Link href="/" className="text-cappuccino hover:text-wave">
+      <Link
+        aria-label="Go to homepage"
+        href="/"
+        className="text-cappuccino hover:text-wave"
+      >
         Home
       </Link>
     </div>
