@@ -7,7 +7,7 @@ export default function ProjectsGrid() {
       {PROJECTS.map((project, index) => (
         <div
           key={project.title}
-          className="w-full xl:w-1/3 2xl:w-1/6 flex justify-center"
+          className="w-full xl:w-1/3 2xl:w-1/4 flex justify-center"
         >
           <ProjectCard
             key={project.title}
