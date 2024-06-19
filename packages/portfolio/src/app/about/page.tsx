@@ -1,7 +1,7 @@
-import Link from 'next/link';
 import ProfileCard from '@/components/ProfileCard';
 import { PERSONAL } from '@/constants/data.mjs';
 import { Transition } from '@headlessui/react';
+import ExoticLink from '@/components/ExoticLink';
 
 export const metadata = {
   title: 'About',
@@ -32,31 +32,34 @@ export default function About() {
           <p className="text-xl">
             I'm Urban, a Software Engineer from Maribor, Slovenia. I currently
             work at{' '}
-            <Link
+            <ExoticLink
               aria-label="Go to company website"
+              blank
+              className="no-underline"
               href={PERSONAL.companyUrl}
-              className="text-cappuccino hover:text-wave"
             >
               {PERSONAL.company}
-            </Link>{' '}
+            </ExoticLink>{' '}
             and{' '}
-            <Link
+            <ExoticLink
               aria-label="Go to company website"
-              className="text-cappuccino hover:text-wave"
+              blank
+              className="no-underline"
               href={PERSONAL.company2Url}
             >
               {PERSONAL.company2}
-            </Link>{' '}
+            </ExoticLink>{' '}
             as a {PERSONAL.position}. I have a Master's degree in Computer
             Science from{' '}
-            <Link
+            <ExoticLink
               aria-label="Go to university website"
-              className="text-cappuccino hover:text-wave"
+              blank
+              className="no-underline"
               href={PERSONAL.universityUrl}
             >
               Faculty of Electrical Engineering and Computer Science, University
               of Maribor
-            </Link>
+            </ExoticLink>
             .
           </p>
         </Transition>

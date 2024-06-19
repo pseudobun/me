@@ -18,6 +18,7 @@ import {
 } from '@nextui-org/react';
 import Github from '@/components/Icons/github.svg';
 import clsx from 'clsx';
+import ExoticLink from '../ExoticLink';
 
 interface ProjectCardProps {
   title: string;
@@ -110,7 +111,7 @@ export default function ProjectCard({
           <Card
             isFooterBlurred
             className={clsx(
-              'dark border-none h-96 w-full bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              'dark border-none h-96 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
               highlight ? 'animate-glow' : ''
             )}
             isBlurred
@@ -158,7 +159,7 @@ export default function ProjectCard({
           {/* Back face */}
           <Card
             className={clsx(
-              'dark border-none h-96 w-full max-w-[460px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              'dark border-none h-96 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
               highlight ? 'animate-glow' : ''
             )}
             isPressable
@@ -178,13 +179,15 @@ export default function ProjectCard({
             </CardBody>
             <Divider />
             <CardFooter className="justify-start gap-x-2 h-[3rem] text-sm sm:text-md">
-              <p>
-                Developed at{' '}
-                <Link href={orgUrl} target="_blank" className="gap-x-1">
-                  <span className="text-wave">{org}</span>
-                  <ArrowTopRightOnSquareIcon className="text-wave" width={12} />
-                </Link>
-              </p>
+              Developed at{' '}
+              <ExoticLink
+                href={orgUrl}
+                className="flex gap-1 sm:hover:text-md md:hover:text-lg"
+                blank
+              >
+                {org}
+                <ArrowTopRightOnSquareIcon width={12} />
+              </ExoticLink>
             </CardFooter>
           </Card>
         </ReactCardFlip>

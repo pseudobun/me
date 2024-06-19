@@ -3,6 +3,8 @@ import { usePathname } from 'next/navigation';
 import { Transition } from '@headlessui/react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import { type MenuInput, MENUS } from '@/config/menu';
+import ExoticLink from '../ExoticLink';
+import clsx from 'clsx';
 
 interface MenuProps {
   isOpen: boolean;
@@ -26,31 +28,29 @@ export default function Menu({ isOpen }: MenuProps) {
       <div className="flex flex-1 flex-col items-center justify-center space-y-4 text-2xl">
         {MENUS.map((menu: MenuInput) =>
           menu?.external ? (
-            <div
-              key={menu.label}
-              className="flex space-x-2 hover:text-wave underline hover:opacity-80 
-            active:opacity-50"
-            >
-              <a
+            <div key={menu.label} className="flex space-x-2">
+              <ExoticLink
                 key={menu.label}
                 href={menu.href}
-                target="_blank"
-                rel="noreferrer"
+                blank
+                rel="noreferrer noopener"
+                className="flex gap-1 hover:text-3xl"
               >
                 {menu.label}
-              </a>
-              <ArrowTopRightOnSquareIcon width={16} />
+                <ArrowTopRightOnSquareIcon width={16} />
+              </ExoticLink>
             </div>
           ) : (
-            <Link
+            <ExoticLink
               key={menu.label}
               href={menu.href}
-              className={`hover:text-wave hover:opacity-80 active:opacity-50 ${
-                pathname === `${menu.href}` ? 'text-wave underline' : ''
-              }`}
+              className={clsx(
+                'hover:text-3xl',
+                pathname === `${menu.href}` ? 'text-wave font-bold' : ''
+              )}
             >
               {menu.label}
-            </Link>
+            </ExoticLink>
           )
         )}
       </div>

@@ -22,7 +22,7 @@ export const MENUS = [
   },
   {
     label: 'Blog',
-    href: 'https://mirror.xyz/0x32B1172E786a31A65b46710Cd946b2521e13ac96',
+    href: 'https://mirror.xyz/pseudobun.eth',
     external: true,
   },
 ];

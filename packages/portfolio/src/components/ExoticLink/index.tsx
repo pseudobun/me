@@ -3,22 +3,35 @@ import Link from 'next/link';
 
 interface ExoticLinkProps {
   href: string;
-  destination: string;
   className?: string;
+  blank?: boolean;
+  children?: React.ReactNode;
+  rel?: string;
+  noEnlarge?: boolean;
 }
 
 export default function ExoticLink({
   href,
-  destination,
   className,
+  blank,
+  children,
+  rel,
+  noEnlarge,
 }: ExoticLinkProps) {
   return (
     <Link
-      aria-label={`link to ${destination}`}
+      aria-label={`link to ${href}`}
       href={href}
-      className={clsx(className)}
+      target={blank ? '_blank' : '_self'}
+      rel={blank ? 'noopener noreferrer' : rel}
+      className={clsx(
+        className,
+        noEnlarge ? '' : 'hover:text-2xl',
+        'text-cappuccino hover:text-wave hover:font-bold transition-all hover:opacity-80 active:opacity-50',
+        blank ? 'underline' : ''
+      )}
     >
-      {destination}
+      {children}
     </Link>
   );
 }

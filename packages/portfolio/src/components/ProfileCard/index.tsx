@@ -5,6 +5,7 @@ import SocialIcon from '@/components/SocialIcon';
 import me from './me.jpg';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import ExoticLink from '@/components/ExoticLink';
 
 const animation = 'hover:animate-bounce';
 
@@ -81,23 +82,21 @@ export default function ProfileCard() {
           </h5>
           <span className="flex text-center text-xl">{PERSONAL.position}</span>
           <span className="flex text-xl flex-col items-center">
-            <Link
+            <ExoticLink
               href={PERSONAL.companyUrl}
-              className="text-cappuccino hover:text-wave"
-              target="_blank"
-              rel="noreferrer"
+              blank
+              className="no-underline"
             >
               {PERSONAL.company}
-            </Link>
-            <Link
+            </ExoticLink>
+            <ExoticLink
               href={PERSONAL.company2Url}
-              className="text-cappuccino hover:text-wave"
-              target="_blank"
-              rel="noreferrer"
+              blank
+              className="no-underline"
             >
               {' '}
               {PERSONAL.company2}
-            </Link>
+            </ExoticLink>
           </span>
         </div>
         <div className="mt-2 flex flex-wrap gap-y-2 items-center w-full justify-center space-x-4 text-center align-middle">
