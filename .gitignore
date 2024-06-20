@@ -3,6 +3,9 @@
 # nx
 .nx
 
+# million lint
+.million
+
 # supabase
 supabase/
 
