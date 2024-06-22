@@ -11,10 +11,12 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
+permissions:
+  actions: read
+  contents: read
 env:
   SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-  SUPABASE_SECRET: ${{ secrets.SUPABASE_SECRET }}
+  SUPABASE_ANON_PUBLIC: ${{ secrets.SUPABASE_ANON_PUBLIC }}
 jobs:
   main:
     runs-on: ubuntu-latest
