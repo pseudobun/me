@@ -28,7 +28,7 @@ export default function ExoticLink({
         className,
         noEnlarge ? '' : 'hover:text-2xl',
         'text-cappuccino hover:text-wave hover:font-bold transition-all hover:opacity-80 active:opacity-50',
-        blank ? 'underline' : ''
+        blank ? 'underline' : '',
       )}
     >
       {children}

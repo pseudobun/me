@@ -60,7 +60,6 @@
     "formatter": {
       "indentStyle": "space",
       "quoteStyle": "single",
-      "trailingComma": "es5",
       "indentWidth": 2,
       "lineEnding": "lf",
       "semicolons": "always"

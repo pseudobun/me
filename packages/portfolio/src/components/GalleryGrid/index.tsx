@@ -25,7 +25,7 @@ export default function GalleryGrid({
           images.fetchNextPage();
         }
       },
-      { root: null, rootMargin: '0px', threshold: 1.0 }
+      { root: null, rootMargin: '0px', threshold: 1.0 },
     );
 
     if (sentinelRef.current) {

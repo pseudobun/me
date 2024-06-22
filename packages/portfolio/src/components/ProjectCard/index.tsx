@@ -56,7 +56,7 @@ export default function ProjectCard({
   };
   useEffect(() => {
     const hideProjectCardOverlay = localStorage.getItem(
-      'hideProjectCardOverlay'
+      'hideProjectCardOverlay',
     );
     if (hideProjectCardOverlay === 'true') {
       setHideProjectCardOverlay(true);
@@ -112,7 +112,7 @@ export default function ProjectCard({
             isFooterBlurred
             className={clsx(
               'dark border-none h-96 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
-              highlight ? 'animate-glow' : ''
+              highlight ? 'animate-glow' : '',
             )}
             isBlurred
             isPressable
@@ -160,7 +160,7 @@ export default function ProjectCard({
           <Card
             className={clsx(
               'dark border-none h-96 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
-              highlight ? 'animate-glow' : ''
+              highlight ? 'animate-glow' : '',
             )}
             isPressable
             disableRipple

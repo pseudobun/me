@@ -46,12 +46,12 @@ export default function Menu({ isOpen }: MenuProps) {
               href={menu.href}
               className={clsx(
                 'hover:text-3xl',
-                pathname === `${menu.href}` ? 'text-wave font-bold' : ''
+                pathname === `${menu.href}` ? 'text-wave font-bold' : '',
               )}
             >
               {menu.label}
             </ExoticLink>
-          )
+          ),
         )}
       </div>
     </Transition>

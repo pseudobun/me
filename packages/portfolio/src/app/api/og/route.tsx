@@ -10,7 +10,7 @@ export async function GET(request: Request) {
       new URL('../../../../public/fonts/Ubuntu-Regular.ttf', import.meta.url),
       {
         next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
-      }
+      },
     );
 
     if (!ubuntuFont.ok) {
@@ -22,7 +22,7 @@ export async function GET(request: Request) {
       new URL('../../../../public/fonts/Cabin-Regular.ttf', import.meta.url),
       {
         next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
-      }
+      },
     );
 
     if (!cabinFont.ok) {
@@ -83,7 +83,7 @@ export async function GET(request: Request) {
             weight: 400,
           },
         ],
-      }
+      },
     );
   } catch (error) {
     return new Response('Failed to generate image', {
