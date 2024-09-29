@@ -14,4 +14,4 @@ jobs:
         with:
           fetch-depth: 0
       - name: Supabase keepalive
-        run: chmod +x ./scripts/supabase/keep-alive.sh && ./scripts/supabase/keep-alive.sh
+        run: chmod +x scripts/supabase/keep-alive.sh && scripts/supabase/keep-alive.sh
