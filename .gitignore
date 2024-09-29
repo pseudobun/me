@@ -7,7 +7,7 @@
 .million
 
 # supabase
-supabase/
+packages/portfolio/supabase/
 
 # next.js
 .next/
