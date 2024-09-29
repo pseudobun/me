@@ -1,0 +1,17 @@
+name: CRON Jobs
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+env:
+  SUPABASE_ANON_PUBLIC: ${{ secrets.SUPABASE_ANON_PUBLIC }}
+  SUPABASE_PATH: ${{ secrets.SUPABASE_PATH }}
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Supabase keepalive
+        run: chmod +x scripts/supabase/keep-alive.sh && scripts/supabase/keep-alive.sh
