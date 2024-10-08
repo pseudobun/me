@@ -111,7 +111,7 @@ export default function ProjectCard({
           <Card
             isFooterBlurred
             className={clsx(
-              'dark border-none h-96 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              'dark border-none h-72 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
               highlight ? 'animate-glow' : '',
             )}
             isBlurred
@@ -159,7 +159,7 @@ export default function ProjectCard({
           {/* Back face */}
           <Card
             className={clsx(
-              'dark border-none h-96 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              'dark border-none h-72 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
               highlight ? 'animate-glow' : '',
             )}
             isPressable

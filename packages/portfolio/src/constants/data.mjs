@@ -4,6 +4,7 @@ import eductxv1 from '@/project-screenshots/eductxv1.png';
 import moodleEductx from '@/project-screenshots/moodle-eductx.png';
 import solo from '@/project-screenshots/solo.png';
 import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
+import swaylend from '@/project-screenshots/swaylend.png';
 
 export const PERSONAL = {
   name: 'Urban',
@@ -25,6 +26,17 @@ export const PERSONAL = {
 };
 
 export const PROJECTS = [
+  {
+    title: 'Swaylend',
+    description:
+      'The first and leading lending protocol on Fuel Network. Utilizing FuelVM, written in Sway. Earn as you supply the base asset or supply collateral and borrow the base asset yourself.',
+    website: 'https://swaylend.com',
+    github: 'https://github.com/swaylend/swaylend-monorepo',
+    image: swaylend,
+    highlight: true,
+    org: 'Lutra Labs',
+    orgUrl: 'https://lutralabs.io',
+  },
   {
     title: 'endorse.fun',
     description:
