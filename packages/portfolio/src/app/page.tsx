@@ -1,20 +1,14 @@
 'use client';
-import { Transition } from '@headlessui/react';
 import { MemoizedSVG } from '@/components/MemoizedSVG';
 import Typewriter from 'typewriter-effect';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
-    <Transition
-      as="div"
-      show={true}
-      appear={true}
-      enter="transform transition ease-out"
-      enterFrom="transform scale-30 opacity-0"
-      enterTo="transform scale-100 opacity-100"
-      leave="transition duration-75 ease-out"
-      leaveFrom="transform scale-100 opacity-100"
-      leaveTo="transform scale-95 opacity-0"
+    <motion.div
+      initial={{ scale: 0.4, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 50, damping: 10 }}
       className="flex h-full w-full flex-col gap-y-2 items-center"
     >
       <MemoizedSVG
@@ -30,6 +24,6 @@ export default function Home() {
           }}
         />
       </div>
-    </Transition>
+    </motion.div>
   );
 }

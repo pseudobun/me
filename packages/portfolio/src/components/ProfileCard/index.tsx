@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { PERSONAL } from '@/constants/data.mjs';
 import SocialIcon from '@/components/SocialIcon';
 import me from './me.jpg';
-import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import ExoticLink from '@/components/ExoticLink';
 
@@ -59,10 +58,7 @@ export default function ProfileCard() {
     };
   }, []);
   return (
-    <div
-      className="w-full max-w-lg animate-fall3D"
-      style={{ perspective: '1000px' }}
-    >
+    <div className="w-full max-w-lg" style={{ perspective: '1000px' }}>
       <div
         ref={cardRef}
         className="transition-transform duration-100 transform-gpu shadow-2xl rounded-xl bg-gradient-to-tr from-gray-800/50 p-4 to-gray-900/50"

@@ -1,4 +1,3 @@
-import { GoTrueAdminApi } from '@supabase/supabase-js';
 import localFont from 'next/font/local';
 
 export const portfolioFont = localFont({

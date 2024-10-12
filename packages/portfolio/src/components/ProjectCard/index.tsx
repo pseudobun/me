@@ -1,5 +1,4 @@
 'use client';
-import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import Image, { type StaticImageData } from 'next/image';
 import ReactCardFlip from 'react-card-flip';
@@ -19,6 +18,7 @@ import {
 import Github from '@/components/Icons/github.svg';
 import clsx from 'clsx';
 import ExoticLink from '../ExoticLink';
+import { motion } from 'framer-motion';
 
 interface ProjectCardProps {
   title: string;
@@ -97,9 +97,16 @@ export default function ProjectCard({
     }
   }, [firstInRow]);
   return (
-    <div
-      style={{ perspective: '1000px', animationDelay: `${delay}s` }}
-      className="animate-fall3D opacity-0"
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        type: 'spring',
+        stiffness: 100,
+        damping: 10,
+        delay: delay, // Use the delay prop here
+      }}
+      className="opacity-0"
     >
       <div
         ref={cardRef}
@@ -192,6 +199,6 @@ export default function ProjectCard({
           </Card>
         </ReactCardFlip>
       </div>
-    </div>
+    </motion.div>
   );
 }

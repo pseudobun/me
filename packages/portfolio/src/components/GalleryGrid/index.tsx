@@ -1,9 +1,10 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Masonry } from 'react-plock';
 import useImages from '@/hooks/useImages';
 import { Spinner } from '@nextui-org/react';
+import { motion } from 'framer-motion';
 
 export default function GalleryGrid({
   data,
@@ -47,21 +48,33 @@ export default function GalleryGrid({
           media: [640, 768, 1024, 1280],
         }}
         render={(item, idx) => (
-          <Image
+          <motion.div
             key={idx}
-            src={item.src}
-            alt={`Gallery image at: ${item}`}
-            style={{
-              width: '100%',
-              height: 'auto',
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 100,
+              damping: 10,
+              delay: idx * 0.4, // Stagger each image with index-based delay
             }}
-            width={512}
-            placeholder="blur"
-            blurDataURL={item.placeholder}
-            height={512}
-            sizes="100vw"
-            className="rounded-xl object-fit shadow-lg"
-          />
+          >
+            <Image
+              key={idx}
+              src={item.src}
+              alt={`Gallery image at: ${item}`}
+              style={{
+                width: '100%',
+                height: 'auto',
+              }}
+              width={512}
+              placeholder="blur"
+              blurDataURL={item.placeholder}
+              height={512}
+              sizes="100vw"
+              className="rounded-xl object-fit shadow-lg"
+            />
+          </motion.div>
         )}
       />
       <div ref={sentinelRef} />
