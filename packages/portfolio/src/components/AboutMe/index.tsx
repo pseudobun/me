@@ -7,7 +7,7 @@ import { PERSONAL } from '@/constants/data.mjs';
 
 export default function AboutMe() {
   return (
-    <div className="flex max-w-5xl flex-1 flex-col content-center items-center justify-center text-gray-200 md:flex-row">
+    <div className="flex max-w-5xl flex-1 flex-col content-center items-center justify-center text-stone-200 md:flex-row">
       <motion.div
         initial={{ scale: 0.3, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}

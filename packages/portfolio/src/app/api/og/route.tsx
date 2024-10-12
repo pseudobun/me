@@ -56,12 +56,12 @@ export async function GET(request: Request) {
           style={{ justifyContent: 'space-between' }}
         >
           <Bunny tw="h-64 w-64" />
-          <div tw="h-[128px] w-[2px] bg-gray-600 mx-8" />
+          <div tw="h-[128px] w-[2px] bg-stone-600 mx-8" />
           <div tw="flex flex-col">
-            <p tw="text-gray-200 text-5xl" style={{ fontFamily: '"Ubuntu"' }}>
+            <p tw="text-stone-200 text-5xl" style={{ fontFamily: '"Ubuntu"' }}>
               {title}
             </p>
-            <p tw="text-gray-200 text-3xl" style={{ fontFamily: '"Sofia"' }}>
+            <p tw="text-stone-200 text-3xl" style={{ fontFamily: '"Sofia"' }}>
               {description}
             </p>
           </div>

@@ -9,7 +9,7 @@ export default function GallerySkeleton() {
             key={index}
             className="w-full xl:w-1/3 2xl:w-1/4 flex justify-center"
           >
-            <div className="h-[1024px] w-[512px] bg-gray-200 rounded-lg" />
+            <div className="h-[1024px] w-[512px] bg-stone-200 rounded-lg" />
           </div>
         ))}
     </div>

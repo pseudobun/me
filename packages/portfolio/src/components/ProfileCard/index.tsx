@@ -61,7 +61,7 @@ export default function ProfileCard() {
     <div className="w-full max-w-lg" style={{ perspective: '1000px' }}>
       <div
         ref={cardRef}
-        className="transition-transform duration-100 transform-gpu shadow-2xl rounded-xl bg-gradient-to-tr from-gray-800/50 p-4 to-gray-900/50"
+        className="transition-transform duration-100 transform-gpu shadow-2xl rounded-xl bg-gradient-to-tr from-stone-800/50 p-4 to-stone-900/50"
         style={{ transformStyle: 'preserve-3d' }}
       >
         <div className="flex flex-col items-center pb-2">

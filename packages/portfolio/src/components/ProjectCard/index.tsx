@@ -118,7 +118,7 @@ export default function ProjectCard({
           <Card
             isFooterBlurred
             className={clsx(
-              'dark border-none h-72 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              'dark border-none h-72 w-full max-w-[512px] bg-gradient-to-bl from-stone-700/40 to-stone-800/50',
               highlight ? 'animate-glow' : '',
             )}
             isBlurred
@@ -127,13 +127,13 @@ export default function ProjectCard({
           >
             {showClickMe &&
               (hideProjectCardOverlay ? null : (
-                <div className="absolute flex backdrop-blur-md h-full w-full inset-0 z-10 rounded-lg bg-gradient-to-b from-black/50 to-gray-900/50 items-center justify-center">
+                <div className="absolute flex backdrop-blur-md h-full w-full inset-0 z-10 rounded-lg bg-gradient-to-b from-black/50 to-stone-900/50 items-center justify-center">
                   <p className="animate-pulse text-xl">
                     Click me for more info!
                   </p>
                 </div>
               ))}
-            <CardHeader className="justify-between py-1 absolute rounded-xl bg-gradient-to-bl from-gray-700/90 to-gray-800/80 top-1  w-[calc(100%_-_8px)] shadow-lg ml-1 z-10">
+            <CardHeader className="justify-between py-1 absolute rounded-xl bg-gradient-to-bl from-stone-700/90 to-stone-800/80 top-1  w-[calc(100%_-_8px)] shadow-lg ml-1 z-10">
               <div className="flex flex-col">
                 <p className="text-lg items-start sm:text-xl">{title}</p>
               </div>
@@ -166,7 +166,7 @@ export default function ProjectCard({
           {/* Back face */}
           <Card
             className={clsx(
-              'dark border-none h-72 w-full max-w-[512px] bg-gradient-to-bl from-gray-700/40 to-gray-800/50',
+              'dark border-none h-72 w-full max-w-[512px] bg-gradient-to-bl from-stone-700/40 to-stone-800/50',
               highlight ? 'animate-glow' : '',
             )}
             isPressable

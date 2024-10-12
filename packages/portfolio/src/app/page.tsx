@@ -16,7 +16,7 @@ export default function Home() {
         src="bunnysden.svg"
         className="h-4/5 w-4/5 flex-1 md:h-1/3 md:w-1/3"
       />
-      <div className="font-mono text-2xl text-gray-300 max-w-full">
+      <div className="font-mono text-2xl text-stone-300 max-w-full">
         <Typewriter
           options={{ cursor: '█' }}
           onInit={(typewriter) => {

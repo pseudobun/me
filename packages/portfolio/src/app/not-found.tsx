@@ -9,7 +9,7 @@ export default function NotFound() {
         src="/bunnysden.svg"
         className="h-4/5 w-4/5 flex-1 md:h-1/3 md:w-1/3"
       />
-      <p className="text-md text-center md:text-xl text-gray-200">
+      <p className="text-md text-center md:text-xl text-stone-200">
         404: You ain't gonna find anything here
       </p>
       <ExoticLink aria-label="Go to homepage" noEnlarge href="/">

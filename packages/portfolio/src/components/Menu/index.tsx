@@ -22,7 +22,7 @@ export default function Menu({ isOpen }: MenuProps) {
       leave="transition duration-500 ease-out"
       leaveFrom="transform scale-100 opacity-100"
       leaveTo="transform scale-60 opacity-0"
-      className="z-90 fixed inset-0 flex flex-col bg-gradient-to-tr from-black to-gray-800"
+      className="z-90 fixed inset-0 flex flex-col bg-gradient-to-tr from-black to-stone-800"
     >
       <div className="flex flex-1 flex-col items-center justify-center space-y-4 text-2xl">
         {MENUS.map((menu: MenuInput) =>
