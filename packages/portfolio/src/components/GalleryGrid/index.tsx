@@ -56,7 +56,7 @@ export default function GalleryGrid({
               type: 'spring',
               stiffness: 100,
               damping: 10,
-              delay: idx * 0.4, // Stagger each image with index-based delay
+              delay: 0.4,
             }}
           >
             <Image
