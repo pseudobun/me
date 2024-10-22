@@ -1,5 +1,3 @@
-/** @type {import('next').NextConfig} */
-import MillionCompiler from '@million/lint';
 const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
@@ -25,6 +23,4 @@ const nextConfig = {
   },
 };
 
-export default MillionCompiler.next({
-  rsc: true,
-})(nextConfig);
+export default nextConfig;

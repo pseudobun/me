@@ -2,7 +2,13 @@
   "name": "@pseudobun/me-monorepo",
   "private": true,
   "description": "Personal monorepo.",
-  "keywords": ["Computer Science", "Rust", "Typescript", "NextJS", "Portfolio"],
+  "keywords": [
+    "Computer Science",
+    "Rust",
+    "Typescript",
+    "NextJS",
+    "Portfolio"
+  ],
   "homepage": "https://pseudobun.dev",
   "repository": {
     "type": "git",
@@ -14,7 +20,9 @@
     "email": "urban@bunnys.cloud",
     "url": "https://pseudobun.dev"
   },
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "pnpm nx run-many --target=build",
     "lint": "biome check --config-path configs . && pnpm nx run-many --target=lint",
@@ -25,7 +33,7 @@
     "test:cron": "cross-env CRON=true pnpm nx run-many --target=test:cron"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.0",
+    "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@nx/js": "19.2.0",
