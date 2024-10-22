@@ -1,5 +1,4 @@
 import { MemoizedSVG } from '@/components/MemoizedSVG';
-import ExoticLink from '@/components/ExoticLink';
 
 export default function NotFound() {
   return (
@@ -12,9 +11,6 @@ export default function NotFound() {
       <p className="text-md text-center md:text-xl text-stone-200">
         404: You ain't gonna find anything here
       </p>
-      <ExoticLink aria-label="Go to homepage" noEnlarge href="/">
-        Return to homepage
-      </ExoticLink>
     </div>
   );
 }

@@ -4,7 +4,8 @@ import Navigation from '@/components/Navigation';
 import { METADATA } from '@/constants/metadata';
 import { Providers } from '@/app/providers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { portfolioFont } from 'src/fonts';
+import { monoFont } from 'src/fonts';
+import Footer from '@/components/Footer';
 
 export const metadata = METADATA.root;
 
@@ -14,17 +15,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={portfolioFont.className}>
-      <body>
+    <html lang="en" className={monoFont.className} suppressHydrationWarning>
+      <body className="flex flex-col min-h-[100vh]">
         <Providers>
-          <main className="text-cappuccino no-scrollbar flex h-full min-h-screen w-full flex-col items-center justify-center bg-gradient-to-tr from-black to-stone-800 bg-fixed sm:p-24 p-6">
-            {/* <main className="text-cappuccino no-scrollbar flex h-full min-h-screen w-full flex-col items-center justify-center bg-stone-950 bg-fixed sm:p-24 p-6"> */}
+          <header className="flex p-4 justify-center">
             <Navigation />
+          </header>
+          <main className="flex-grow flex flex-col no-scrollbar min-w-full sm:p-24 p-6 items-center justify-center max-w-4xl">
             {children}
-            {/* <Footer /> */}
-            <Analytics />
-            <SpeedInsights />
           </main>
+          <footer className="flex p-4 items-center justify-center w-screen">
+            <Footer />
+          </footer>
+          <Analytics />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>

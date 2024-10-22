@@ -3,8 +3,6 @@ import MillionCompiler from '@million/lint';
 const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
-  swcMinify: true,
-  optimizeFonts: true,
   typescript: {
     ignoreBuildErrors: true,
   },

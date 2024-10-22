@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Masonry } from 'react-plock';
 import useImages from '@/hooks/useImages';
-import { Spinner } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 
 export default function GalleryGrid({
@@ -78,7 +77,6 @@ export default function GalleryGrid({
         )}
       />
       <div ref={sentinelRef} />
-      {images.isFetching && <Spinner size="md" className="my-12" />}
     </div>
   );
 }

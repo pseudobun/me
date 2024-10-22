@@ -22,12 +22,11 @@ export default function ExoticLink({
     <Link
       aria-label={`link to ${href}`}
       href={href}
-      target={blank ? '_blank' : '_self'}
+      target="_blank"
       rel={blank ? 'noopener noreferrer' : rel}
       className={clsx(
         className,
-        noEnlarge ? '' : 'hover:text-2xl',
-        'text-cappuccino hover:text-wave hover:font-bold transition-all hover:opacity-80 active:opacity-50',
+        'text-cappuccino hover:text-wave hover:font-bold hover:opacity-80 active:opacity-50',
         blank ? 'underline' : '',
       )}
     >

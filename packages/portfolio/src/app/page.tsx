@@ -1,29 +1,49 @@
 'use client';
-import { MemoizedSVG } from '@/components/MemoizedSVG';
-import Typewriter from 'typewriter-effect';
-import { motion } from 'framer-motion';
+import ExoticLink from '@/components/ExoticLink';
+import { PERSONAL } from '@/constants/data.mjs';
 
 export default function Home() {
   return (
-    <motion.div
-      initial={{ scale: 0.4, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 50, damping: 10 }}
-      className="flex h-full w-full flex-col gap-y-2 items-center"
-    >
-      <MemoizedSVG
-        aria-label="Bunnys Den logo"
-        src="bunnysden.svg"
-        className="h-4/5 w-4/5 flex-1 md:h-1/3 md:w-1/3"
-      />
-      <div className="font-mono text-2xl text-stone-300 max-w-full">
-        <Typewriter
-          options={{ cursor: '█' }}
-          onInit={(typewriter) => {
-            typewriter.changeDelay(10).typeString("Bunny's Den").start();
-          }}
+    <div className="flex flex-col max-w-[1024px]">
+      <span className="text-2xl font-bold">gm 🌱</span>
+      <p className="text-lg">
+        I'm Urban, a Software Engineer from Maribor, Slovenia. I currently work
+        at{' '}
+        <ExoticLink
+          aria-label="Go to company website"
+          className="no-underline"
+          href={PERSONAL.companyUrl}
+        >
+          {PERSONAL.company}
+        </ExoticLink>{' '}
+        and{' '}
+        <ExoticLink
+          aria-label="Go to company website"
+          blank
+          className="no-underline"
+          href={PERSONAL.company2Url}
+        >
+          {PERSONAL.company2}
+        </ExoticLink>{' '}
+        as a {PERSONAL.position}. I have a Master's degree in Computer Science
+        acquired at{' '}
+        <ExoticLink
+          blank
+          className="no-underline"
+          href={PERSONAL.universityUrl}
+        >
+          Faculty of Electrical Engineering and Computer Science, University of
+          Maribor
+        </ExoticLink>
+        .
+      </p>
+      {/* <div className="flex h-full w-full flex-col gap-y-2 items-center">
+        <MemoizedSVG
+          aria-label="Bunnys Den logo"
+          src="bunnysden.svg"
+          className="h-24 w-24 pt-4 flex-1 md:h-1/3 md:w-1/3"
         />
-      </div>
-    </motion.div>
+      </div> */}
+    </div>
   );
 }

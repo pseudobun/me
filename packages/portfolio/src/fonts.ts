@@ -30,7 +30,7 @@ export const monoFont = localFont({
   preload: true,
   src: [
     {
-      path: '../public/fonts/JetBrainsMono.ttf',
+      path: '../public/fonts/IBMPlexMono-Regular.ttf',
       style: 'normal',
       weight: '400',
     },
