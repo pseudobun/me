@@ -6,30 +6,21 @@ export const runtime = 'edge';
 
 export async function GET(request: Request) {
   try {
-    const ubuntuFont = await fetch(
-      new URL('../../../../public/fonts/Ubuntu-Regular.ttf', import.meta.url),
+    const monoFont = await fetch(
+      new URL(
+        '../../../../public/fonts/IBMPlexMono-Regular.ttf',
+        import.meta.url,
+      ),
       {
         next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
       },
     );
 
-    if (!ubuntuFont.ok) {
+    if (!monoFont.ok) {
       throw new Error('Failed to fetch the font file');
     }
 
-    const ubuntuFontData = await ubuntuFont.arrayBuffer();
-    const cabinFont = await fetch(
-      new URL('../../../../public/fonts/Cabin-Regular.ttf', import.meta.url),
-      {
-        next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
-      },
-    );
-
-    if (!cabinFont.ok) {
-      throw new Error('Failed to fetch the font file');
-    }
-
-    const cabinFontData = await cabinFont.arrayBuffer();
+    const monoFontData = await monoFont.arrayBuffer();
     const { searchParams } = new URL(request.url);
     const values = Object.fromEntries(searchParams);
     const {
@@ -46,7 +37,7 @@ export async function GET(request: Request) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(to top right, black, #1f2937)',
+          background: '#0C0A09',
           backgroundAttachment: 'fixed',
         }}
       >
@@ -58,10 +49,10 @@ export async function GET(request: Request) {
           <Bunny tw="h-64 w-64" />
           <div tw="h-[128px] w-[2px] bg-stone-600 mx-8" />
           <div tw="flex flex-col">
-            <p tw="text-stone-200 text-5xl" style={{ fontFamily: '"Ubuntu"' }}>
+            <p tw="text-stone-200 text-3xl" style={{ fontFamily: '"IBMPlex"' }}>
               {title}
             </p>
-            <p tw="text-stone-200 text-3xl" style={{ fontFamily: '"Sofia"' }}>
+            <p tw="text-stone-200 text-xl" style={{ fontFamily: '"IBMPlex"' }}>
               {description}
             </p>
           </div>
@@ -72,13 +63,8 @@ export async function GET(request: Request) {
         height: 630,
         fonts: [
           {
-            name: 'Ubuntu',
-            data: ubuntuFontData,
-            style: 'normal',
-          },
-          {
-            name: 'Sofia',
-            data: cabinFontData,
+            name: 'IBMPlex',
+            data: monoFontData,
             style: 'normal',
             weight: 400,
           },
