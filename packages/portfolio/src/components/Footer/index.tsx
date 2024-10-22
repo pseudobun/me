@@ -28,7 +28,7 @@ export default function Footer() {
             className="w-6 h-6"
           />
         </ExoticLink>
-        <ExoticLink href={PERSONAL.twitter}>
+        <ExoticLink href={PERSONAL.linkedin}>
           <div
             dangerouslySetInnerHTML={{
               __html: siLinkedin.svg,
@@ -36,7 +36,7 @@ export default function Footer() {
             className="w-6 h-6"
           />
         </ExoticLink>
-        <ExoticLink href={PERSONAL.twitter}>
+        <ExoticLink href={`mailto:${PERSONAL.email}`}>
           <Mail className="w-6 h-6 text-muted-foreground" />
         </ExoticLink>
       </div>
