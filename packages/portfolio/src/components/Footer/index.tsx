@@ -17,7 +17,7 @@ export default function Footer() {
             dangerouslySetInnerHTML={{
               __html: siGithub.svg,
             }}
-            className="w-6 h-6"
+            className="w-6 h-6 fill-muted-foreground"
           />
         </ExoticLink>
         <ExoticLink href={PERSONAL.twitter}>
@@ -25,7 +25,7 @@ export default function Footer() {
             dangerouslySetInnerHTML={{
               __html: siX.svg,
             }}
-            className="w-6 h-6"
+            className="w-6 h-6 fill-muted-foreground"
           />
         </ExoticLink>
         <ExoticLink href={PERSONAL.linkedin}>
@@ -33,7 +33,7 @@ export default function Footer() {
             dangerouslySetInnerHTML={{
               __html: siLinkedin.svg,
             }}
-            className="w-6 h-6"
+            className="w-6 h-6 fill-muted-foreground"
           />
         </ExoticLink>
         <ExoticLink href={`mailto:${PERSONAL.email}`}>
