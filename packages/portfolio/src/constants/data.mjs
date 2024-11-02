@@ -20,6 +20,7 @@ export const PERSONAL = {
   companyUrl: 'https://blockchain-lab.um.si/?lang=en',
   company2: 'Lutra Labs',
   company2Url: 'https://lutralabs.io',
+  keybase: 'https://keybase.io/pseudobun',
   hey: 'https://hey.xyz/u/pseudobun',
   position: 'Research & Development Engineer',
   universityUrl: 'https://feri.um.si/en/',

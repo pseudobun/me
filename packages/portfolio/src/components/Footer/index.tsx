@@ -1,4 +1,4 @@
-import { siGithub, siX, siLinkedin } from 'simple-icons';
+import { siGithub, siX, siLinkedin, siKeybase } from 'simple-icons';
 import ExoticLink from '../ExoticLink';
 import { Mail } from 'lucide-react';
 import { PERSONAL } from '@/constants/data.mjs';
@@ -16,6 +16,14 @@ export default function Footer() {
           <div
             dangerouslySetInnerHTML={{
               __html: siGithub.svg,
+            }}
+            className="w-6 h-6 fill-muted-foreground"
+          />
+        </ExoticLink>
+        <ExoticLink href={`${PERSONAL.keybase}`}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: siKeybase.svg,
             }}
             className="w-6 h-6 fill-muted-foreground"
           />

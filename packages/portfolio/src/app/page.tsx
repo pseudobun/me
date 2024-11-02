@@ -4,7 +4,7 @@ import { PERSONAL } from '@/constants/data.mjs';
 
 export default function Home() {
   return (
-    <div className="flex flex-col max-w-[1024px]">
+    <div className="flex flex-col w-full max-w-[512px] items-start">
       <span className="text-2xl font-bold">gm 🌱</span>
       <p className="text-lg">
         I'm Urban, a Software Engineer from Maribor, Slovenia. I currently work
@@ -37,13 +37,6 @@ export default function Home() {
         </ExoticLink>
         .
       </p>
-      {/* <div className="flex h-full w-full flex-col gap-y-2 items-center">
-        <MemoizedSVG
-          aria-label="Bunnys Den logo"
-          src="bunnysden.svg"
-          className="h-24 w-24 pt-4 flex-1 md:h-1/3 md:w-1/3"
-        />
-      </div> */}
     </div>
   );
 }
