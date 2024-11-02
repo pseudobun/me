@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/pseudobun
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://pseudobun.dev
+  * I am pseudobun (https://keybase.io/pseudobun) on keybase.
+  * I have a public key ASCR_3rJB8fZuD4tfeVBfZieu4Niaf79HIheB5-1xs0QuAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120fa4533c76b6c4f7c376754318ab2231a4820206ed8362c2d1f0955919a8beb0c0a",
+      "host": "keybase.io",
+      "kid": "012091ff7ac907c7d9b83e2d7de5417d989ebb836269fefd1c885e079fb5c6cd10b80a",
+      "uid": "81f593a19f8d72ed99baff7265d41a19",
+      "username": "pseudobun"
+    },
+    "merkle_root": {
+      "ctime": 1730566400,
+      "hash": "33e34d853255d456def425cf501368c53d28bedb496669290cbdb0fc12c5e8ae5257e5e9a9450ec665ffc5aa37c097e06c8cb6094f7a664b27ae0a03b3c7d779",
+      "hash_meta": "d95571111f92bbe871f3d81c75cf88fe226eda1c4a7fc72eacc63abaa8fe3517",
+      "seqno": 26262762
+    },
+    "service": {
+      "entropy": "4pZ8uHxAfTIRI2DyLmh1xOsu",
+      "hostname": "pseudobun.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.5.0"
+  },
+  "ctime": 1730566526,
+  "expire_in": 504576000,
+  "prev": "600f1b66e296bf4daa2ad2990f3f6bfb68c784d6e82cef08f3467b69e2c24c58",
+  "seqno": 15,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgkf96yQfH2bg+LX3lQX2YnruDYmn+/RyIXgeftcbNELgKp3BheWxvYWTESpcCD8QgYA8bZuKWv02qKtKZDz9r+2jHhNboLO8I80Z7aeLCTFjEICFivt/ZmQIfpPujrfWBaYg/6ePPwor+pVRJvKIJU/bQAgHCo3NpZ8RAiPvEII74wY3Z3vRrV+PPO8zJ5DClNvi5HAnDxELNDBBmM7M+4l58TYepXnu7xazNwYXnZLoLcrz1zko+5F/jDKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIMBbAh/xhGg2d92xZm+XWiAAKIh7l8rlJ+bG92mHvRQYo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/pseudobun
+
+==================================================================
