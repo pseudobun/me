@@ -5,6 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "build": "rimraf .next && next build",
+    "clean": "rimraf .next",
     "postbuild": "next-sitemap",
     "dev": "next dev",
     "lint": "biome check .",
