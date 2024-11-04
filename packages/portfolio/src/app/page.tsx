@@ -1,4 +1,3 @@
-'use client';
 import ExoticLink from '@/components/ExoticLink';
 import { PERSONAL } from '@/constants/data.mjs';
 
