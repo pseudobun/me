@@ -4,18 +4,18 @@
     "include": [
       "**/*.js",
       "**/*.ts",
-      "**/*.tsx",
       "**/*.jsx",
-      "**/*.json",
-      "**/*.md",
-      "**/*.yml",
-      "**/*.yaml",
-      "**/*.html"
+      "**/*.tsx",
+      "**/*.cjs",
+      "**/*.cts",
+      "**/*.mjs",
+      "**/*.mts",
+      "**/*.json"
     ],
     "ignore": [
-      "**/packages/**",
       "**/node_modules/**",
       "**/dist/**",
+      "**/.million/**",
       "**/build/**",
       "**/.next/**",
       "**/out/**",
@@ -46,7 +46,8 @@
         "noDangerouslySetInnerHtml": "off"
       },
       "correctness": {
-        "useExhaustiveDependencies": "off"
+        "useExhaustiveDependencies": "off",
+        "noUnusedImports": "error"
       },
       "a11y": {
         "useKeyWithClickEvents": "off"
