@@ -45,7 +45,7 @@ export default function Footer() {
           />
         </ExoticLink>
         <ExoticLink href={`mailto:${PERSONAL.email}`}>
-          <Mail className="w-6 h-6 text-muted-foreground hover:fill-foreground" />
+          <Mail className="w-6 h-6 text-muted-foreground hover:text-foreground" />
         </ExoticLink>
       </div>
     </footer>
