@@ -12,10 +12,10 @@ export const MENUS = [
     label: 'Projects',
     href: '/projects/',
   },
-  {
-    label: 'Gallery',
-    href: '/gallery/',
-  },
+  // {
+  //   label: 'Gallery',
+  //   href: '/gallery/',
+  // },
   {
     label: 'Blog',
     href: 'https://mirror.xyz/pseudobun.eth',
