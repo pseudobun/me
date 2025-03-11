@@ -17,8 +17,8 @@ export default function Link({
         href={href}
         target={isExternal ? '_blank' : undefined}
         className={cn(
-          'hover:text-cappuccino text-left flex items-center gap-2',
-          isActive ? 'underline text-cappuccino' : '',
+          'hover:text-primary text-foreground text-left flex items-center gap-2',
+          isActive ? 'underline text-primary' : '',
         )}
         {...props}
       />

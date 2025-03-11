@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={monoFont.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-[100dvh]">
+      <body className="dark flex flex-col min-h-[100dvh]">
         <Providers>
           <Navigation />
           <main className="flex-grow flex flex-col no-scrollbar min-w-full sm:p-24 p-6 items-center justify-center max-w-4xl">

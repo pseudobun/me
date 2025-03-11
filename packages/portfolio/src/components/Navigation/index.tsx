@@ -25,7 +25,7 @@ export default function Navigation() {
         onClick={() => setMenuOpen(!menuOpen)}
         type="button"
       >
-        <Menu className="w-6 h-6 text-cappuccino" />
+        <Menu className="w-6 h-6 text-primary" />
       </button>
       <motion.div
         initial={{ x: '-115%' }}
@@ -35,7 +35,7 @@ export default function Navigation() {
       >
         <div className="flex p-2 pb-0 justify-end">
           <button onClick={() => setMenuOpen(false)} type="button">
-            <X className="w-6 h-6 text-cappuccino" />
+            <X className="w-6 h-6 text-primary" />
           </button>
         </div>
         <NavigationMenu>

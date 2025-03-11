@@ -49,13 +49,13 @@ export default function ProjectCard({
       <CardFooter className="space-x-4">
         {website && (
           <ExoticLink href={website} blank>
-            <Globe className="w-4 h-4 text-muted-foreground" />
+            <Globe className="w-4 h-4 text-muted-foreground hover:text-foreground" />
           </ExoticLink>
         )}
         {github && (
           <ExoticLink href={github}>
             <div
-              className="w-4 h-4 fill-muted-foreground"
+              className="w-4 h-4 fill-muted-foreground hover:fill-foreground"
               dangerouslySetInnerHTML={{ __html: siGithub.svg }}
             />
           </ExoticLink>
