@@ -1,5 +1,5 @@
 'use client';
-import { siGithub, siX, siLinkedin, siKeybase } from 'simple-icons';
+import { siGithub, siX, siKeybase } from 'simple-icons';
 import ExoticLink from '../ExoticLink';
 import { Mail } from 'lucide-react';
 import { PERSONAL } from '@/constants/data.mjs';
@@ -57,19 +57,6 @@ export default function Footer() {
               <div
                 dangerouslySetInnerHTML={{
                   __html: siX.svg,
-                }}
-                className="w-6 h-6 fill-muted-foreground hover:fill-foreground"
-              />
-            </ExoticLink>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.2, rotate: -5 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <ExoticLink href={PERSONAL.linkedin}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: siLinkedin.svg,
                 }}
                 className="w-6 h-6 fill-muted-foreground hover:fill-foreground"
               />
