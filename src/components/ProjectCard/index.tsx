@@ -85,7 +85,7 @@ export default function ProjectCard({
               priority={false}
             />
             <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-background to-transparent"
+              className="absolute inset-0 bg-linear-to-t from-background to-transparent"
               animate={{ opacity: isHovered ? 0.5 : 0.7 }}
               transition={{ duration: 0.3 }}
             />
@@ -93,7 +93,7 @@ export default function ProjectCard({
         </motion.div>
 
         {/* Card Content */}
-        <div className="relative z-10 flex flex-col flex-grow">
+        <div className="relative z-10 flex flex-col grow">
           <CardHeader className="text-xl">
             <motion.div
               initial={{ x: -5 }}
@@ -106,7 +106,7 @@ export default function ProjectCard({
               </CardDescription>
             </motion.div>
           </CardHeader>
-          <CardContent className="text-foreground/90 flex-grow">
+          <CardContent className="text-foreground/90 grow">
             <motion.div
               className={cn(
                 'relative transition-all',
@@ -118,7 +118,7 @@ export default function ProjectCard({
             >
               <p>{description}</p>
               {!isExpanded && description.length > 120 && (
-                <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-background to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-8 bg-linear-to-t from-background to-transparent" />
               )}
             </motion.div>
             {description.length > 120 && (

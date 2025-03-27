@@ -46,7 +46,7 @@ export default function Navigation() {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
-              className="inline-flex hover:cursor-pointer items-center justify-center p-2 rounded-md text-foreground hover:text-primary focus:outline-none"
+              className="inline-flex hover:cursor-pointer items-center justify-center p-2 rounded-md text-foreground hover:text-primary focus:outline-hidden"
               onClick={() => setMenuOpen(!menuOpen)}
               type="button"
               aria-expanded={menuOpen}
@@ -103,7 +103,7 @@ export default function Navigation() {
       </motion.div>
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-background/50 backdrop-blur-sm z-[-1]"
+          className="fixed inset-0 bg-background/50 backdrop-blur-xs z-[-1]"
           onClick={() => setMenuOpen(false)}
         />
       )}

@@ -1,8 +1,8 @@
 name: CRON Jobs
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
+  # schedule:
+  #   - cron: '0 0 * * *'
 env:
   SUPABASE_ANON_PUBLIC: ${{ secrets.SUPABASE_ANON_PUBLIC }}
   SUPABASE_PATH: ${{ secrets.SUPABASE_PATH }}
