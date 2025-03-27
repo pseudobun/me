@@ -5,6 +5,8 @@ import moodleEductx from '@/project-screenshots/moodle-eductx.png';
 import solo from '@/project-screenshots/solo.png';
 import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
 import swaylend from '@/project-screenshots/swaylend.png';
+import repnet from '@/project-screenshots/repnet.png';
+import lutradashboard from '@/project-screenshots/lutradashboard.png';
 
 export const PERSONAL = {
   name: 'Urban',
@@ -28,12 +30,32 @@ export const PERSONAL = {
 
 export const PROJECTS = [
   {
+    title: 'Replicant Network',
+    description:
+      'A decentralized platform for AI model crowdfunding, development, and deployment.',
+    website: 'https://rplcnt.io',
+    github: 'https://github.com/lutralabs/replicant-network-monorepo',
+    image: repnet,
+    highlight: true,
+    org: 'Lutra Labs',
+    orgUrl: 'https://lutralabs.io',
+  },
+  {
     title: 'Swaylend',
     description:
       'The first and leading lending protocol on Fuel Network. Utilizing FuelVM, written in Sway. Earn as you supply the base asset or supply collateral and borrow the base asset yourself.',
     website: 'https://swaylend.com',
     github: 'https://github.com/swaylend/swaylend-monorepo',
     image: swaylend,
+    highlight: true,
+    org: 'Lutra Labs',
+    orgUrl: 'https://lutralabs.io',
+  },
+  {
+    title: 'Lutra Labs Internal Dashboard',
+    description:
+      'Lutra Labs dashboard for managing attendances, events, and more. Why use existing solutions when you can build your own?',
+    image: lutradashboard,
     highlight: true,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
