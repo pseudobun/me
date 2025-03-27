@@ -61,7 +61,7 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Navigation - centered */}
-          <div className="hidden md:flex md:items-center md:justify-center md:flex-1">
+          <div className="hidden md:block md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
             <div className="flex gap-x-12">
               {MENUS.map((menu: MenuInput) => (
                 <Link
