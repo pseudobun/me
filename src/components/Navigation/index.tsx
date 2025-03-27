@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { type MenuInput, MENUS } from '@/config/menu';
 import Link from '@/components/Link';
 import { Link as LinkIcon, Menu, X } from 'lucide-react';
@@ -20,7 +19,7 @@ export default function Navigation() {
       className={cn(
         'fixed top-4 z-50 transition-all duration-300 ease-in-out',
         'backdrop-blur-xl bg-background/30 border border-border/40 rounded-2xl shadow-lg',
-        menuOpen ? 'shadow-xl' : '',
+        menuOpen ? 'shadow-xl overflow-hidden' : '',
         'w-[calc(100%-3rem)] max-w-7xl left-1/2 -translate-x-1/2',
       )}
     >
@@ -77,30 +76,28 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-      <motion.div
-        initial={{ height: 0, opacity: 0 }}
-        animate={{
-          height: menuOpen ? 'auto' : 0,
-          opacity: menuOpen ? 1 : 0,
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="md:hidden overflow-hidden"
+      {/* Mobile Navigation */}
+      <div
+        className={cn(
+          'md:hidden transition-all duration-300 ease-in-out overflow-hidden',
+          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0',
+        )}
       >
-        <div className="pr-4 pt-2 pb-3 space-y-1">
+        <div className="px-4 pt-2 pb-4 space-y-1">
           {MENUS.map((menu: MenuInput) => (
             <Link
               key={menu.label}
               href={menu.href}
               isExternal={menu.external ? true : undefined}
               onClick={handleLinkClick}
-              className="px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10 transition-colors w-full"
+              className="px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10 transition-colors"
             >
               {menu.label}
               {menu.external ? <LinkIcon className="w-3 h-3 ml-1" /> : null}
             </Link>
           ))}
         </div>
-      </motion.div>
+      </div>
       {menuOpen && (
         <div
           className="fixed inset-0 bg-background/50 backdrop-blur-xs z-[-1]"
