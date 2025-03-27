@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className="dark flex flex-col min-h-[100dvh]">
         <Providers>
           <Navigation />
-          <main className="flex-grow flex flex-col no-scrollbar min-w-full sm:p-24 p-6 items-center justify-center max-w-4xl">
+          <main className="flex-grow flex flex-col no-scrollbar md:pt-32 md:pb-12 pt-28 pb-12 px-8 items-center justify-center max-w-7xl mx-auto w-full">
             {children}
           </main>
           <Footer />

@@ -3,7 +3,7 @@ import { PERSONAL } from '@/constants/data.mjs';
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full max-w-[512px] items-start">
+    <div className="flex flex-col w-full md:max-w-[512px] max-w-[256px] items-start">
       <span className="text-2xl font-bold">gm 🌱</span>
       <p className="text-lg">
         I'm Urban, a Software Engineer from Maribor, Slovenia. I currently work

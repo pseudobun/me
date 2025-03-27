@@ -1,7 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import NextLink from 'next/link';
-import { NavigationMenuLink } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 
 export default function Link({
@@ -12,16 +11,14 @@ export default function Link({
   const pathname = usePathname();
   const isActive = href === pathname;
   return (
-    <NavigationMenuLink asChild active={isActive}>
-      <NextLink
-        href={href}
-        target={isExternal ? '_blank' : undefined}
-        className={cn(
-          'hover:text-primary text-foreground text-left flex items-center gap-2',
-          isActive ? 'underline text-primary' : '',
-        )}
-        {...props}
-      />
-    </NavigationMenuLink>
+    <NextLink
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+      className={cn(
+        'hover:text-primary text-foreground text-left flex items-center gap-2',
+        isActive ? 'underline text-primary' : '',
+      )}
+      {...props}
+    />
   );
 }
