@@ -93,7 +93,7 @@ export default function Navigation() {
               href={menu.href}
               isExternal={menu.external ? true : undefined}
               onClick={handleLinkClick}
-              className="flex items-center px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+              className="px-3 py-2 rounded-md text-base font-medium hover:bg-primary/10 transition-colors w-full"
             >
               {menu.label}
               {menu.external ? <LinkIcon className="w-3 h-3 ml-1" /> : null}
