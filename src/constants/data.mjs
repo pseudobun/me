@@ -7,6 +7,7 @@ import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
 import swaylend from '@/project-screenshots/swaylend.png';
 import repnet from '@/project-screenshots/repnet.png';
 import lutradashboard from '@/project-screenshots/lutradashboard.png';
+import coworkmaribor from '@/project-screenshots/cwmb-booking.png';
 
 export const PERSONAL = {
   name: 'Urban',
@@ -56,6 +57,16 @@ export const PROJECTS = [
     description:
       'Lutra Labs dashboard for managing attendances, events, and more. Why use existing solutions when you can build your own?',
     image: lutradashboard,
+    highlight: false,
+    org: 'Lutra Labs',
+    orgUrl: 'https://lutralabs.io',
+  },
+  {
+    title: 'Cowork Maribor Booking System',
+    description:
+      'Book a desk at Cowork Maribor. Custom product for a local coworking space.',
+    website: 'https://booking.coworkmaribor.com',
+    image: coworkmaribor,
     highlight: false,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
