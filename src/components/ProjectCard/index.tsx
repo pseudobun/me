@@ -1,6 +1,5 @@
 'use client';
-import type { StaticImageData } from 'next/image';
-import Image from 'next/image';
+import ExoticLink from '@/components/ExoticLink';
 import {
   Card,
   CardContent,
@@ -9,12 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import ExoticLink from '@/components/ExoticLink';
-import { siGithub } from 'simple-icons';
-import { Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Globe } from 'lucide-react';
+import type { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import { useState } from 'react';
+import { siGithub } from 'simple-icons';
 
 interface ProjectCardProps {
   title: string;
@@ -125,7 +125,7 @@ export default function ProjectCard({
               <motion.button
                 type="button"
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="text-sm text-primary hover:text-primary/80 mt-2 transition-colors"
+                className="text-sm cursor-pointer text-primary hover:text-primary/80 mt-2 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

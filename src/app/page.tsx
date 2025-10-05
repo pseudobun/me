@@ -1,7 +1,8 @@
+import DecryptedText from '@/components/DecryptedText';
 import ExoticLink from '@/components/ExoticLink';
 import { PERSONAL } from '@/constants/data.mjs';
 
-export default function Home() {
+export default function me() {
   return (
     <div className="flex flex-col w-full md:max-w-[512px] max-w-[256px] items-start">
       <span className="text-2xl font-bold">gm 🌱</span>
@@ -13,7 +14,7 @@ export default function Home() {
           className="no-underline"
           href={PERSONAL.companyUrl}
         >
-          {PERSONAL.company}
+          <DecryptedText sequential={true} text={PERSONAL.company} animateOn="both"  speed={60} />
         </ExoticLink>{' '}
         and{' '}
         <ExoticLink
@@ -22,7 +23,7 @@ export default function Home() {
           className="no-underline"
           href={PERSONAL.company2Url}
         >
-          {PERSONAL.company2}
+          <DecryptedText sequential={true} text={PERSONAL.company2} animateOn="both" speed={60} />
         </ExoticLink>{' '}
         as a {PERSONAL.position}. I have a Master's degree in Computer Science
         acquired at{' '}
@@ -31,10 +32,13 @@ export default function Home() {
           className="no-underline"
           href={PERSONAL.universityUrl}
         >
-          Faculty of Electrical Engineering and Computer Science, University of
-          Maribor
+          <DecryptedText sequential={true}
+            text="Faculty of Electrical Engineering and Computer Science, University of Maribor." 
+            animateOn="both" 
+            speed={30}
+            revealDirection="start"
+          />
         </ExoticLink>
-        .
       </p>
     </div>
   );
