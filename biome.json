@@ -10,6 +10,7 @@
     "includes": [
       "test.ts",
       "apps/**/*.ts",
+      "apps/**/*.mjs",
       "apps/**/*.tsx",
       "packages/**/*.ts",
       "packages/**/*.tsx",

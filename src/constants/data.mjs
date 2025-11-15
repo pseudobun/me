@@ -1,13 +1,14 @@
-import masca from '@/project-screenshots/masca.png';
-import eductxv2 from '@/project-screenshots/eductxv2.png';
-import eductxv1 from '@/project-screenshots/eductxv1.png';
-import moodleEductx from '@/project-screenshots/moodle-eductx.png';
-import solo from '@/project-screenshots/solo.png';
-import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
-import swaylend from '@/project-screenshots/swaylend.png';
-import repnet from '@/project-screenshots/repnet.png';
-import lutradashboard from '@/project-screenshots/lutradashboard.png';
 import coworkmaribor from '@/project-screenshots/cwmb-booking.png';
+import eductxv1 from '@/project-screenshots/eductxv1.png';
+import eductxv2 from '@/project-screenshots/eductxv2.png';
+import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
+import lutradashboard from '@/project-screenshots/lutradashboard.png';
+import masca from '@/project-screenshots/masca.png';
+import moodleEductx from '@/project-screenshots/moodle-eductx.png';
+import repnet from '@/project-screenshots/repnet.png';
+import solo from '@/project-screenshots/solo.png';
+import swaylend from '@/project-screenshots/swaylend.png';
+import tossinger from '@/project-screenshots/tossinger.png';
 
 export const PERSONAL = {
   name: 'Urban',
@@ -30,6 +31,14 @@ export const PERSONAL = {
 };
 
 export const PROJECTS = [
+  {title: "Tossinger", 
+    description: "Tossinger is a native iOS and macOS app that lets you quickly 'toss' content from anywhere - tweets, web pages, articles, links - into your personal collection to revisit and organize later on your preferred device.",
+    github: "https://github.com/pseudobun/tossinger",
+    image: tossinger,
+    highlight: false,
+    org: "Personal",
+    orgUrl: "https://pseudobun.dev",
+  },
   {
     title: 'Replicant Network',
     description:
