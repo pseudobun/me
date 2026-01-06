@@ -17,8 +17,8 @@ export const MENUS = [
   //   href: '/gallery/',
   // },
   {
-    label: 'Blog',
-    href: 'https://mirror.xyz/pseudobun.eth',
+    label: 'Lutra Blog',
+    href: 'https://lutralabs.io/blog',
     external: true,
   },
 ];
