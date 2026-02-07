@@ -1,13 +1,11 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { motion } from 'motion/react';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 import { Masonry } from 'react-plock';
 import useImages from '@/hooks/useImages';
-import { motion } from 'framer-motion';
 
-export default function GalleryGrid({
-  data,
-}: { data: { src: string; placeholder: string }[] }) {
+export default function GalleryGrid({ data }: { data: { src: string; placeholder: string }[] }) {
   const images = useImages(data);
   const observer = useRef<IntersectionObserver | null>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -17,15 +15,11 @@ export default function GalleryGrid({
 
     observer.current = new IntersectionObserver(
       (entries) => {
-        if (
-          entries[0].isIntersecting &&
-          !images.isFetching &&
-          images.hasNextPage
-        ) {
+        if (entries[0].isIntersecting && !images.isFetching && images.hasNextPage) {
           images.fetchNextPage();
         }
       },
-      { root: null, rootMargin: '0px', threshold: 1.0 },
+      { root: null, rootMargin: '0px', threshold: 1.0 }
     );
 
     if (sentinelRef.current) {

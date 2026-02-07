@@ -10,11 +10,7 @@ interface ExoticLinkProps {
   noEnlarge?: boolean;
 }
 
-export default function ExoticLink({
-  href,
-  className,
-  children,
-}: ExoticLinkProps) {
+export default function ExoticLink({ href, className, children }: ExoticLinkProps) {
   return (
     <Link
       aria-label={`link to ${href}`}

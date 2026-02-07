@@ -1,4 +1,10 @@
 'use client';
+import { Globe } from 'lucide-react';
+import { motion } from 'motion/react';
+import type { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import { useState } from 'react';
+import { siGithub } from 'simple-icons';
 import ExoticLink from '@/components/ExoticLink';
 import {
   Card,
@@ -9,12 +15,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
-import { Globe } from 'lucide-react';
-import type { StaticImageData } from 'next/image';
-import Image from 'next/image';
-import { useState } from 'react';
-import { siGithub } from 'simple-icons';
 
 interface ProjectCardProps {
   title: string;
@@ -25,7 +25,6 @@ interface ProjectCardProps {
   orgUrl: string;
   github: string | undefined;
   delay: number;
-  firstInRow?: boolean;
   highlight?: boolean;
 }
 
@@ -38,7 +37,6 @@ export default function ProjectCard({
   orgUrl,
   image,
   delay,
-  firstInRow,
   highlight,
 }: ProjectCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -60,7 +58,7 @@ export default function ProjectCard({
         className={cn(
           'relative overflow-hidden h-full transition-all duration-300',
           'flex flex-col',
-          highlight && 'border-primary/50 shadow-md',
+          highlight && 'border-primary/50 shadow-md'
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -110,7 +108,7 @@ export default function ProjectCard({
             <motion.div
               className={cn(
                 'relative transition-all',
-                isExpanded ? 'max-h-[500px]' : 'max-h-[80px] overflow-hidden',
+                isExpanded ? 'max-h-[500px]' : 'max-h-[80px] overflow-hidden'
               )}
               initial={{ opacity: 0.8 }}
               animate={{ opacity: isHovered ? 1 : 0.8 }}
@@ -135,20 +133,14 @@ export default function ProjectCard({
           </CardContent>
           <CardFooter className="space-x-4 mt-auto">
             {website && (
-              <motion.div
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-              >
+              <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                 <ExoticLink href={website} blank>
                   <Globe className="w-5 h-5 text-muted-foreground hover:text-foreground transition-colors" />
                 </ExoticLink>
               </motion.div>
             )}
             {github && (
-              <motion.div
-                whileHover={{ scale: 1.2, rotate: -5 }}
-                whileTap={{ scale: 0.9 }}
-              >
+              <motion.div whileHover={{ scale: 1.2, rotate: -5 }} whileTap={{ scale: 0.9 }}>
                 <ExoticLink href={github}>
                   <div
                     className="w-5 h-5 fill-muted-foreground hover:fill-foreground transition-colors"

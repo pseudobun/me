@@ -1,10 +1,10 @@
 'use client';
-import { siGithub, siX, siKeybase } from 'simple-icons';
-import ExoticLink from '../ExoticLink';
 import { Mail } from 'lucide-react';
+import { motion } from 'motion/react';
+import { siGithub, siKeybase, siX } from 'simple-icons';
 import { PERSONAL } from '@/constants/data.mjs';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
+import ExoticLink from '../ExoticLink';
 
 export default function Footer() {
   return (
@@ -13,20 +13,16 @@ export default function Footer() {
         className={cn(
           'flex p-4 px-6 max-md:flex-col gap-x-12 gap-y-4 justify-between items-center',
           'text-muted-foreground fill-muted-foreground',
-          'w-full max-w-7xl md:max-w-7xl mx-auto',
+          'w-full max-w-7xl md:max-w-7xl mx-auto'
         )}
       >
         <div className="max-md:order-2">
           <p className="text-center">
-            &copy; {new Date().getFullYear()} Urban Vidovič. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Urban Vidovič. All rights reserved.
           </p>
         </div>
         <div className="flex space-x-4 max-md:order-1">
-          <motion.div
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-          >
+          <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
             <ExoticLink href={PERSONAL.github}>
               <div
                 dangerouslySetInnerHTML={{
@@ -36,10 +32,7 @@ export default function Footer() {
               />
             </ExoticLink>
           </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.2, rotate: -5 }}
-            whileTap={{ scale: 0.9 }}
-          >
+          <motion.div whileHover={{ scale: 1.2, rotate: -5 }} whileTap={{ scale: 0.9 }}>
             <ExoticLink href={`${PERSONAL.keybase}`}>
               <div
                 dangerouslySetInnerHTML={{
@@ -49,10 +42,7 @@ export default function Footer() {
               />
             </ExoticLink>
           </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-          >
+          <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
             <ExoticLink href={PERSONAL.twitter}>
               <div
                 dangerouslySetInnerHTML={{
@@ -62,10 +52,7 @@ export default function Footer() {
               />
             </ExoticLink>
           </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.2, rotate: 5 }}
-            whileTap={{ scale: 0.9 }}
-          >
+          <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
             <ExoticLink href={`mailto:${PERSONAL.email}`}>
               <Mail className="w-6 h-6 text-muted-foreground hover:text-foreground" />
             </ExoticLink>
