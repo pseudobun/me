@@ -27,7 +27,6 @@ export default function Projects() {
             description={project.description}
             website={project.website}
             image={project.image}
-            firstInRow={index % 2 === 0} // Update firstInRow logic for 2-column grid
           />
         ))}
       </div>

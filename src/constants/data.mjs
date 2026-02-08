@@ -31,18 +31,19 @@ export const PERSONAL = {
 };
 
 export const PROJECTS = [
-  {title: "Tossinger", 
-    description: "Tossinger is a native iOS and macOS app that lets you quickly 'toss' content from anywhere - tweets, web pages, articles, links - into your personal collection to revisit and organize later on your preferred device.",
-    github: "https://github.com/pseudobun/tossinger",
+  {
+    title: 'Tossinger',
+    description:
+      "Tossinger is a native iOS and macOS app that lets you quickly 'toss' content from anywhere - tweets, web pages, articles, links - into your personal collection to revisit and organize later on your preferred device.",
+    github: 'https://github.com/pseudobun/tossinger',
     image: tossinger,
     highlight: false,
-    org: "Personal",
-    orgUrl: "https://pseudobun.dev",
+    org: 'Personal',
+    orgUrl: 'https://pseudobun.dev',
   },
   {
     title: 'Replicant Network',
-    description:
-      'A decentralized platform for AI model crowdfunding, development, and deployment.',
+    description: 'A decentralized platform for AI model crowdfunding, development, and deployment.',
     website: 'https://rplcnt.io',
     github: 'https://github.com/lutralabs/replicant-network-monorepo',
     image: repnet,
@@ -72,8 +73,7 @@ export const PROJECTS = [
   },
   {
     title: 'Cowork Maribor Booking System',
-    description:
-      'Book a desk at Cowork Maribor. Custom product for a local coworking space.',
+    description: 'Book a desk at Cowork Maribor. Custom product for a local coworking space.',
     website: 'https://booking.coworkmaribor.com',
     image: coworkmaribor,
     highlight: false,

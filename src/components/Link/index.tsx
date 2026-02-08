@@ -1,6 +1,6 @@
 'use client';
-import { usePathname } from 'next/navigation';
 import NextLink from 'next/link';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 export default function Link({
@@ -8,7 +8,11 @@ export default function Link({
   isExternal,
   className,
   ...props
-}: { href: string; className?: string; [key: string]: any }) {
+}: {
+  href: string;
+  className?: string;
+  [key: string]: any;
+}) {
   const pathname = usePathname();
   const isActive = href === pathname;
   return (
@@ -18,7 +22,7 @@ export default function Link({
       className={cn(
         'hover:text-primary text-foreground text-left flex items-center gap-2',
         isActive ? 'underline text-primary' : '',
-        className,
+        className
       )}
       {...props}
     />

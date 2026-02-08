@@ -1,19 +1,15 @@
 import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
-import { METADATA } from '@/constants/metadata';
-import { Providers } from '@/app/providers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { monoFont } from 'src/fonts';
-import Navigation from '@/components/Navigation';
+import { Providers } from '@/app/providers';
 import Footer from '@/components/Footer';
+import Navigation from '@/components/Navigation';
+import { METADATA } from '@/constants/metadata';
 
 export const metadata = METADATA.root;
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={monoFont.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-[100dvh]">

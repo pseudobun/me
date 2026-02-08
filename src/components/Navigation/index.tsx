@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import { type MenuInput, MENUS } from '@/config/menu';
-import Link from '@/components/Link';
 import { Link as LinkIcon, Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import { useState } from 'react';
+import Link from '@/components/Link';
+import { MENUS, type MenuInput } from '@/config/menu';
+import { cn } from '@/lib/utils';
 
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +20,7 @@ export default function Navigation() {
         'fixed top-4 z-50 transition-all duration-300 ease-in-out',
         'backdrop-blur-xl bg-background/30 border border-border/40 rounded-2xl shadow-lg',
         menuOpen ? 'shadow-xl overflow-hidden' : '',
-        'w-[calc(100%-3rem)] max-w-7xl left-1/2 -translate-x-1/2',
+        'w-[calc(100%-3rem)] max-w-7xl left-1/2 -translate-x-1/2'
       )}
     >
       <div className="px-4 w-full">
@@ -28,13 +28,7 @@ export default function Navigation() {
           {/* Logo on the left */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/dark-logo.svg"
-                width={32}
-                height={410}
-                alt="Bunnys Den Logo"
-                priority
-              />
+              <Image src="/dark-logo.svg" width={32} height={410} alt="Bunnys Den Logo" priority />
             </Link>
             <div className="pl-2  flex flex-col leading-tight font-mono text-muted-foreground">
               <span>Bunny's</span>
@@ -51,11 +45,7 @@ export default function Navigation() {
               aria-expanded={menuOpen}
             >
               <span className="sr-only">Open main menu</span>
-              {menuOpen ? (
-                <X className="block h-6 w-6" />
-              ) : (
-                <Menu className="block h-6 w-6" />
-              )}
+              {menuOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
             </button>
           </div>
 
@@ -63,11 +53,7 @@ export default function Navigation() {
           <div className="hidden md:block md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
             <div className="flex gap-x-12">
               {MENUS.map((menu: MenuInput) => (
-                <Link
-                  key={menu.label}
-                  href={menu.href}
-                  isExternal={menu.external}
-                >
+                <Link key={menu.label} href={menu.href} isExternal={menu.external}>
                   {menu.label}
                   {menu.external ? <LinkIcon className="w-3 h-3 ml-1" /> : null}
                 </Link>
@@ -80,7 +66,7 @@ export default function Navigation() {
       <div
         className={cn(
           'md:hidden transition-all duration-300 ease-in-out overflow-hidden',
-          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0',
+          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         )}
       >
         <div className="px-4 pt-2 pb-4 space-y-1">
@@ -100,6 +86,7 @@ export default function Navigation() {
       </div>
       {menuOpen && (
         <div
+          role="presentation"
           className="fixed inset-0 bg-background/50 backdrop-blur-xs z-[-1]"
           onClick={() => setMenuOpen(false)}
         />

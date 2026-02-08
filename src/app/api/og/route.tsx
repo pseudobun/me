@@ -1,19 +1,16 @@
 import { ImageResponse } from 'next/og';
-import Bunny from '../../../../public/bunnysden.svg';
 import { METADATA } from '@/constants/metadata';
+import Bunny from '../../../../public/bunnysden.svg';
 
 export const runtime = 'edge';
 
 export async function GET(request: Request) {
   try {
     const monoFont = await fetch(
-      new URL(
-        '../../../../public/fonts/IBMPlexMono-Regular.ttf',
-        import.meta.url,
-      ),
+      new URL('../../../../public/fonts/IBMPlexMono-Regular.ttf', import.meta.url),
       {
         next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
-      },
+      }
     );
 
     if (!monoFont.ok) {
@@ -25,8 +22,7 @@ export async function GET(request: Request) {
     const values = Object.fromEntries(searchParams);
     const {
       title = (METADATA.root.openGraph?.title as string) || "Bunny's Den",
-      description = METADATA.root.openGraph?.description ||
-        "Urban's personal website.",
+      description = METADATA.root.openGraph?.description || "Urban's personal website.",
     } = values;
 
     return new ImageResponse(
@@ -69,9 +65,9 @@ export async function GET(request: Request) {
             weight: 400,
           },
         ],
-      },
+      }
     );
-  } catch (error) {
+  } catch {
     return new Response('Failed to generate image', {
       status: 500,
     });
