@@ -9,6 +9,10 @@ export const MENUS = [
     href: '/',
   },
   {
+    label: 'About',
+    href: '/about/',
+  },
+  {
     label: 'Projects',
     href: '/projects/',
   },
