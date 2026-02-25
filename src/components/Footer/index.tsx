@@ -6,7 +6,11 @@ import { PERSONAL } from '@/constants/data.mjs';
 import { cn } from '@/lib/utils';
 import ExoticLink from '../ExoticLink';
 
-export default function Footer() {
+interface FooterProps {
+  copyright: string;
+}
+
+export default function Footer({ copyright }: FooterProps) {
   return (
     <footer className="w-full relative mt-auto bg-background">
       <div
@@ -17,9 +21,7 @@ export default function Footer() {
         )}
       >
         <div className="max-md:order-2">
-          <p className="text-center">
-            &copy; {new Date().getFullYear()} Urban Vidovič. All rights reserved.
-          </p>
+          <p className="text-center">{copyright}</p>
         </div>
         <div className="flex space-x-4 max-md:order-1">
           <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>

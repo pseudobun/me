@@ -2,16 +2,31 @@
 
 import { Link as LinkIcon, Menu, X } from 'lucide-react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import Link from '@/components/Link';
-import { MENUS, type MenuInput } from '@/config/menu';
+import type { MenuInput } from '@/config/menu';
+import { locales, type Locale } from '@/i18n/config';
 import { cn } from '@/lib/utils';
 
-export default function Navigation() {
+interface NavigationProps {
+  lang: Locale;
+  menus: MenuInput[];
+  openMenuLabel: string;
+}
+
+export default function Navigation({ lang, menus, openMenuLabel }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleLinkClick = () => {
     setMenuOpen(false);
+  };
+
+  const getSwitchUrl = (newLang: Locale): string => {
+    const prefix = `/${lang}`;
+    const rest = pathname.startsWith(prefix) ? pathname.slice(prefix.length) || '/' : '/';
+    return `/${newLang}${rest}`;
   };
 
   return (
@@ -25,12 +40,12 @@ export default function Navigation() {
     >
       <div className="px-4 w-full">
         <div className="flex items-center justify-between h-16">
-          {/* Logo on the left */}
+          {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
+            <Link href={`/${lang}/`} className="flex items-center">
               <Image src="/dark-logo.svg" width={32} height={410} alt="Bunnys Den Logo" priority />
             </Link>
-            <div className="pl-2  flex flex-col leading-tight font-mono text-muted-foreground">
+            <div className="pl-2 flex flex-col leading-tight font-mono text-muted-foreground">
               <span>Bunny's</span>
               <span>Den</span>
             </div>
@@ -44,7 +59,7 @@ export default function Navigation() {
               type="button"
               aria-expanded={menuOpen}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{openMenuLabel}</span>
               {menuOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
             </button>
           </div>
@@ -52,7 +67,7 @@ export default function Navigation() {
           {/* Desktop Navigation - centered */}
           <div className="hidden md:block md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
             <div className="flex gap-x-12">
-              {MENUS.map((menu: MenuInput) => (
+              {menus.map((menu: MenuInput) => (
                 <Link key={menu.label} href={menu.href} isExternal={menu.external}>
                   {menu.label}
                   {menu.external ? <LinkIcon className="w-3 h-3 ml-1" /> : null}
@@ -60,8 +75,28 @@ export default function Navigation() {
               ))}
             </div>
           </div>
+
+          {/* Language switcher */}
+          <div className="flex items-center gap-x-1 font-mono text-sm text-muted-foreground">
+            {locales.map((locale, i) => (
+              <span key={locale} className="flex items-center gap-x-1">
+                {i > 0 && <span className="select-none">/</span>}
+                {locale === lang ? (
+                  <span className="text-foreground font-semibold uppercase">{locale}</span>
+                ) : (
+                  <Link
+                    href={getSwitchUrl(locale)}
+                    className="uppercase hover:text-foreground transition-colors"
+                  >
+                    {locale}
+                  </Link>
+                )}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
+
       {/* Mobile Navigation */}
       <div
         className={cn(
@@ -70,7 +105,7 @@ export default function Navigation() {
         )}
       >
         <div className="px-4 pt-2 pb-4 space-y-1">
-          {MENUS.map((menu: MenuInput) => (
+          {menus.map((menu: MenuInput) => (
             <Link
               key={menu.label}
               href={menu.href}
@@ -84,6 +119,7 @@ export default function Navigation() {
           ))}
         </div>
       </div>
+
       {menuOpen && (
         <div
           role="presentation"

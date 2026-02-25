@@ -32,6 +32,7 @@ export const PERSONAL = {
 
 export const PROJECTS = [
   {
+    id: 'tossinger',
     title: 'Tossinger',
     description:
       "Tossinger is a native iOS and macOS app that lets you quickly 'toss' content from anywhere - tweets, web pages, articles, links - into your personal collection to revisit and organize later on your preferred device.",
@@ -42,6 +43,7 @@ export const PROJECTS = [
     orgUrl: 'https://pseudobun.dev',
   },
   {
+    id: 'replicant-network',
     title: 'Replicant Network',
     description: 'A decentralized platform for AI model crowdfunding, development, and deployment.',
     website: 'https://rplcnt.io',
@@ -52,6 +54,7 @@ export const PROJECTS = [
     orgUrl: 'https://lutralabs.io',
   },
   {
+    id: 'swaylend',
     title: 'Swaylend',
     description:
       'The first and leading lending protocol on Fuel Network. Utilizing FuelVM, written in Sway. Earn as you supply the base asset or supply collateral and borrow the base asset yourself.',
@@ -63,6 +66,7 @@ export const PROJECTS = [
     orgUrl: 'https://lutralabs.io',
   },
   {
+    id: 'lutra-dashboard',
     title: 'Lutra Labs Internal Dashboard',
     description:
       'Lutra Labs dashboard for managing attendances, events, and more. Why use existing solutions when you can build your own?',
@@ -72,6 +76,7 @@ export const PROJECTS = [
     orgUrl: 'https://lutralabs.io',
   },
   {
+    id: 'cowork-maribor',
     title: 'Cowork Maribor Booking System',
     description: 'Book a desk at Cowork Maribor. Custom product for a local coworking space.',
     website: 'https://booking.coworkmaribor.com',
@@ -81,6 +86,7 @@ export const PROJECTS = [
     orgUrl: 'https://lutralabs.io',
   },
   {
+    id: 'endorse-fun',
     title: 'endorse.fun',
     description:
       "Endorse your favorite creators, builders, hackers and various other types of Web3 participants onchain. Whether they're known via ENS, Farcaster, or Lens, show your appreciation and help build a stronger community.",
@@ -92,6 +98,7 @@ export const PROJECTS = [
     orgUrl: 'https://lutralabs.io',
   },
   {
+    id: 'masca',
     title: 'Masca',
     description:
       'A MetaMask snap, bringing decentralized identity capabilites to the MetaMask wallet. Manage your DIDs and VCs, choose where to store received credentials, and share customized VPs.',
@@ -102,6 +109,7 @@ export const PROJECTS = [
     orgUrl: 'https://lutralabs.io',
   },
   {
+    id: 'eductx-v2',
     title: 'EduCTX V2',
     description:
       'Issue and receive educational Verifiable Credentials conforming to the latest W3C decentralized identity standards, and store them in Masca.',
@@ -112,6 +120,7 @@ export const PROJECTS = [
     orgUrl: 'https://blockchain-lab.um.si/?lang=en',
   },
   {
+    id: 'eductx-v1',
     title: 'EduCTX V1',
     description:
       'Issue and receive on-chain verifiable educational microcertificates on consortium EduCTX EVM network. Your certificates are verifiable, encrypted, and stored on-chain.',
@@ -122,6 +131,7 @@ export const PROJECTS = [
     orgUrl: 'https://blockchain-lab.um.si/?lang=en',
   },
   {
+    id: 'eductx-moodle',
     title: 'EduCTX plugin for Moodle',
     description:
       "Utilize EduCTX's (EduCTXv1 and EduCTXv2) decentralized identity capabilities in Moodle.",
@@ -131,6 +141,7 @@ export const PROJECTS = [
     orgUrl: 'https://blockchain-lab.um.si/?lang=en',
   },
   {
+    id: 'university-projects',
     title: 'University projects',
     description:
       "Projects I've worked on while I studied at the Faculty of Electrical Engineering and Computer Science at the University of Maribor.",

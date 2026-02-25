@@ -26,6 +26,9 @@ interface ProjectCardProps {
   github: string | undefined;
   delay: number;
   highlight?: boolean;
+  developedAt: string;
+  readMore: string;
+  showLess: string;
 }
 
 export default function ProjectCard({
@@ -38,6 +41,9 @@ export default function ProjectCard({
   image,
   delay,
   highlight,
+  developedAt,
+  readMore,
+  showLess,
 }: ProjectCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -100,7 +106,7 @@ export default function ProjectCard({
             >
               <CardTitle className="text-foreground">{title}</CardTitle>
               <CardDescription>
-                Developed @ <ExoticLink href={orgUrl}>{org}</ExoticLink>
+                {developedAt} <ExoticLink href={orgUrl}>{org}</ExoticLink>
               </CardDescription>
             </motion.div>
           </CardHeader>
@@ -127,7 +133,7 @@ export default function ProjectCard({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {isExpanded ? 'Show less' : 'Read more'}
+                {isExpanded ? showLess : readMore}
               </motion.button>
             )}
           </CardContent>

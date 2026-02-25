@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "openMenu": "Odpri glavni meni",
+    "home": "Domov",
+    "projects": "Projekti",
+    "lutraBlog": "Lutra Blog",
+    "langSwitch": "Zamenjaj jezik"
+  },
+  "home": {
+    "greeting": "gm 🌱",
+    "bio": {
+      "intro": "Sem Urban, programski inženir iz Maribora, Slovenija. Trenutno delam pri",
+      "and": "in",
+      "as": "kot",
+      "masterDegree": "Magisterij iz računalništva sem pridobil na",
+      "university": "Fakulteti za elektrotehniko, računalništvo in informatiko, Univerze v Mariboru."
+    },
+    "ariaLabels": {
+      "company": "Pojdi na spletno stran podjetja",
+      "university": "Pojdi na spletno stran univerze"
+    }
+  },
+  "projects": {
+    "title": "Projekti",
+    "subtitle": "Rad 🤍 gradim stvari.",
+    "developedAt": "Razvito pri",
+    "readMore": "Preberi več",
+    "showLess": "Pokaži manj",
+    "items": {
+      "tossinger": {
+        "description": "Tossinger je nativna iOS in macOS aplikacija, ki ti omogoča hitro 'pošiljanje' vsebine od koder koli — tvitov, spletnih strani, člankov, povezav — v tvojo osebno zbirko, da jo kdaj pozneje pregledaš in organiziraš na svoji najljubši napravi."
+      },
+      "replicant-network": {
+        "description": "Decentralizirana platforma za množično financiranje, razvoj in namestitev AI modelov."
+      },
+      "swaylend": {
+        "description": "Prvi in vodilni protokol za posojanje na omrežju Fuel Network. Uporablja FuelVM, napisan v Sway. Zaslužite, ko zagotovite osnovno sredstvo, ali zagotovite zavarovanje in si sami izposodite osnovno sredstvo."
+      },
+      "lutra-dashboard": {
+        "description": "Nadzorna plošča Lutra Labs za upravljanje prisotnosti, dogodkov in še več. Zakaj bi uporabljali obstoječe rešitve, ko si pa lahko ustvariš lastne?"
+      },
+      "cowork-maribor": {
+        "description": "Rezerviraj delovno mesto v Cowork Maribor. Produkt po meri za lokalni coworking prostor."
+      },
+      "endorse-fun": {
+        "description": "Podpri svoje najljubše ustvarjalce, razvijalce, hekerje in različne druge vrste udeležencev Web3 na verigi. Ne glede na to, ali so znani prek ENS, Farcaster ali Lens, izkaži svojo zahvalnost in pomagaj graditi močnejšo skupnost."
+      },
+      "masca": {
+        "description": "MetaMask snap, ki prinaša zmogljivosti decentralizirane identitete v denarnico MetaMask. Upravljajte svoje DID-e in VC-je, izberite, kje shranjujete prejeta poverila, in delite prilagojena VP-ja."
+      },
+      "eductx-v2": {
+        "description": "Izdajajte in prejemajte izobraževalne preverljive poverilnice v skladu z najnovejšimi W3C standardi decentralizirane identitete ter jih shranjujte v Masca."
+      },
+      "eductx-v1": {
+        "description": "Izdajajte in prejemajte mikrocertifikate, ki so preverljivi na verigi, na konzorcijskem omrežju EduCTX EVM. Vaši certifikati so preverljivi, šifrirani in shranjeni na verigi."
+      },
+      "eductx-moodle": {
+        "description": "Uporabite zmogljivosti decentralizirane identitete EduCTX (EduCTXv1 in EduCTXv2) v sistemu Moodle."
+      },
+      "university-projects": {
+        "description": "Projekti, pri katerih sem delal med študijem na Fakulteti za elektrotehniko, računalništvo in informatiko na Univerzi v Mariboru."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Urban Vidovič. Vse pravice pridržane."
+  },
+  "notFound": {
+    "message": "404: Tu ne boš nič našel"
+  },
+  "theme": {
+    "toggle": "Preklopi temo",
+    "light": "Svetla",
+    "dark": "Temna",
+    "system": "Sistemska"
+  }
+}

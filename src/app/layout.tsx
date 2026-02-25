@@ -1,28 +1,18 @@
 import './globals.css';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { cookies } from 'next/headers';
 import { monoFont } from 'src/fonts';
-import { Providers } from '@/app/providers';
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
 import { METADATA } from '@/constants/metadata';
+import { defaultLocale, type Locale } from '@/i18n/config';
 
 export const metadata = METADATA.root;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get('NEXT_LOCALE')?.value as Locale) ?? defaultLocale;
+
   return (
-    <html lang="en" className={monoFont.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-[100dvh]">
-        <Providers>
-          <Navigation />
-          <main className="grow flex flex-col no-scrollbar md:pt-32 md:pb-12 pt-28 pb-12 px-8 items-center justify-center max-w-7xl mx-auto w-full">
-            {children}
-          </main>
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </Providers>
-      </body>
+    <html lang={lang} className={monoFont.className} suppressHydrationWarning>
+      <body className="flex flex-col min-h-[100dvh]">{children}</body>
     </html>
   );
 }
