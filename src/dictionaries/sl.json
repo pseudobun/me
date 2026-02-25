@@ -9,10 +9,10 @@
   "home": {
     "greeting": "gm 🌱",
     "bio": {
-      "intro": "Sem Urban, programski inženir iz Maribora, Slovenija. Trenutno delam pri",
+      "intro": "Sem Urban, software engineer Maribora, Slovenija. Trenutno delam pri",
       "and": "in",
       "as": "kot",
-      "masterDegree": "Magisterij iz računalništva sem pridobil na",
+      "masterDegree": "Sem magister inženir računalništva in informacijskih tehnologij, študiral pa sem na",
       "university": "Fakulteti za elektrotehniko, računalništvo in informatiko, Univerze v Mariboru."
     },
     "ariaLabels": {
@@ -23,7 +23,7 @@
   "projects": {
     "title": "Projekti",
     "subtitle": "Rad 🤍 gradim stvari.",
-    "developedAt": "Razvito pri",
+    "developedAt": "Razvito @",
     "readMore": "Preberi več",
     "showLess": "Pokaži manj",
     "items": {
