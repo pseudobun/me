@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { defaultLocale, locales, type Locale } from '@/i18n/config';
+import { defaultLocale, type Locale, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
 export default async function NotFound() {

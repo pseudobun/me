@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { defaultLocale, locales, type Locale } from '@/i18n/config';
+import { defaultLocale, type Locale, locales } from '@/i18n/config';
 
 function getLocale(request: NextRequest): Locale {
   const acceptLanguage = request.headers.get('accept-language');
@@ -30,14 +30,15 @@ export function middleware(request: NextRequest) {
 
   // Check if the pathname already starts with a supported locale
   const pathnameHasLocale = locales.some(
-    (locale) => pathname === `/${locale}` || pathname === `/${locale}/` || pathname.startsWith(`/${locale}/`),
+    (locale) =>
+      pathname === `/${locale}` || pathname === `/${locale}/` || pathname.startsWith(`/${locale}/`)
   );
 
   if (pathnameHasLocale) {
     // Extract the active locale and keep it in a cookie for the root layout
     const locale =
       locales.find(
-        (l) => pathname === `/${l}` || pathname === `/${l}/` || pathname.startsWith(`/${l}/`),
+        (l) => pathname === `/${l}` || pathname === `/${l}/` || pathname.startsWith(`/${l}/`)
       ) ?? defaultLocale;
     const response = NextResponse.next();
     response.cookies.set('NEXT_LOCALE', locale, { path: '/' });
@@ -56,5 +57,8 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Skip Next.js internals, API routes, and files with extensions (static assets)
-  matcher: ['/((?!_next/static|_next/image|favicon\\.ico|api|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml)).*)', '/'],
+  matcher: [
+    '/((?!_next/static|_next/image|favicon\\.ico|api|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|txt|xml)).*)',
+    '/',
+  ],
 };

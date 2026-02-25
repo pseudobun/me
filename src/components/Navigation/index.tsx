@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import Link from '@/components/Link';
 import type { MenuInput } from '@/config/menu';
-import { locales, type Locale } from '@/i18n/config';
+import { type Locale, locales } from '@/i18n/config';
 import { cn } from '@/lib/utils';
 
 interface NavigationProps {

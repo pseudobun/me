@@ -3,7 +3,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Providers } from '@/app/providers';
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
-import { defaultLocale, locales, type Locale } from '@/i18n/config';
+import { defaultLocale, type Locale, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
 export function generateStaticParams() {

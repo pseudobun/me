@@ -1,7 +1,7 @@
 import DecryptedText from '@/components/DecryptedText';
 import ExoticLink from '@/components/ExoticLink';
 import { PERSONAL } from '@/constants/data.mjs';
-import { defaultLocale, locales, type Locale } from '@/i18n/config';
+import { defaultLocale, type Locale, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
 export default async function Home({ params }: { params: Promise<{ lang: Locale }> }) {
@@ -15,7 +15,11 @@ export default async function Home({ params }: { params: Promise<{ lang: Locale 
       <span className="text-2xl font-bold">{d.greeting}</span>
       <p className="text-lg">
         {d.bio.intro}{' '}
-        <ExoticLink aria-label={d.ariaLabels.company} className="no-underline" href={PERSONAL.companyUrl}>
+        <ExoticLink
+          aria-label={d.ariaLabels.company}
+          className="no-underline"
+          href={PERSONAL.companyUrl}
+        >
           <DecryptedText sequential={true} text={PERSONAL.company} animateOn="both" speed={60} />
         </ExoticLink>{' '}
         {d.bio.and}{' '}

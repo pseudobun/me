@@ -1,6 +1,6 @@
 import ProjectCard from '@/components/ProjectCard';
 import { PROJECTS } from '@/constants/data.mjs';
-import { defaultLocale, locales, type Locale } from '@/i18n/config';
+import { defaultLocale, type Locale, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
 export const metadata = {
@@ -31,7 +31,9 @@ export default async function Projects({ params }: { params: Promise<{ lang: Loc
             orgUrl={project.orgUrl!}
             highlight={project.highlight}
             title={project.title}
-            description={d.items[project.id as keyof typeof d.items]?.description ?? project.description}
+            description={
+              d.items[project.id as keyof typeof d.items]?.description ?? project.description
+            }
             website={project.website}
             image={project.image}
             developedAt={d.developedAt}
