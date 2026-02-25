@@ -76,8 +76,8 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
             </div>
           </div>
 
-          {/* Language switcher */}
-          <div className="flex items-center gap-x-1 font-mono text-sm text-muted-foreground">
+          {/* Language switcher - desktop only */}
+          <div className="hidden md:flex items-center gap-x-1 font-mono text-sm text-muted-foreground">
             {locales.map((locale, i) => (
               <span key={locale} className="flex items-center gap-x-1">
                 {i > 0 && <span className="select-none">/</span>}
@@ -101,7 +101,7 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
       <div
         className={cn(
           'md:hidden transition-all duration-300 ease-in-out overflow-hidden',
-          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         )}
       >
         <div className="px-4 pt-2 pb-4 space-y-1">
@@ -117,6 +117,24 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
               {menu.external ? <LinkIcon className="w-3 h-3 ml-1" /> : null}
             </Link>
           ))}
+          <div className="px-3 py-2 flex items-center gap-x-1 font-mono text-sm text-muted-foreground border-t border-border/40 mt-1 pt-3">
+            {locales.map((locale, i) => (
+              <span key={locale} className="flex items-center gap-x-1">
+                {i > 0 && <span className="select-none">/</span>}
+                {locale === lang ? (
+                  <span className="text-foreground font-semibold uppercase">{locale}</span>
+                ) : (
+                  <Link
+                    href={getSwitchUrl(locale)}
+                    onClick={handleLinkClick}
+                    className="uppercase hover:text-foreground transition-colors"
+                  >
+                    {locale}
+                  </Link>
+                )}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
