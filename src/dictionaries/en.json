@@ -15,17 +15,33 @@
       "masterDegree": "I have a Master's degree in Computer Science acquired at",
       "university": "Faculty of Electrical Engineering and Computer Science, University of Maribor."
     },
+    "projects": {
+      "title": "Projects",
+      "description": "A few things I've built across identity, Web3, and product work.",
+      "link": "Browse projects"
+    },
+    "structuredData": {
+      "knowsAbout": [
+        "Decentralized identity",
+        "Verifiable credentials",
+        "Web3 product engineering",
+        "Security and cryptography"
+      ]
+    },
     "ariaLabels": {
       "company": "Go to company website",
+      "projects": "Go to projects page",
       "university": "Go to university website"
     }
   },
   "projects": {
     "title": "Projects",
     "subtitle": "I 🤍 building things.",
+    "sectionTitle": "Selected work",
     "developedAt": "Developed @",
     "readMore": "Read more",
     "showLess": "Show less",
+    "tagsLabel": "Technologies and domains",
     "items": {
       "tossinger": {
         "description": "Tossinger is a native iOS and macOS app that lets you quickly 'toss' content from anywhere - tweets, web pages, articles, links - into your personal collection to revisit and organize later on your preferred device."

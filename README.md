@@ -6,15 +6,16 @@ Photos are stored in Supabase, exported from Lightroom as JPG long side 1024px, 
 
 ## Getting Started
 
-Run the development server in `packages/portfolio` :
+Run the development server from the repository root:
 
 ```bash
 pnpm dev
 ```
 
-Run the production server in `packages/portfolio` :
+Run the production build from the repository root:
 
 ```bash
+pnpm typecheck
 pnpm build
 pnpm start
 ```

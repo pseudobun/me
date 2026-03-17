@@ -1,25 +1,34 @@
 import clsx from 'clsx';
-import Link from 'next/link';
+import type { ReactNode } from 'react';
 
 interface ExoticLinkProps {
-  href: string;
-  className?: string;
+  ariaLabel?: string;
   blank?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
+  className?: string;
+  href: string;
   rel?: string;
-  noEnlarge?: boolean;
 }
 
-export default function ExoticLink({ href, className, children }: ExoticLinkProps) {
+export default function ExoticLink({
+  ariaLabel,
+  blank = true,
+  children,
+  className,
+  href,
+  rel,
+}: ExoticLinkProps) {
+  const isExternal = href.startsWith('http') || href.startsWith('mailto:');
+
   return (
-    <Link
-      aria-label={`link to ${href}`}
+    <a
+      aria-label={ariaLabel ?? `link to ${href}`}
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={blank && isExternal ? '_blank' : undefined}
+      rel={blank && isExternal ? (rel ?? 'noopener noreferrer') : rel}
       className={clsx(className, 'text-cappuccino hover:text-wave')}
     >
       {children}
-    </Link>
+    </a>
   );
 }

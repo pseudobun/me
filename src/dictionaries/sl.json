@@ -9,23 +9,39 @@
   "home": {
     "greeting": "gm 🌱",
     "bio": {
-      "intro": "Sem Urban, software engineer Maribora, Slovenija. Trenutno delam pri",
+      "intro": "Sem Urban, software engineer iz Maribora, Slovenija. Trenutno delam pri",
       "and": "in",
       "as": "kot",
       "masterDegree": "Sem magister inženir računalništva in informacijskih tehnologij, študiral pa sem na",
       "university": "Fakulteti za elektrotehniko, računalništvo in informatiko, Univerze v Mariboru."
     },
+    "projects": {
+      "title": "Projekti",
+      "description": "Nekaj stvari, ki sem jih zgradil na področju identitete, Web3 in produktnega razvoja.",
+      "link": "Poglej projekte"
+    },
+    "structuredData": {
+      "knowsAbout": [
+        "Decentralizirana identiteta",
+        "Preverljive poverilnice",
+        "Web3 produktni razvoj",
+        "Varnost in kriptografija"
+      ]
+    },
     "ariaLabels": {
       "company": "Pojdi na spletno stran podjetja",
+      "projects": "Pojdi na stran s projekti",
       "university": "Pojdi na spletno stran univerze"
     }
   },
   "projects": {
     "title": "Projekti",
     "subtitle": "Rad 🤍 gradim stvari.",
+    "sectionTitle": "Izbrano delo",
     "developedAt": "Razvito @",
     "readMore": "Preberi več",
     "showLess": "Pokaži manj",
+    "tagsLabel": "Tehnologije in področja",
     "items": {
       "tossinger": {
         "description": "Tossinger je nativna iOS in macOS aplikacija, ki ti omogoča hitro 'pošiljanje' vsebine od koder koli — tvitov, spletnih strani, člankov, povezav — v tvojo osebno zbirko, da jo kdaj pozneje pregledaš in organiziraš na svoji najljubši napravi."

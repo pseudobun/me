@@ -1,29 +1,21 @@
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { ImageResponse } from 'next/og';
-import { METADATA } from '@/constants/metadata';
+import { SITE_NAME, SITE_TITLE } from '@/constants/metadata';
 import Bunny from '../../../../public/bunnysden.svg';
 
-export const runtime = 'edge';
+const monoFontDataPromise = readFile(
+  path.join(process.cwd(), 'public/fonts/IBMPlexMono-Regular.ttf')
+);
 
 export async function GET(request: Request) {
   try {
-    const monoFont = await fetch(
-      new URL('../../../../public/fonts/IBMPlexMono-Regular.ttf', import.meta.url),
-      {
-        next: { revalidate: 60 * 60 * 24 * 7 }, // cache for 7 days
-      }
-    );
-
-    if (!monoFont.ok) {
-      throw new Error('Failed to fetch the font file');
-    }
-
-    const monoFontData = await monoFont.arrayBuffer();
+    const monoFontData = await monoFontDataPromise;
     const { searchParams } = new URL(request.url);
-    const values = Object.fromEntries(searchParams);
-    const {
-      title = (METADATA.root.openGraph?.title as string) || "Bunny's Den",
-      description = METADATA.root.openGraph?.description || "Urban's personal website.",
-    } = values;
+    const title = searchParams.get('title') ?? SITE_TITLE;
+    const description =
+      searchParams.get('description') ??
+      'Decentralized identity, verifiable credentials, Web3 product engineering, and applied research.';
 
     return new ImageResponse(
       <div
@@ -33,23 +25,63 @@ export async function GET(request: Request) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#0C0A09',
-          backgroundAttachment: 'fixed',
+          background: '#0c0a09',
+          color: '#f5f5f4',
+          padding: '56px 64px',
         }}
       >
         <div
-          tw="flex flex-1 px-50 text-center items-center"
-          className=""
-          style={{ justifyContent: 'space-between' }}
+          style={{
+            display: 'flex',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 40,
+          }}
         >
-          <Bunny tw="h-64 w-64" />
-          <div tw="h-[128px] w-[2px] bg-stone-600 mx-8" />
-          <div tw="flex flex-col">
-            <p tw="text-stone-200 text-3xl" style={{ fontFamily: '"IBMPlex"' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 256, height: 256, display: 'flex' }}>
+              <Bunny />
+            </div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 20,
+              maxWidth: 700,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: 'IBMPlex',
+                fontSize: 56,
+                lineHeight: 1.1,
+                margin: 0,
+              }}
+            >
               {title}
             </p>
-            <p tw="text-stone-200 text-xl" style={{ fontFamily: '"IBMPlex"' }}>
+            <p
+              style={{
+                fontFamily: 'IBMPlex',
+                fontSize: 28,
+                lineHeight: 1.35,
+                margin: 0,
+                color: '#d6d3d1',
+              }}
+            >
               {description}
+            </p>
+            <p
+              style={{
+                fontFamily: 'IBMPlex',
+                fontSize: 20,
+                margin: 0,
+                color: '#a8a29e',
+              }}
+            >
+              {SITE_NAME}
             </p>
           </div>
         </div>

@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@plugin 'tailwindcss-animate';
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -126,6 +124,9 @@
 @layer base {
   * {
     @apply border-border;
+  }
+  html {
+    color-scheme: dark;
   }
   body {
     @apply bg-background text-foreground;

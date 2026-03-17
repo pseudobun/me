@@ -1,6 +1,4 @@
-'use client';
 import { Mail } from 'lucide-react';
-import { motion } from 'motion/react';
 import { siGithub, siKeybase, siX } from 'simple-icons';
 import { PERSONAL } from '@/constants/data.mjs';
 import { cn } from '@/lib/utils';
@@ -10,9 +8,19 @@ interface FooterProps {
   copyright: string;
 }
 
+const socialLinks = [
+  { href: PERSONAL.github, icon: siGithub.svg.replace(/<title>.*?<\/title>/, ''), label: 'GitHub' },
+  {
+    href: PERSONAL.keybase,
+    icon: siKeybase.svg.replace(/<title>.*?<\/title>/, ''),
+    label: 'Keybase',
+  },
+  { href: PERSONAL.twitter, icon: siX.svg.replace(/<title>.*?<\/title>/, ''), label: 'X' },
+];
+
 export default function Footer({ copyright }: FooterProps) {
   return (
-    <footer className="w-full relative mt-auto bg-background">
+    <footer className="w-full relative mt-auto bg-background border-t border-border/60">
       <div
         className={cn(
           'flex p-4 px-6 max-md:flex-col gap-x-12 gap-y-4 justify-between items-center',
@@ -20,46 +28,24 @@ export default function Footer({ copyright }: FooterProps) {
           'w-full max-w-7xl md:max-w-7xl mx-auto'
         )}
       >
-        <div className="max-md:order-2">
-          <p className="text-center">{copyright}</p>
-        </div>
-        <div className="flex space-x-4 max-md:order-1">
-          <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-            <ExoticLink href={PERSONAL.github}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: siGithub.svg,
-                }}
-                className="w-6 h-6 fill-muted-foreground hover:fill-foreground"
+        <p className="text-center max-md:order-2">{copyright}</p>
+        <nav aria-label="Social links" className="flex space-x-4 max-md:order-1 items-center">
+          {socialLinks.map((link) => (
+            <ExoticLink key={link.href} href={link.href} ariaLabel={link.label}>
+              <span
+                className="block w-6 h-6 fill-muted-foreground hover:fill-foreground transition-colors"
+                dangerouslySetInnerHTML={{ __html: link.icon }}
               />
             </ExoticLink>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.2, rotate: -5 }} whileTap={{ scale: 0.9 }}>
-            <ExoticLink href={`${PERSONAL.keybase}`}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: siKeybase.svg,
-                }}
-                className="w-6 h-6 fill-muted-foreground hover:fill-foreground"
-              />
-            </ExoticLink>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-            <ExoticLink href={PERSONAL.twitter}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: siX.svg,
-                }}
-                className="w-6 h-6 fill-muted-foreground hover:fill-foreground"
-              />
-            </ExoticLink>
-          </motion.div>
-          <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-            <ExoticLink href={`mailto:${PERSONAL.email}`}>
-              <Mail className="w-6 h-6 text-muted-foreground hover:text-foreground" />
-            </ExoticLink>
-          </motion.div>
-        </div>
+          ))}
+          <ExoticLink
+            href={`mailto:${PERSONAL.email}`}
+            ariaLabel="Email Urban Vidovič"
+            blank={false}
+          >
+            <Mail className="w-6 h-6 text-muted-foreground hover:text-foreground transition-colors" />
+          </ExoticLink>
+        </nav>
       </div>
     </footer>
   );

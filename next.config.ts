@@ -1,10 +1,6 @@
 const nextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
   images: {
     remotePatterns: [
       {

@@ -31,6 +31,7 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
 
   return (
     <nav
+      aria-label="Primary navigation"
       className={cn(
         'fixed top-4 z-50 transition-all duration-300 ease-in-out',
         'backdrop-blur-xl bg-background/30 border border-border/40 rounded-2xl shadow-lg',
@@ -43,7 +44,7 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
           {/* Logo */}
           <div className="flex items-center">
             <Link href={`/${lang}/`} className="flex items-center">
-              <Image src="/dark-logo.svg" width={32} height={410} alt="Bunnys Den Logo" priority />
+              <Image src="/dark-logo.svg" width={32} height={410} alt="Bunny's Den logo" priority />
             </Link>
             <div className="pl-2 flex flex-col leading-tight font-mono text-muted-foreground">
               <span>Bunny's</span>
@@ -77,7 +78,11 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
           </div>
 
           {/* Language switcher - desktop only */}
-          <div className="hidden md:flex items-center gap-x-1 font-mono text-sm text-muted-foreground">
+          <div
+            role="group"
+            aria-label="Language switcher"
+            className="hidden md:flex items-center gap-x-1 font-mono text-sm text-muted-foreground"
+          >
             {locales.map((locale, i) => (
               <span key={locale} className="flex items-center gap-x-1">
                 {i > 0 && <span className="select-none">/</span>}
@@ -117,7 +122,11 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
               {menu.external ? <LinkIcon className="w-3 h-3 ml-1" /> : null}
             </Link>
           ))}
-          <div className="px-3 py-2 flex items-center gap-x-1 font-mono text-sm text-muted-foreground border-t border-border/40 mt-1 pt-3">
+          <div
+            role="group"
+            aria-label="Language switcher"
+            className="px-3 py-2 flex items-center gap-x-1 font-mono text-sm text-muted-foreground border-t border-border/40 mt-1 pt-3"
+          >
             {locales.map((locale, i) => (
               <span key={locale} className="flex items-center gap-x-1">
                 {i > 0 && <span className="select-none">/</span>}

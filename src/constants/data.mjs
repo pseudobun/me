@@ -41,6 +41,7 @@ export const PROJECTS = [
     highlight: false,
     org: 'Personal',
     orgUrl: 'https://pseudobun.dev',
+    tags: ['iOS', 'macOS', 'Native app'],
   },
   {
     id: 'replicant-network',
@@ -52,6 +53,7 @@ export const PROJECTS = [
     highlight: false,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
+    tags: ['AI', 'Decentralized', 'Crowdfunding'],
   },
   {
     id: 'swaylend',
@@ -64,6 +66,7 @@ export const PROJECTS = [
     highlight: false,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
+    tags: ['DeFi', 'FuelVM', 'Sway'],
   },
   {
     id: 'lutra-dashboard',
@@ -74,6 +77,7 @@ export const PROJECTS = [
     highlight: false,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
+    tags: ['Internal tooling', 'Operations', 'Productivity'],
   },
   {
     id: 'cowork-maribor',
@@ -84,6 +88,7 @@ export const PROJECTS = [
     highlight: false,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
+    tags: ['Booking', 'Local business', 'Custom software'],
   },
   {
     id: 'endorse-fun',
@@ -96,6 +101,7 @@ export const PROJECTS = [
     highlight: false,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
+    tags: ['Social', 'Onchain', 'Creator economy'],
   },
   {
     id: 'masca',
@@ -107,6 +113,7 @@ export const PROJECTS = [
     image: masca,
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
+    tags: ['Decentralized identity', 'MetaMask Snap', 'Verifiable credentials'],
   },
   {
     id: 'eductx-v2',
@@ -118,6 +125,7 @@ export const PROJECTS = [
     image: eductxv2,
     org: 'Blockchain Lab:UM',
     orgUrl: 'https://blockchain-lab.um.si/?lang=en',
+    tags: ['Education', 'W3C VC', 'Decentralized identity'],
   },
   {
     id: 'eductx-v1',
@@ -129,6 +137,7 @@ export const PROJECTS = [
     image: eductxv1,
     org: 'Blockchain Lab:UM',
     orgUrl: 'https://blockchain-lab.um.si/?lang=en',
+    tags: ['Education', 'Onchain credentials', 'EVM'],
   },
   {
     id: 'eductx-moodle',
@@ -139,6 +148,7 @@ export const PROJECTS = [
     image: moodleEductx,
     org: 'Blockchain Lab:UM',
     orgUrl: 'https://blockchain-lab.um.si/?lang=en',
+    tags: ['Moodle', 'Education', 'Plugin'],
   },
   {
     id: 'university-projects',
@@ -149,5 +159,6 @@ export const PROJECTS = [
     orgUrl: 'https://www.um.si/en',
     image: solo,
     github: 'https://github.com/pseudobun/solo-projects',
+    tags: ['Research', 'University', 'Software engineering'],
   },
 ];
