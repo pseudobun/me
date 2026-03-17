@@ -5,6 +5,7 @@ import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
 import lutradashboard from '@/project-screenshots/lutradashboard.png';
 import masca from '@/project-screenshots/masca.png';
 import moodleEductx from '@/project-screenshots/moodle-eductx.png';
+import polycat from '@/project-screenshots/polycat.png';
 import repnet from '@/project-screenshots/repnet.png';
 import solo from '@/project-screenshots/solo.png';
 import swaylend from '@/project-screenshots/swaylend.png';
@@ -36,12 +37,24 @@ export const PROJECTS = [
     title: 'Tossinger',
     description:
       "Tossinger is a native iOS and macOS app that lets you quickly 'toss' content from anywhere - tweets, web pages, articles, links - into your personal collection to revisit and organize later on your preferred device.",
+    appStore: 'https://apps.apple.com/si/app/tossinger/id6754607504',
     github: 'https://github.com/pseudobun/tossinger',
     image: tossinger,
     highlight: false,
     org: 'Personal',
     orgUrl: 'https://pseudobun.dev',
     tags: ['iOS', 'macOS', 'Native app'],
+  },
+  {
+    id: 'polycat',
+    title: 'Polycat',
+    description:
+      'Polycat is a private monorepo for a Polymarket weather bot and realtime dashboard. It combines Rust strategy runtimes, a peripheral API, and a Next.js interface for monitoring markets, orders, balances, analytics, and weather overlays.',
+    image: polycat,
+    highlight: false,
+    org: 'Personal',
+    orgUrl: 'https://pseudobun.dev',
+    tags: ['Polymarket', 'Rust', 'Next.js', 'Trading bot'],
   },
   {
     id: 'replicant-network',

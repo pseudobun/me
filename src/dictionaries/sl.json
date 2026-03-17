@@ -46,6 +46,9 @@
       "tossinger": {
         "description": "Tossinger je nativna iOS in macOS aplikacija, ki ti omogoča hitro 'pošiljanje' vsebine od koder koli — tvitov, spletnih strani, člankov, povezav — v tvojo osebno zbirko, da jo kdaj pozneje pregledaš in organiziraš na svoji najljubši napravi."
       },
+      "polycat": {
+        "description": "Polycat je zaseben monorepo za vremenskega bota za Polymarket in nadzorno ploščo v realnem času. Združuje pogone strategij v Rustu, periferni API ter Next.js vmesnik za spremljanje trgov, naročil, stanj, analitike in vremenskih napovedi."
+      },
       "replicant-network": {
         "description": "Decentralizirana platforma za množično financiranje, razvoj in namestitev AI modelov."
       },

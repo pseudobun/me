@@ -70,7 +70,7 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
             d.items[project.id as keyof typeof d.items]?.description ?? project.description,
           keywords: project.tags.join(', '),
           name: project.title,
-          url: project.website ?? project.github ?? undefined,
+          url: project.website ?? project.appStore ?? project.github ?? undefined,
         },
       })),
     },
@@ -91,6 +91,7 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
             <ProjectCard
               key={project.title}
               delay={index * 0.08}
+              appStore={project.appStore}
               github={project.github}
               org={project.org}
               orgUrl={project.orgUrl}
