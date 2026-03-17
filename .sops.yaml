@@ -1,0 +1,7 @@
+# SOPS configuration for encrypting secrets
+# See: https://github.com/getsops/sops
+
+creation_rules:
+  - path_regex: ^(\.env)(\.enc)?$
+    age: >-
+      age16td0lf6gaycxwef5ga3yhkjxrrcmptrcu25g4s9zg5wcm0qzf4uqdj94pf

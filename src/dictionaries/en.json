@@ -39,6 +39,17 @@
     "subtitle": "I 🤍 building things.",
     "sectionTitle": "Selected work",
     "developedAt": "Developed @",
+    "githubStats": {
+      "ariaLabel": "GitHub project statistics",
+      "commits": "commits",
+      "added": "lines added",
+      "removed": "lines removed",
+      "repos": "repos",
+      "with": "with",
+      "and": "and",
+      "across": "across",
+      "unavailable": "GitHub stats are unavailable right now."
+    },
     "readMore": "Read more",
     "showLess": "Show less",
     "tagsLabel": "Technologies and domains",

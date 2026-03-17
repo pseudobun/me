@@ -1,17 +1,27 @@
-name: CRON Jobs
+name: Daily GitHub Stats Sync
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 0 * * *'
+  schedule:
+    - cron: '17 3 * * *'
 env:
-  SUPABASE_ANON_PUBLIC: ${{ secrets.SUPABASE_ANON_PUBLIC }}
-  SUPABASE_PATH: ${{ secrets.SUPABASE_PATH }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
 jobs:
-  main:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+      - name: Install node
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-      - name: Supabase keepalive
-        run: chmod +x scripts/supabase/keep-alive.sh && scripts/supabase/keep-alive.sh
+          cache: "pnpm"
+          node-version-file: ".nvmrc"
+          registry-url: https://registry.npmjs.org/
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Sync GitHub stats snapshot
+        run: pnpm sync:github-stats

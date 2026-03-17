@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
+import GithubStatsStatement from '@/components/GithubStatsStatement';
 import JsonLd from '@/components/JsonLd';
 import ProjectCard from '@/components/ProjectCard';
 import { PERSONAL, PROJECTS } from '@/constants/data.mjs';
 import { createPageMetadata, getLocalizedUrl, getPageMetadataCopy } from '@/constants/metadata';
 import { defaultLocale, type Locale, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
+import { getProjectGithubStats } from '@/lib/github-project-stats';
+
+export const revalidate = 86400;
 
 export async function generateMetadata({
   params,
@@ -24,9 +28,13 @@ export async function generateMetadata({
 export default async function Projects({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   const locale = locales.includes(lang as Locale) ? (lang as Locale) : defaultLocale;
-  const dict = await getDictionary(locale);
+  const [dict, projectGithubStats] = await Promise.all([
+    getDictionary(locale),
+    getProjectGithubStats(),
+  ]);
   const metadata = getPageMetadataCopy(locale, 'projects');
   const d = dict.projects;
+  const statsLocale = locale === 'sl' ? 'sl-SI' : 'en-US';
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -83,6 +91,21 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
       <section className="max-w-4xl space-y-2">
         <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">{d.title}</h1>
         <p className="text-xl text-muted-foreground">{d.subtitle}</p>
+      </section>
+
+      <section className="max-w-5xl" aria-label={d.githubStats.ariaLabel}>
+        <GithubStatsStatement
+          additionsLabel={d.githubStats.added}
+          acrossLabel={d.githubStats.across}
+          andLabel={d.githubStats.and}
+          commitsLabel={d.githubStats.commits}
+          locale={statsLocale}
+          removalsLabel={d.githubStats.removed}
+          reposLabel={d.githubStats.repos}
+          stats={projectGithubStats}
+          unavailableLabel={d.githubStats.unavailable}
+          withLabel={d.githubStats.with}
+        />
       </section>
 
       <section aria-label={d.title}>

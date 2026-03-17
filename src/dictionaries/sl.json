@@ -39,6 +39,17 @@
     "subtitle": "Rad 🤍 gradim stvari.",
     "sectionTitle": "Izbrano delo",
     "developedAt": "Razvito @",
+    "githubStats": {
+      "ariaLabel": "GitHub statistika projektov",
+      "commits": "commitov",
+      "added": "dodanimi vrsticami",
+      "removed": "odstranjenimi vrsticami",
+      "repos": "repozitorijih",
+      "with": "z",
+      "and": "in",
+      "across": "v",
+      "unavailable": "GitHub statistika trenutno ni na voljo."
+    },
     "readMore": "Preberi več",
     "showLess": "Pokaži manj",
     "tagsLabel": "Tehnologije in področja",
