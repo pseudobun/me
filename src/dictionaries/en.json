@@ -43,11 +43,14 @@
     "showLess": "Show less",
     "tagsLabel": "Technologies and domains",
     "items": {
+      "polyarb": {
+        "description": "Polyarb is a private monorepo for a Polymarket weather bot and realtime dashboard. It combines Rust strategy runtimes, a peripheral API, and a Next.js interface for monitoring markets, orders, balances, analytics, and weather overlays."
+      },
+      "lutra-id": {
+        "description": "LutraID is a compliant platform for issuing and verifying digital documents. It brings together issuer and verifier workflows, wallet-facing credential issuance, and standards-based verification flows for modern digital identity systems."
+      },
       "tossinger": {
         "description": "Tossinger is a native iOS and macOS app that lets you quickly 'toss' content from anywhere - tweets, web pages, articles, links - into your personal collection to revisit and organize later on your preferred device."
-      },
-      "polycat": {
-        "description": "Polycat is a private monorepo for a Polymarket weather bot and realtime dashboard. It combines Rust strategy runtimes, a peripheral API, and a Next.js interface for monitoring markets, orders, balances, analytics, and weather overlays."
       },
       "replicant-network": {
         "description": "A decentralized platform for AI model crowdfunding, development, and deployment."

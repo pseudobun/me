@@ -2,6 +2,7 @@ import coworkmaribor from '@/project-screenshots/cwmb-booking.png';
 import eductxv1 from '@/project-screenshots/eductxv1.png';
 import eductxv2 from '@/project-screenshots/eductxv2.png';
 import endorsedotfun from '@/project-screenshots/endorsedotfun.png';
+import lutraId from '@/project-screenshots/lutra-id.png';
 import lutradashboard from '@/project-screenshots/lutradashboard.png';
 import masca from '@/project-screenshots/masca.png';
 import moodleEductx from '@/project-screenshots/moodle-eductx.png';
@@ -33,6 +34,30 @@ export const PERSONAL = {
 
 export const PROJECTS = [
   {
+    id: 'polyarb',
+    title: 'Polyarb',
+    description:
+      'Polyarb is a private monorepo for a Polymarket weather bot and realtime dashboard. It combines Rust strategy runtimes, a peripheral API, and a Next.js interface for monitoring markets, orders, balances, analytics, and weather overlays.',
+    image: polycat,
+    highlight: false,
+    org: 'Personal',
+    orgUrl: 'https://pseudobun.dev',
+    tags: ['Polymarket', 'Rust', 'Next.js', 'Trading bot'],
+  },
+  {
+    id: 'lutra-id',
+    title: 'LutraID',
+    description:
+      'LutraID is a compliant platform for issuing and verifying digital documents. It brings together issuer and verifier workflows, wallet-facing credential issuance, and standards-based verification flows for modern digital identity systems.',
+    website: 'https://id.lutralabs.io',
+    // Add image: lutraId when src/project-screenshots/lutra-id.png is available.
+    image: lutraId,
+    highlight: false,
+    org: 'Lutra Labs',
+    orgUrl: 'https://lutralabs.io',
+    tags: ['Digital identity', 'OID4VCI', 'Verification', 'mDoc'],
+  },
+  {
     id: 'tossinger',
     title: 'Tossinger',
     description:
@@ -44,17 +69,6 @@ export const PROJECTS = [
     org: 'Personal',
     orgUrl: 'https://pseudobun.dev',
     tags: ['iOS', 'macOS', 'Native app'],
-  },
-  {
-    id: 'polycat',
-    title: 'Polycat',
-    description:
-      'Polycat is a private monorepo for a Polymarket weather bot and realtime dashboard. It combines Rust strategy runtimes, a peripheral API, and a Next.js interface for monitoring markets, orders, balances, analytics, and weather overlays.',
-    image: polycat,
-    highlight: false,
-    org: 'Personal',
-    orgUrl: 'https://pseudobun.dev',
-    tags: ['Polymarket', 'Rust', 'Next.js', 'Trading bot'],
   },
   {
     id: 'replicant-network',
