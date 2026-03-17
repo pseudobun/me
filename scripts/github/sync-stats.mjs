@@ -46,9 +46,7 @@ async function mapWithConcurrency(items, mapper, concurrency) {
     }
   };
 
-  await Promise.all(
-    Array.from({ length: Math.min(concurrency, items.length) }, () => worker())
-  );
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, () => worker()));
 
   return results;
 }
@@ -257,9 +255,7 @@ async function fetchRepoStats(repoSlug, login) {
 
   return {
     additions: weeks.reduce((sum, week) => sum + Math.max(0, week.a || 0), 0),
-    commits:
-      contributor.total ||
-      weeks.reduce((sum, week) => sum + Math.max(0, week.c || 0), 0),
+    commits: contributor.total || weeks.reduce((sum, week) => sum + Math.max(0, week.c || 0), 0),
     deletions: weeks.reduce((sum, week) => sum + Math.max(0, week.d || 0), 0),
     repos: 1,
   };
@@ -268,6 +264,11 @@ async function fetchRepoStats(repoSlug, login) {
 async function calculateGithubStats() {
   const login = await getGithubLogin();
   const repoSlugs = await fetchRelevantGithubRepoSlugs(login);
+
+  console.log(`Discovered ${repoSlugs.length} repos:`);
+  for (const slug of repoSlugs) {
+    console.log(`  ${slug}`);
+  }
 
   const results = await mapWithConcurrency(
     repoSlugs,
@@ -325,7 +326,9 @@ async function saveGithubStatsSnapshot(stats) {
     .limit(1);
 
   if (existingSnapshotQuery.error) {
-    throw new Error(`Failed to load existing GitHub stats snapshot: ${existingSnapshotQuery.error.message}`);
+    throw new Error(
+      `Failed to load existing GitHub stats snapshot: ${existingSnapshotQuery.error.message}`
+    );
   }
 
   const existingSnapshot = existingSnapshotQuery.data?.[0];
