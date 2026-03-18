@@ -2,7 +2,7 @@ name: Daily GitHub Stats Sync
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 3 * * *'
+    - cron: "17 3 * * *"
 env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }}
   SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
       - name: Install node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           cache: "pnpm"
           node-version-file: ".nvmrc"
