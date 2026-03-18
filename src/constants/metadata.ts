@@ -136,9 +136,8 @@ export function getXDefaultUrl(path: SitePath) {
   return new URL(path, SITE_URL).toString();
 }
 
-function getOgImageUrl(title: string, description: string) {
-  const params = new URLSearchParams({ description, title });
-  return `${SITE_URL}/api/og/?${params.toString()}`;
+function getOgImageUrl() {
+  return `${SITE_URL}/api/og/`;
 }
 
 export function getPageMetadataCopy(locale: Locale, page: MetadataPage) {
@@ -156,7 +155,7 @@ export function createPageMetadata({
 }): Metadata {
   const copy = getPageMetadataCopy(locale, page);
   const localizedUrl = getLocalizedUrl(locale, path);
-  const ogImageUrl = getOgImageUrl(copy.title, copy.description);
+  const ogImageUrl = getOgImageUrl();
 
   return {
     title: copy.title,
@@ -182,7 +181,7 @@ export function createPageMetadata({
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: `${copy.title} - ${SITE_NAME}`,
+          alt: `pseudobun's portfolio - ${SITE_NAME}`,
         },
       ],
     },
