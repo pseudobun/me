@@ -34,7 +34,7 @@ export default function Navigation({ lang, menus, openMenuLabel }: NavigationPro
       aria-label="Primary navigation"
       className={cn(
         'fixed top-4 z-50 transition-all duration-300 ease-in-out',
-        'backdrop-blur-xl bg-background/30 border border-border/40 rounded-2xl shadow-lg',
+        'backdrop-blur-xl bg-gradient-to-br from-background/30 to-primary/[0.04] border border-border/40 rounded-2xl shadow-lg',
         menuOpen ? 'shadow-xl overflow-hidden' : '',
         'w-[calc(100%-3rem)] max-w-7xl left-1/2 -translate-x-1/2'
       )}
