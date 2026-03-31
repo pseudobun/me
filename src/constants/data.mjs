@@ -1,3 +1,4 @@
+import chilitrack from '@/project-screenshots/chilitrack.png';
 import coworkmaribor from '@/project-screenshots/cwmb-booking.png';
 import eductxv1 from '@/project-screenshots/eductxv1.png';
 import eductxv2 from '@/project-screenshots/eductxv2.png';
@@ -109,6 +110,17 @@ export const PROJECTS = [
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
     tags: ['Internal tooling', 'Operations', 'Productivity'],
+  },
+  {
+    id: 'chilitrack',
+    title: 'ChiliTrack',
+    description:
+      "A chili plant growth monitoring app that captures images on a schedule, analyzes them with AI, and presents a timeline view of the plant's development. Features live streaming, daily AI-generated growth commentary, and weekly comparative analysis.",
+    image: chilitrack,
+    highlight: false,
+    org: 'Personal',
+    orgUrl: 'https://pseudobun.dev',
+    tags: ['AI', 'IoT', 'Next.js', 'Python'],
   },
   {
     id: 'cowork-maribor',
