@@ -54,8 +54,8 @@
     "showLess": "Show less",
     "tagsLabel": "Technologies and domains",
     "items": {
-      "polyarb": {
-        "description": "Polyarb is a private monorepo for a Polymarket weather bot and realtime dashboard. It combines Rust strategy runtimes, a peripheral API, and a Next.js interface for monitoring markets, orders, balances, analytics, and weather overlays."
+      "polycat": {
+        "description": "A private trading bot monorepo. Started as Polyarb — a Polymarket weather bot with a realtime dashboard for markets, orders, balances, and weather overlays — then pivoted into polycat: a cross-platform Kalshi ↔ Polymarket arbitrage bot targeting 15-minute BTC/ETH crypto markets, with a Rust arb runtime, Next.js dashboard, and TUI for positions, orders, and live activity."
       },
       "lutra-id": {
         "description": "LutraID is a compliant platform for issuing and verifying digital documents. It brings together issuer and verifier workflows, wallet-facing credential issuance, and standards-based verification flows for modern digital identity systems."

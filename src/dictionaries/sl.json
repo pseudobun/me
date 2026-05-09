@@ -54,8 +54,8 @@
     "showLess": "Pokaži manj",
     "tagsLabel": "Tehnologije in področja",
     "items": {
-      "polyarb": {
-        "description": "Polyarb je zaseben monorepo za vremenskega bota za Polymarket in nadzorno ploščo v realnem času. Združuje pogone strategij v Rustu, periferni API ter Next.js vmesnik za spremljanje trgov, naročil, stanj, analitike in vremenskih napovedi."
+      "polycat": {
+        "description": "Zaseben monorepo za trgovalnega bota. Začel se je kot Polyarb — vremenski bot za Polymarket z nadzorno ploščo v realnem času za trge, naročila, stanja in vremenske napovedi — nato pa se preoblikoval v polycat: med-platformnega arbitražnega bota za Kalshi ↔ Polymarket, ki cilja na 15-minutne BTC/ETH kripto trge, s pogonom v Rustu, Next.js nadzorno ploščo in TUI za pozicije, naročila in aktivnost v živo."
       },
       "lutra-id": {
         "description": "LutraID je skladna platforma za izdajanje in preverjanje digitalnih dokumentov. Združuje poteke dela za izdajatelje in verifierje, izdajo poverilnic za denarnice ter standardizirane verifikacijske tokove za sodobne sisteme digitalne identitete."

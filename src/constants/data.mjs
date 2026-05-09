@@ -35,16 +35,15 @@ export const PERSONAL = {
 
 export const PROJECTS = [
   {
-    id: 'polyarb',
-    title: 'Polyarb',
+    id: 'polycat',
+    title: 'polycat',
     description:
-      'Polyarb is a private monorepo for a Polymarket weather bot and realtime dashboard. It combines Rust strategy runtimes, a peripheral API, and a Next.js interface for monitoring markets, orders, balances, analytics, and weather overlays.',
-    githubRepo: 'pseudobun/polycat',
+      'A private trading bot monorepo. Started as Polyarb — a Polymarket weather bot with a realtime dashboard for markets, orders, balances, and weather overlays — then pivoted into polycat: a cross-platform Kalshi ↔ Polymarket arbitrage bot targeting 15-minute BTC/ETH crypto markets, with a Rust arb runtime, Next.js dashboard, and TUI for positions, orders, and live activity.',
     image: polycat,
     highlight: false,
     org: 'Personal',
     orgUrl: 'https://pseudobun.dev',
-    tags: ['Polymarket', 'Rust', 'Next.js', 'Trading bot'],
+    tags: ['Kalshi', 'Polymarket', 'Rust', 'Arbitrage', 'Next.js', 'Trading bot'],
   },
   {
     id: 'lutra-id',
