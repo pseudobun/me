@@ -7,6 +7,7 @@ import lutraId from '@/project-screenshots/lutra-id.png';
 import lutradashboard from '@/project-screenshots/lutradashboard.png';
 import masca from '@/project-screenshots/masca.png';
 import moodleEductx from '@/project-screenshots/moodle-eductx.png';
+import pikvmarr from '@/project-screenshots/pikvmarr.png';
 import polycat from '@/project-screenshots/polycat.png';
 import repnet from '@/project-screenshots/repnet.png';
 import solo from '@/project-screenshots/solo.png';
@@ -35,17 +36,6 @@ export const PERSONAL = {
 
 export const PROJECTS = [
   {
-    id: 'polycat',
-    title: 'polycat',
-    description:
-      'A private trading bot monorepo. Started as Polyarb — a Polymarket weather bot with a realtime dashboard for markets, orders, balances, and weather overlays — then pivoted into polycat: a cross-platform Kalshi ↔ Polymarket arbitrage bot targeting 15-minute BTC/ETH crypto markets, with a Rust arb runtime, Next.js dashboard, and TUI for positions, orders, and live activity.',
-    image: polycat,
-    highlight: false,
-    org: 'Personal',
-    orgUrl: 'https://pseudobun.dev',
-    tags: ['Kalshi', 'Polymarket', 'Rust', 'Arbitrage', 'Next.js', 'Trading bot'],
-  },
-  {
     id: 'lutra-id',
     title: 'LutraID',
     description:
@@ -57,6 +47,28 @@ export const PROJECTS = [
     org: 'Lutra Labs',
     orgUrl: 'https://lutralabs.io',
     tags: ['Digital identity', 'OID4VCI', 'Verification', 'mDoc'],
+  },
+  {
+    id: 'polycat',
+    title: 'polycat',
+    description:
+      'A private trading bot monorepo. Started as Polyarb — a Polymarket weather bot with a realtime dashboard for markets, orders, balances, and weather overlays — then pivoted into polycat: a cross-platform Kalshi ↔ Polymarket arbitrage bot targeting 15-minute BTC/ETH crypto markets, with a Rust arb runtime, Next.js dashboard, and TUI for positions, orders, and live activity.',
+    image: polycat,
+    highlight: false,
+    org: 'Personal',
+    orgUrl: 'https://pseudobun.dev',
+    tags: ['Kalshi', 'Polymarket', 'Rust', 'Arbitrage', 'Next.js', 'Trading bot'],
+  },
+  {
+    id: 'pikvmarr',
+    title: 'pikvmarr',
+    description:
+      'A native iOS app for controlling PiKVM devices over the local network. It stores server configs, trusts self-signed certificates on first use (TOFU), and exposes ATX power control — power on, force off, hard reset — with live power-state polling and session-cookie auth, including 2FA.',
+    image: pikvmarr,
+    highlight: false,
+    org: 'Personal',
+    orgUrl: 'https://pseudobun.dev',
+    tags: ['iOS', 'Native app', 'PiKVM', 'Swift'],
   },
   {
     id: 'tossinger',
