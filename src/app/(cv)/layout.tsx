@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { monoFont } from '@/fonts';
 
 export const metadata: Metadata = {
-  title: 'Urban Vidovič — CV',
+  title: 'Urban Vidovič | CV',
   description:
     'Curriculum vitae of Urban Vidovič — Research & Development Engineer focused on decentralized identity, verifiable credentials, and Web3 product engineering.',
   robots: { index: true, follow: true },

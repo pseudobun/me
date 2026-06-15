@@ -81,7 +81,7 @@ export async function GET() {
   const photo = readFileSync(path.join(PUBLIC, 'urban-vidovic.jpg'));
 
   const doc = (
-    <Document title="Urban Vidovič — CV" author={PERSONAL.fullName} subject={CV_TITLE}>
+    <Document title="Urban Vidovič | CV" author={PERSONAL.fullName} subject={CV_TITLE}>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <View style={styles.headerText}>

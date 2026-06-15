@@ -28,7 +28,7 @@ const pageMetadata: Record<
 > = {
   en: {
     home: {
-      title: 'Urban Vidovič - Decentralized Identity and Web3 Engineer',
+      title: 'Urban Vidovič | Decentralized Identity and Web3 Engineer',
       description:
         'Urban Vidovič is a software engineer from Slovenia focused on decentralized identity, verifiable credentials, Web3 product engineering, and security-minded research.',
       keywords: [
@@ -42,7 +42,7 @@ const pageMetadata: Record<
       ],
     },
     projects: {
-      title: 'Urban Vidovič - Projects Across Identity, Web3, and Applied R&D',
+      title: 'Urban Vidovič | Projects Across Identity, Web3, and Applied R&D',
       description:
         'Selected projects by Urban Vidovič across decentralized identity, verifiable credentials, DeFi, AI tooling, and Web3 product research and development.',
       keywords: [
@@ -56,7 +56,7 @@ const pageMetadata: Record<
   },
   sl: {
     home: {
-      title: 'Urban Vidovič - Software Engineer za decentralizirano identiteto in Web3',
+      title: 'Urban Vidovič | Software Engineer za decentralizirano identiteto in Web3',
       description:
         'Urban Vidovič je software engineer iz Slovenije, osredotočen na decentralizirano identiteto, preverljive poverilnice, Web3 produkte in varnostno usmerjene raziskave.',
       keywords: [
@@ -70,7 +70,7 @@ const pageMetadata: Record<
       ],
     },
     projects: {
-      title: 'Urban Vidovič - Projekti s področja identitete, Web3 in uporabnega R&R',
+      title: 'Urban Vidovič | Projekti s področja identitete, Web3 in uporabnega R&R',
       description:
         'Izbrani projekti Urbana Vidoviča s področja decentralizirane identitete, preverljivih poverilnic, DeFi-ja, AI orodij in Web3 raziskav ter razvoja.',
       keywords: [
