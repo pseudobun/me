@@ -36,7 +36,7 @@ export default async function CvPage() {
           <h1 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
             {PERSONAL.fullName}
           </h1>
-          <p className="mt-2">
+          <p className="mt-2 font-bold">
             {CV_TITLE} · {CV_LOCATION}
           </p>
           <p className="mt-3 text-sm">
@@ -60,7 +60,7 @@ export default async function CvPage() {
           alt={PERSONAL.fullName}
           width={112}
           height={112}
-          className="h-28 w-28 shrink-0 object-cover"
+          className="h-28 w-28 shrink-0 rounded-full object-cover"
           priority
         />
       </header>
@@ -102,7 +102,7 @@ export default async function CvPage() {
             <div key={`${exp.role}-${exp.org}`}>
               <div className="flex flex-col justify-between sm:flex-row sm:items-baseline sm:gap-4">
                 <p>
-                  <span className="font-semibold">{exp.role}</span>
+                  <span className="font-bold">{exp.role}</span>
                   <span className="text-neutral-600">
                     {' · '}
                     {exp.orgUrl ? (
@@ -131,11 +131,11 @@ export default async function CvPage() {
           {CV_PROJECTS.map((p) => (
             <li key={p.id}>
               {p.url ? (
-                <a href={p.url} target="_blank" rel="noopener noreferrer" className="font-semibold">
+                <a href={p.url} target="_blank" rel="noopener noreferrer" className="font-bold">
                   {p.title}
                 </a>
               ) : (
-                <span className="font-semibold">{p.title}</span>
+                <span className="font-bold">{p.title}</span>
               )}
               <span className="text-neutral-600"> — {p.org}.</span>{' '}
               <span className="text-neutral-700">{p.description}</span>
@@ -152,7 +152,7 @@ export default async function CvPage() {
               className="flex flex-col justify-between sm:flex-row sm:items-baseline sm:gap-4"
             >
               <p>
-                <span className="font-semibold">{ed.degree}</span>
+                <span className="font-bold">{ed.degree}</span>
                 <span className="text-neutral-600">
                   {' · '}
                   {ed.schoolUrl ? (
@@ -174,7 +174,7 @@ export default async function CvPage() {
         <div className="space-y-1">
           {CV_SKILLS.map((group) => (
             <p key={group.label}>
-              <span className="font-semibold">{group.label}: </span>
+              <span className="font-bold">{group.label}: </span>
               <span className="text-neutral-800">{group.items.join(', ')}</span>
             </p>
           ))}
