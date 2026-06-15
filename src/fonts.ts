@@ -10,5 +10,10 @@ export const monoFont = localFont({
       style: 'normal',
       weight: '400',
     },
+    {
+      path: '../public/fonts/IBMPlexMono-Bold.ttf',
+      style: 'normal',
+      weight: '700',
+    },
   ],
 });
