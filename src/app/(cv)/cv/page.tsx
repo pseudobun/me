@@ -14,6 +14,8 @@ import {
 import { PERSONAL } from '@/constants/data.mjs';
 import { getProjectGithubStats } from '@/lib/github-project-stats';
 
+// Must be a static literal (Next segment config); keep in sync with
+// GITHUB_STATS_REVALIDATE_SECONDS in @/lib/github-project-stats.
 export const revalidate = 86400;
 
 function Sep() {
@@ -47,15 +49,30 @@ export default async function CvPage() {
           <p className="mt-3 text-sm">
             <a href={`mailto:${PERSONAL.email}`}>{PERSONAL.email}</a>
             <Sep />
-            <a href={CV_PGP_URL} target="_blank" rel="noopener noreferrer">
+            <a
+              href={CV_PGP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="PGP public key (opens in a new tab)"
+            >
               PGP key
             </a>
             <Sep />
-            <a href={PERSONAL.github} target="_blank" rel="noopener noreferrer">
+            <a
+              href={PERSONAL.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile (opens in a new tab)"
+            >
               github.com/pseudobun
             </a>
             <Sep />
-            <a href={PERSONAL.linkedin} target="_blank" rel="noopener noreferrer">
+            <a
+              href={PERSONAL.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile (opens in a new tab)"
+            >
               linkedin.com/in/urbanvidovic
             </a>
           </p>
@@ -72,29 +89,20 @@ export default async function CvPage() {
 
       {stats ? (
         <p className="mt-6 text-sm text-neutral-600">
-          <strong className="font-semibold text-black">
-            {nf.format(Math.max(0, stats.commits))}
-          </strong>{' '}
-          commits with{' '}
-          <strong className="font-semibold text-emerald-700">
-            +{nf.format(Math.max(0, stats.additions))}
-          </strong>{' '}
+          <strong className="font-semibold text-black">{nf.format(stats.commits)}</strong> commits
+          with{' '}
+          <strong className="font-semibold text-emerald-700">+{nf.format(stats.additions)}</strong>{' '}
           lines added and{' '}
-          <strong className="font-semibold text-rose-700">
-            -{nf.format(Math.max(0, stats.deletions))}
-          </strong>{' '}
+          <strong className="font-semibold text-rose-700">-{nf.format(stats.deletions)}</strong>{' '}
           lines removed across{' '}
-          <strong className="font-semibold text-black">
-            {nf.format(Math.max(0, stats.repos))}
-          </strong>{' '}
-          repos.
+          <strong className="font-semibold text-black">{nf.format(stats.repos)}</strong> repos.
         </p>
       ) : null}
 
       <a
         href="/api/cv/"
         download="urban-vidovic-cv.pdf"
-        className="mt-6 inline-block border border-black px-4 py-2 text-sm font-bold uppercase !text-black !no-underline transition-colors hover:!bg-black hover:!text-white"
+        className="mt-6 inline-block border border-black px-4 py-2 text-sm font-bold uppercase !text-black !no-underline transition-colors hover:!bg-black hover:!text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
       >
         Download PDF
       </a>

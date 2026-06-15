@@ -58,10 +58,10 @@ export default function GithubStatsStatement({
     setIsReady(true);
 
     const targetStats: AnimatedStats = {
-      additions: Math.max(0, stats.additions),
-      commits: Math.max(0, stats.commits),
-      removals: Math.max(0, stats.deletions),
-      repos: Math.max(0, stats.repos),
+      additions: stats.additions,
+      commits: stats.commits,
+      removals: stats.deletions,
+      repos: stats.repos,
     };
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

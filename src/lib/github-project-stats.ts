@@ -42,11 +42,11 @@ async function fetchLatestGithubStats() {
   }
 
   return {
-    additions: data.additions,
-    commits: data.commits,
-    deletions: data.deletions,
+    additions: Math.max(0, data.additions),
+    commits: Math.max(0, data.commits),
+    deletions: Math.max(0, data.deletions),
     measuredAt: data.measured_at,
-    repos: data.repos,
+    repos: Math.max(0, data.repos),
   } satisfies GithubProjectStats;
 }
 

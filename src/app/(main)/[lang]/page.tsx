@@ -10,7 +10,7 @@ import {
   personSameAs,
   SITE_NAME,
 } from '@/constants/metadata';
-import { defaultLocale, type Locale, locales } from '@/i18n/config';
+import { defaultLocale, isLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
 export async function generateMetadata({
@@ -19,7 +19,7 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const locale = locales.includes(lang as Locale) ? (lang as Locale) : defaultLocale;
+  const locale = isLocale(lang) ? lang : defaultLocale;
 
   return createPageMetadata({
     locale,
@@ -30,7 +30,7 @@ export async function generateMetadata({
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const locale = locales.includes(lang as Locale) ? (lang as Locale) : defaultLocale;
+  const locale = isLocale(lang) ? lang : defaultLocale;
   const dict = await getDictionary(locale);
   const metadata = getPageMetadataCopy(locale, 'home');
   const d = dict.home;

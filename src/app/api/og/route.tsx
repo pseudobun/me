@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
-import { getProjectGithubStats } from '@/lib/github-project-stats';
+import { GITHUB_STATS_REVALIDATE_SECONDS, getProjectGithubStats } from '@/lib/github-project-stats';
 
 const monoFontDataPromise = readFile(
   path.join(process.cwd(), 'public/fonts/IBMPlexMono-Regular.ttf')
@@ -25,18 +25,17 @@ const METRIC_COLORS = {
 } as const;
 
 function formatMetricValue(value: number, options?: { prefix?: '+' | '-' }) {
-  const safeValue = Math.max(0, value);
   const prefix = options?.prefix ?? '';
 
-  if (safeValue >= 1_000_000) {
-    return `${prefix}${decimalFormatter.format(safeValue / 1_000_000)}M`;
+  if (value >= 1_000_000) {
+    return `${prefix}${decimalFormatter.format(value / 1_000_000)}M`;
   }
 
-  if (safeValue >= 1_000) {
-    return `${prefix}${decimalFormatter.format(safeValue / 1_000)}k`;
+  if (value >= 1_000) {
+    return `${prefix}${decimalFormatter.format(value / 1_000)}k`;
   }
 
-  return `${prefix}${numberFormatter.format(safeValue)}`;
+  return `${prefix}${numberFormatter.format(value)}`;
 }
 
 export async function GET() {
@@ -169,7 +168,7 @@ export async function GET() {
                 width: '100%',
               }}
             >
-              {stats ? (
+              {metrics.length > 0 ? (
                 <div
                   style={{
                     display: 'flex',
@@ -255,6 +254,9 @@ export async function GET() {
             weight: 400,
           },
         ],
+        headers: {
+          'Cache-Control': `public, max-age=${GITHUB_STATS_REVALIDATE_SECONDS}, s-maxage=${GITHUB_STATS_REVALIDATE_SECONDS}, stale-while-revalidate=${GITHUB_STATS_REVALIDATE_SECONDS}`,
+        },
       }
     );
   } catch {

@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { defaultLocale, type Locale, locales } from '@/i18n/config';
+import { defaultLocale, isLocale, type Locale, locales } from '@/i18n/config';
 
 function getLocale(request: NextRequest): Locale {
   const acceptLanguage = request.headers.get('accept-language');
@@ -9,17 +9,18 @@ function getLocale(request: NextRequest): Locale {
       .split(',')
       .map((entry) => {
         const [code, q] = entry.trim().split(';q=');
+        const parsed = q ? Number.parseFloat(q) : 1;
 
         return {
           code: code.trim().split('-')[0].toLowerCase(),
-          q: q ? Number.parseFloat(q) : 1,
+          q: Number.isFinite(parsed) ? Math.min(1, Math.max(0, parsed)) : 1,
         };
       })
       .sort((a, b) => b.q - a.q);
 
     for (const { code } of preferred) {
-      if (locales.includes(code as Locale)) {
-        return code as Locale;
+      if (isLocale(code)) {
+        return code;
       }
     }
   }
@@ -31,7 +32,7 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Non-localized standalone routes (own root layout) — never prefix with a locale.
-  if (pathname === '/cv' || pathname === '/cv/' || pathname.startsWith('/cv/')) {
+  if (pathname === '/cv' || pathname.startsWith('/cv/')) {
     return NextResponse.next();
   }
 

@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 interface ExoticLinkProps {
   ariaLabel?: string;
@@ -26,7 +26,7 @@ export default function ExoticLink({
       href={href}
       target={blank && isExternal ? '_blank' : undefined}
       rel={blank && isExternal ? (rel ?? 'noopener noreferrer') : rel}
-      className={clsx(className, 'text-cappuccino hover:text-wave')}
+      className={cn(className, 'text-cappuccino hover:text-wave')}
     >
       {children}
     </a>

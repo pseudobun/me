@@ -33,6 +33,7 @@ export default function Link({ children, className, href, isExternal = false, ..
       prefetch={isExternal ? false : props.prefetch}
       className={cn(
         'hover:text-primary text-foreground text-left flex items-center gap-2',
+        'rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         isActive ? 'underline text-primary' : '',
         className
       )}

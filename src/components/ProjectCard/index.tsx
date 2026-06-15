@@ -3,7 +3,7 @@
 import { Expand, Globe, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import Image, { type StaticImageData } from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { siAppstore, siGithub } from 'simple-icons';
 import ExoticLink from '@/components/ExoticLink';
@@ -68,6 +68,8 @@ export default function ProjectCard({
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const hasExpandableDescription = description.length > 160;
   const hasActions = Boolean(website || github || appStore);
   const previewImage = image ?? null;
@@ -79,19 +81,28 @@ export default function ProjectCard({
       return;
     }
 
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
     const previousOverflow = document.body.style.overflow;
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsPreviewOpen(false);
+        return;
+      }
+      // Close button is the only focusable control: trap focus on it.
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        closeButtonRef.current?.focus();
       }
     };
 
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
+    closeButtonRef.current?.focus();
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+      previouslyFocusedRef.current?.focus();
     };
   }, [isPreviewOpen]);
 
@@ -116,6 +127,9 @@ export default function ProjectCard({
                 />
 
                 <motion.div
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={`${title} screenshot preview`}
                   initial={{ opacity: 0, scale: 0.94, y: 24 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.97, y: 16 }}
@@ -129,6 +143,7 @@ export default function ProjectCard({
                     onClick={(event) => event.stopPropagation()}
                   >
                     <button
+                      ref={closeButtonRef}
                       type="button"
                       onClick={() => setIsPreviewOpen(false)}
                       className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-black/45 text-white/80 backdrop-blur-md transition-colors hover:bg-black/65 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

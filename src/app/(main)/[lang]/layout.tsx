@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation';
 import Telemetry from '@/components/Telemetry';
 import { SHARED_METADATA } from '@/constants/metadata';
 import { monoFont } from '@/fonts';
-import { defaultLocale, type Locale, locales } from '@/i18n/config';
+import { defaultLocale, isLocale, locales } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 
 export const metadata = SHARED_METADATA;
@@ -21,7 +21,7 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const locale = locales.includes(lang as Locale) ? (lang as Locale) : defaultLocale;
+  const locale = isLocale(lang) ? lang : defaultLocale;
   const dict = await getDictionary(locale);
 
   const menus = [
@@ -36,7 +36,12 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${monoFont.className} dark`} style={{ colorScheme: 'dark' }}>
       <body className="flex min-h-[100dvh] flex-col bg-background text-foreground">
-        <Navigation lang={locale} menus={menus} openMenuLabel={dict.nav.openMenu} />
+        <Navigation
+          lang={locale}
+          menus={menus}
+          openMenuLabel={dict.nav.openMenu}
+          externalHint={dict.nav.opensInNewTab}
+        />
         <main className="grow flex flex-col no-scrollbar md:pt-32 md:pb-12 pt-28 pb-12 px-8 items-center justify-start max-w-7xl mx-auto w-full">
           {children}
         </main>

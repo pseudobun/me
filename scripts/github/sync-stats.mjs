@@ -15,7 +15,9 @@ function getRequiredEnv(name, fallbackNames = []) {
   const value = process.env[name] ?? fallbackNames.map((key) => process.env[key]).find(Boolean);
 
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
+    throw new Error(
+      `Missing required environment variable: ${[name, ...fallbackNames].join(' or ')}`
+    );
   }
 
   return value;

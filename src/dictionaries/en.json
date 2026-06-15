@@ -5,7 +5,8 @@
     "projects": "Projects",
     "lutraBlog": "Lutra Blog",
     "cv": "CV",
-    "langSwitch": "Switch language"
+    "langSwitch": "Switch language",
+    "opensInNewTab": "opens in a new tab"
   },
   "home": {
     "greeting": "gm 🌱",

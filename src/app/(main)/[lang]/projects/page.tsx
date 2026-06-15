@@ -4,10 +4,12 @@ import JsonLd from '@/components/JsonLd';
 import ProjectCard from '@/components/ProjectCard';
 import { PERSONAL, PROJECTS } from '@/constants/data.mjs';
 import { createPageMetadata, getLocalizedUrl, getPageMetadataCopy } from '@/constants/metadata';
-import { defaultLocale, type Locale, locales } from '@/i18n/config';
+import { defaultLocale, isLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 import { getProjectGithubStats } from '@/lib/github-project-stats';
 
+// Must be a static literal (Next segment config); keep in sync with
+// GITHUB_STATS_REVALIDATE_SECONDS in @/lib/github-project-stats.
 export const revalidate = 86400;
 
 export async function generateMetadata({
@@ -16,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
-  const locale = locales.includes(lang as Locale) ? (lang as Locale) : defaultLocale;
+  const locale = isLocale(lang) ? lang : defaultLocale;
 
   return createPageMetadata({
     locale,
@@ -27,7 +29,7 @@ export async function generateMetadata({
 
 export default async function Projects({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
-  const locale = locales.includes(lang as Locale) ? (lang as Locale) : defaultLocale;
+  const locale = isLocale(lang) ? lang : defaultLocale;
   const [dict, projectGithubStats] = await Promise.all([
     getDictionary(locale),
     getProjectGithubStats(),
