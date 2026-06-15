@@ -1,4 +1,4 @@
-import '../globals.css';
+import '../../globals.css';
 import Footer from '@/components/Footer';
 import Navigation from '@/components/Navigation';
 import Telemetry from '@/components/Telemetry';
@@ -28,6 +28,7 @@ export default async function RootLayout({
     { label: dict.nav.home, href: `/${locale}/` },
     { label: dict.nav.projects, href: `/${locale}/projects/` },
     { label: dict.nav.lutraBlog, href: 'https://lutralabs.io/blog', external: true },
+    { label: dict.nav.cv, href: '/cv/', external: true },
   ];
 
   const copyright = dict.footer.copyright.replace('{year}', String(new Date().getFullYear()));

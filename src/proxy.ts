@@ -29,6 +29,12 @@ function getLocale(request: NextRequest): Locale {
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Non-localized standalone routes (own root layout) — never prefix with a locale.
+  if (pathname === '/cv' || pathname === '/cv/' || pathname.startsWith('/cv/')) {
+    return NextResponse.next();
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) =>
       pathname === `/${locale}` || pathname === `/${locale}/` || pathname.startsWith(`/${locale}/`)
