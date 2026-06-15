@@ -21,9 +21,9 @@ import {
   CV_SKILLS,
   CV_SUMMARY,
   CV_TITLE,
+  periodDuration,
 } from '@/constants/cv';
 import { PERSONAL } from '@/constants/data.mjs';
-import { getProjectGithubStats } from '@/lib/github-project-stats';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   contact: { fontSize: 8.5, marginTop: 6 },
   link: { color: BLUE, textDecoration: 'underline' },
   photo: { width: 70, height: 70, objectFit: 'cover' },
-  stats: { fontSize: 9, marginTop: 10 },
   summary: { marginTop: 12, fontSize: 9 },
   section: { marginTop: 16, borderTop: `1pt solid ${BLACK}`, paddingTop: 6 },
   sectionTitle: { fontSize: 10, fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 },
@@ -78,13 +77,7 @@ const styles = StyleSheet.create({
   inline: { marginTop: 3 },
 });
 
-function Stat({ value }: { value: string }) {
-  return <Text style={styles.bold}>{value}</Text>;
-}
-
 export async function GET() {
-  const stats = await getProjectGithubStats();
-  const nf = new Intl.NumberFormat('en-US');
   const photo = readFileSync(path.join(PUBLIC, 'urban-vidovic.jpg'));
 
   const doc = (
@@ -106,47 +99,41 @@ export async function GET() {
               </Link>
               {'   ·   '}
               <Link style={styles.link} src={PERSONAL.github}>
-                github.com/pseudobun
+                GitHub
               </Link>
               {'   ·   '}
               <Link style={styles.link} src={PERSONAL.linkedin}>
-                linkedin.com/in/urbanvidovic
+                LinkedIn
               </Link>
             </Text>
           </View>
           <Image style={styles.photo} src={photo} />
         </View>
 
-        {stats ? (
-          <Text style={styles.stats}>
-            <Stat value={nf.format(Math.max(0, stats.commits))} /> commits with{' '}
-            <Stat value={`+${nf.format(Math.max(0, stats.additions))}`} /> lines added and{' '}
-            <Stat value={`-${nf.format(Math.max(0, stats.deletions))}`} /> lines removed across{' '}
-            <Stat value={nf.format(Math.max(0, stats.repos))} /> repos.
-          </Text>
-        ) : null}
-
         <Text style={styles.summary}>{CV_SUMMARY}</Text>
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Experience</Text>
-          {CV_EXPERIENCE.map((exp) => (
-            <View key={`${exp.role}-${exp.org}`} style={styles.item} wrap={false}>
-              <View style={styles.itemHeader}>
-                <Text>
-                  <Text style={styles.bold}>{exp.role}</Text>
-                  <Text> · {exp.org}</Text>
-                </Text>
-                <Text>{exp.period}</Text>
-              </View>
-              {exp.points.map((p) => (
-                <View key={p} style={styles.bullet}>
-                  <Text style={styles.bulletDot}>•</Text>
-                  <Text style={styles.bulletText}>{p}</Text>
+          {CV_EXPERIENCE.map((exp) => {
+            const dur = periodDuration(exp.period);
+            return (
+              <View key={`${exp.role}-${exp.org}`} style={styles.item} wrap={false}>
+                <View style={styles.itemHeader}>
+                  <Text>
+                    <Text style={styles.bold}>{exp.role}</Text>
+                    <Text> · {exp.org}</Text>
+                  </Text>
+                  <Text>{dur ? `${exp.period} · ${dur}` : exp.period}</Text>
                 </View>
-              ))}
-            </View>
-          ))}
+                {exp.points.map((p) => (
+                  <View key={p} style={styles.bullet}>
+                    <Text style={styles.bulletDot}>•</Text>
+                    <Text style={styles.bulletText}>{p}</Text>
+                  </View>
+                ))}
+              </View>
+            );
+          })}
         </View>
 
         <View style={styles.section}>

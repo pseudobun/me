@@ -118,8 +118,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       </section>
 
       <section className="mx-auto w-full max-w-2xl space-y-3">
-        <h2 className="text-2xl font-semibold tracking-tight">{d.projects.title}</h2>
-        <p className="text-lg text-muted-foreground">{d.projects.description}</p>
+        <h2 className="text-2xl font-bold tracking-tight">{d.projects.title}</h2>
+        <p className="text-lg font-bold text-muted-foreground">{d.projects.description}</p>
         <Link
           aria-label={d.ariaLabels.projects}
           href={`/${locale}/projects/`}

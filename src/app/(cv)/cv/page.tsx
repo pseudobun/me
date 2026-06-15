@@ -9,11 +9,16 @@ import {
   CV_SKILLS,
   CV_SUMMARY,
   CV_TITLE,
+  periodDuration,
 } from '@/constants/cv';
 import { PERSONAL } from '@/constants/data.mjs';
 import { getProjectGithubStats } from '@/lib/github-project-stats';
 
 export const revalidate = 86400;
+
+function Sep() {
+  return <span className="font-bold"> · </span>;
+}
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -41,15 +46,15 @@ export default async function CvPage() {
           </p>
           <p className="mt-3 text-sm">
             <a href={`mailto:${PERSONAL.email}`}>{PERSONAL.email}</a>
-            {' · '}
+            <Sep />
             <a href={CV_PGP_URL} target="_blank" rel="noopener noreferrer">
               PGP key
             </a>
-            {' · '}
+            <Sep />
             <a href={PERSONAL.github} target="_blank" rel="noopener noreferrer">
               github.com/pseudobun
             </a>
-            {' · '}
+            <Sep />
             <a href={PERSONAL.linkedin} target="_blank" rel="noopener noreferrer">
               linkedin.com/in/urbanvidovic
             </a>
@@ -98,31 +103,37 @@ export default async function CvPage() {
 
       <Section title="Experience">
         <div className="space-y-5">
-          {CV_EXPERIENCE.map((exp) => (
-            <div key={`${exp.role}-${exp.org}`}>
-              <div className="flex flex-col justify-between sm:flex-row sm:items-baseline sm:gap-4">
-                <p>
-                  <span className="font-bold">{exp.role}</span>
-                  <span className="text-neutral-600">
-                    {' · '}
-                    {exp.orgUrl ? (
-                      <a href={exp.orgUrl} target="_blank" rel="noopener noreferrer">
-                        {exp.org}
-                      </a>
-                    ) : (
-                      exp.org
-                    )}
-                  </span>
-                </p>
-                <p className="shrink-0 text-sm text-neutral-500">{exp.period}</p>
+          {CV_EXPERIENCE.map((exp) => {
+            const dur = periodDuration(exp.period);
+            return (
+              <div key={`${exp.role}-${exp.org}`}>
+                <div className="flex flex-col justify-between sm:flex-row sm:items-baseline sm:gap-4">
+                  <p>
+                    <span className="font-bold">{exp.role}</span>
+                    <span className="text-neutral-600">
+                      <Sep />
+                      {exp.orgUrl ? (
+                        <a href={exp.orgUrl} target="_blank" rel="noopener noreferrer">
+                          {exp.org}
+                        </a>
+                      ) : (
+                        exp.org
+                      )}
+                    </span>
+                  </p>
+                  <p className="shrink-0 text-sm text-neutral-500">
+                    {exp.period}
+                    {dur ? ` · ${dur}` : ''}
+                  </p>
+                </div>
+                <ul className="mt-1 list-disc space-y-1 pl-5 text-neutral-800 marker:text-neutral-400">
+                  {exp.points.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
               </div>
-              <ul className="mt-1 list-disc space-y-1 pl-5 text-neutral-800 marker:text-neutral-400">
-                {exp.points.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Section>
 
@@ -154,7 +165,7 @@ export default async function CvPage() {
               <p>
                 <span className="font-bold">{ed.degree}</span>
                 <span className="text-neutral-600">
-                  {' · '}
+                  <Sep />
                   {ed.schoolUrl ? (
                     <a href={ed.schoolUrl} target="_blank" rel="noopener noreferrer">
                       {ed.school}
@@ -183,7 +194,12 @@ export default async function CvPage() {
 
       <Section title="Languages">
         <p className="text-neutral-800">
-          {CV_LANGUAGES.map((l) => `${l.name} (${l.level})`).join(' · ')}
+          {CV_LANGUAGES.map((l, i) => (
+            <span key={l.name}>
+              {i > 0 ? <Sep /> : null}
+              {l.name} ({l.level})
+            </span>
+          ))}
         </p>
       </Section>
     </main>

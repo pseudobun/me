@@ -89,8 +89,8 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
       <JsonLd data={[breadcrumbSchema, collectionSchema]} />
 
       <section className="max-w-4xl space-y-2">
-        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight">{d.title}</h1>
-        <p className="text-xl text-muted-foreground">{d.subtitle}</p>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{d.title}</h1>
+        <p className="text-xl font-bold text-muted-foreground">{d.subtitle}</p>
       </section>
 
       <section className="max-w-5xl" aria-label={d.githubStats.ariaLabel}>

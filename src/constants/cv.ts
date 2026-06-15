@@ -4,6 +4,52 @@
 export const CV_TITLE = 'Research & Development Engineer';
 export const CV_LOCATION = 'Maribor, Slovenia';
 
+const MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+function parsePoint(raw: string, now: Date): { y: number; m: number } | null {
+  const s = raw.trim();
+  if (/present/i.test(s)) {
+    return { y: now.getFullYear(), m: now.getMonth() };
+  }
+  const withMonth = s.match(/^([A-Za-z]{3})[a-z]*\s+(\d{4})$/);
+  if (withMonth) {
+    const mi = MONTHS.indexOf(withMonth[1].toLowerCase());
+    if (mi >= 0) {
+      return { y: Number(withMonth[2]), m: mi };
+    }
+  }
+  const yearOnly = s.match(/^(\d{4})$/);
+  if (yearOnly) {
+    return { y: Number(yearOnly[1]), m: 0 };
+  }
+  return null;
+}
+
+// "Oct 2024 – Present" -> "1 yr 9 mos" (inclusive, LinkedIn-style). Returns
+// null when the period can't be parsed.
+export function periodDuration(period: string, now: Date = new Date()): string | null {
+  const [a, b] = period.split(/[–-]/).map((part) => part.trim());
+  const start = parsePoint(a ?? '', now);
+  const end = parsePoint(b ?? '', now);
+  if (!start || !end) {
+    return null;
+  }
+  const months = (end.y - start.y) * 12 + (end.m - start.m) + 1;
+  if (months <= 0) {
+    return null;
+  }
+  const years = Math.floor(months / 12);
+  const rem = months % 12;
+  const parts: string[] = [];
+  if (years > 0) {
+    parts.push(`${years} yr${years > 1 ? 's' : ''}`);
+  }
+  if (rem > 0) {
+    parts.push(`${rem} mo${rem > 1 ? 's' : ''}`);
+  }
+  return parts.join(' ') || '1 mo';
+}
+
 export const CV_PGP_URL =
   'https://raw.githubusercontent.com/pseudobun/dotfiles/main/bunnys-cloud-pgp-key.asc';
 

@@ -243,8 +243,8 @@ export default function ProjectCard({
           <div className="relative z-10 flex grow flex-col">
             <CardHeader className="text-xl">
               <div>
-                <CardTitle className="text-foreground">{title}</CardTitle>
-                <CardDescription>
+                <CardTitle className="font-bold text-foreground">{title}</CardTitle>
+                <CardDescription className="font-bold">
                   {developedAt}{' '}
                   <ExoticLink href={orgUrl} ariaLabel={`Open ${org}`}>
                     {org}
