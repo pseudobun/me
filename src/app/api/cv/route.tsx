@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   link: { color: BLUE, textDecoration: 'underline' },
   photo: { width: 70, height: 70, objectFit: 'cover' },
   summary: { marginTop: 12, fontSize: 9 },
-  section: { marginTop: 16, borderTop: `1pt solid ${BLACK}`, paddingTop: 6 },
+  section: { marginTop: 16, borderTop: `2pt solid ${BLACK}`, paddingTop: 6 },
   sectionTitle: { fontSize: 10, fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 },
   item: { marginTop: 8 },
   itemHeader: { flexDirection: 'row', justifyContent: 'space-between' },

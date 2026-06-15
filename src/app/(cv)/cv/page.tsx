@@ -22,7 +22,7 @@ function Sep() {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-8 border-t border-black pt-2">
+    <section className="mt-8 border-t-2 border-black pt-2">
       <h2 className="mb-3 text-base font-bold uppercase">{title}</h2>
       {children}
     </section>
