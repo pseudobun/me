@@ -1,4 +1,16 @@
-import { Document, Link, Page, renderToBuffer, StyleSheet, Text, View } from '@react-pdf/renderer';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import {
+  Document,
+  Font,
+  Image,
+  Link,
+  Page,
+  renderToBuffer,
+  StyleSheet,
+  Text,
+  View,
+} from '@react-pdf/renderer';
 import {
   CV_EDUCATION,
   CV_EXPERIENCE,
@@ -16,89 +28,94 @@ import { getProjectGithubStats } from '@/lib/github-project-stats';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
+const PUBLIC = path.join(process.cwd(), 'public');
+
+Font.register({
+  family: 'IBM Plex Mono',
+  fonts: [
+    { src: path.join(PUBLIC, 'fonts/IBMPlexMono-PDF-Regular.ttf'), fontWeight: 400 },
+    { src: path.join(PUBLIC, 'fonts/IBMPlexMono-PDF-Bold.ttf'), fontWeight: 700 },
+  ],
+});
+Font.registerHyphenationCallback((word) => [word]);
+
 const BLUE = '#1a3acc';
-const MUTED = '#555555';
+const BLACK = '#000000';
 
 const styles = StyleSheet.create({
   page: {
     paddingVertical: 40,
-    paddingHorizontal: 48,
-    fontSize: 9.5,
-    color: '#111111',
-    lineHeight: 1.45,
+    paddingHorizontal: 44,
+    fontFamily: 'IBM Plex Mono',
+    fontSize: 9,
+    color: BLACK,
+    lineHeight: 1.4,
   },
-  name: { fontSize: 20, fontFamily: 'Helvetica-Bold' },
-  title: { fontSize: 11, color: MUTED, marginTop: 2 },
-  contact: { fontSize: 8.5, color: MUTED, marginTop: 6 },
-  link: { color: BLUE, textDecoration: 'none' },
-  stats: { fontSize: 9, color: MUTED, marginTop: 8 },
-  section: { marginTop: 16 },
-  sectionTitle: {
-    fontSize: 10,
-    fontFamily: 'Helvetica-Bold',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    borderBottom: '0.5pt solid #cccccc',
-    paddingBottom: 3,
-    marginBottom: 6,
-  },
-  summary: { marginTop: 10, fontSize: 9.5 },
-  itemHeader: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 },
-  role: { fontFamily: 'Helvetica-Bold' },
-  org: { color: MUTED },
-  period: { color: MUTED, fontSize: 8.5 },
+  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
+  headerText: { flex: 1, paddingRight: 16 },
+  name: { fontSize: 22, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1 },
+  title: { fontSize: 10, marginTop: 6 },
+  contact: { fontSize: 8.5, marginTop: 6 },
+  link: { color: BLUE, textDecoration: 'underline' },
+  photo: { width: 70, height: 70, objectFit: 'cover' },
+  stats: { fontSize: 9, marginTop: 10 },
+  summary: { marginTop: 12, fontSize: 9 },
+  section: { marginTop: 16, borderTop: `1pt solid ${BLACK}`, paddingTop: 6 },
+  sectionTitle: { fontSize: 10, fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 },
+  item: { marginTop: 8 },
+  itemHeader: { flexDirection: 'row', justifyContent: 'space-between' },
+  bold: { fontWeight: 700 },
   bullet: { flexDirection: 'row', marginTop: 2 },
   bulletDot: { width: 10 },
   bulletText: { flex: 1 },
   inline: { marginTop: 3 },
 });
 
-function Stat({ value, color }: { value: string; color?: string }) {
-  return (
-    <Text
-      style={color ? { color, fontFamily: 'Helvetica-Bold' } : { fontFamily: 'Helvetica-Bold' }}
-    >
-      {value}
-    </Text>
-  );
+function Stat({ value }: { value: string }) {
+  return <Text style={styles.bold}>{value}</Text>;
 }
 
 export async function GET() {
   const stats = await getProjectGithubStats();
   const nf = new Intl.NumberFormat('en-US');
-  const projects = CV_PROJECTS;
+  const photo = readFileSync(path.join(PUBLIC, 'urban-vidovic.jpg'));
 
   const doc = (
     <Document title="Urban Vidovič — CV" author={PERSONAL.fullName} subject={CV_TITLE}>
       <Page size="A4" style={styles.page}>
-        <Text style={styles.name}>{PERSONAL.fullName}</Text>
-        <Text style={styles.title}>
-          {CV_TITLE} · {CV_LOCATION}
-        </Text>
-        <Text style={styles.contact}>
-          <Link style={styles.link} src={`mailto:${PERSONAL.email}`}>
-            {PERSONAL.email}
-          </Link>
-          {'   ·   '}
-          <Link style={styles.link} src={CV_PGP_URL}>
-            PGP key
-          </Link>
-          {'   ·   '}
-          <Link style={styles.link} src={PERSONAL.github}>
-            github.com/pseudobun
-          </Link>
-          {'   ·   '}
-          <Link style={styles.link} src={PERSONAL.linkedin}>
-            linkedin.com/in/urbanvidovic
-          </Link>
-        </Text>
+        <View style={styles.header}>
+          <View style={styles.headerText}>
+            <Text style={styles.name}>{PERSONAL.fullName}</Text>
+            <Text style={styles.title}>
+              {CV_TITLE} · {CV_LOCATION}
+            </Text>
+            <Text style={styles.contact}>
+              <Link style={styles.link} src={`mailto:${PERSONAL.email}`}>
+                {PERSONAL.email}
+              </Link>
+              {'   ·   '}
+              <Link style={styles.link} src={CV_PGP_URL}>
+                PGP key
+              </Link>
+              {'   ·   '}
+              <Link style={styles.link} src={PERSONAL.github}>
+                github.com/pseudobun
+              </Link>
+              {'   ·   '}
+              <Link style={styles.link} src={PERSONAL.linkedin}>
+                linkedin.com/in/urbanvidovic
+              </Link>
+            </Text>
+          </View>
+          <Image style={styles.photo} src={photo} />
+        </View>
 
         {stats ? (
           <Text style={styles.stats}>
             <Stat value={nf.format(Math.max(0, stats.commits))} /> commits with{' '}
-            <Stat value={`+${nf.format(Math.max(0, stats.additions))}`} color="#0a7d3c" /> lines
-            added and <Stat value={`-${nf.format(Math.max(0, stats.deletions))}`} color="#c0392b" />{' '}
-            lines removed across <Stat value={nf.format(Math.max(0, stats.repos))} /> repos.
+            <Stat value={`+${nf.format(Math.max(0, stats.additions))}`} /> lines added and{' '}
+            <Stat value={`-${nf.format(Math.max(0, stats.deletions))}`} /> lines removed across{' '}
+            <Stat value={nf.format(Math.max(0, stats.repos))} /> repos.
           </Text>
         ) : null}
 
@@ -107,13 +124,13 @@ export async function GET() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Experience</Text>
           {CV_EXPERIENCE.map((exp) => (
-            <View key={`${exp.role}-${exp.org}`} wrap={false}>
+            <View key={`${exp.role}-${exp.org}`} style={styles.item} wrap={false}>
               <View style={styles.itemHeader}>
                 <Text>
-                  <Text style={styles.role}>{exp.role}</Text>
-                  <Text style={styles.org}> · {exp.org}</Text>
+                  <Text style={styles.bold}>{exp.role}</Text>
+                  <Text> · {exp.org}</Text>
                 </Text>
-                <Text style={styles.period}>{exp.period}</Text>
+                <Text>{exp.period}</Text>
               </View>
               {exp.points.map((p) => (
                 <View key={p} style={styles.bullet}>
@@ -127,19 +144,19 @@ export async function GET() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Selected projects</Text>
-          {projects.map((p) => (
+          {CV_PROJECTS.map((p) => (
             <View key={p.id} style={styles.inline}>
               <Text>
                 {p.url ? (
-                  <Link style={[styles.role, styles.link]} src={p.url}>
+                  <Link style={[styles.bold, styles.link]} src={p.url}>
                     {p.title}
                   </Link>
                 ) : (
-                  <Text style={styles.role}>{p.title}</Text>
+                  <Text style={styles.bold}>{p.title}</Text>
                 )}
-                <Text style={styles.org}> — {p.org}</Text>
+                <Text> — {p.org}. </Text>
+                <Text>{p.description}</Text>
               </Text>
-              <Text style={{ color: MUTED }}>{p.description}</Text>
             </View>
           ))}
         </View>
@@ -147,12 +164,12 @@ export async function GET() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Education</Text>
           {CV_EDUCATION.map((ed) => (
-            <View key={ed.degree} style={styles.itemHeader}>
+            <View key={ed.degree} style={styles.itemHeader} wrap={false}>
               <Text style={{ flex: 1, paddingRight: 8 }}>
-                <Text style={styles.role}>{ed.degree}</Text>
-                <Text style={styles.org}> · {ed.school}</Text>
+                <Text style={styles.bold}>{ed.degree}</Text>
+                <Text> · {ed.school}</Text>
               </Text>
-              <Text style={styles.period}>{ed.period}</Text>
+              <Text>{ed.period}</Text>
             </View>
           ))}
         </View>
@@ -161,7 +178,7 @@ export async function GET() {
           <Text style={styles.sectionTitle}>Skills</Text>
           {CV_SKILLS.map((group) => (
             <Text key={group.label} style={styles.inline}>
-              <Text style={styles.role}>{group.label}: </Text>
+              <Text style={styles.bold}>{group.label}: </Text>
               <Text>{group.items.join(', ')}</Text>
             </Text>
           ))}

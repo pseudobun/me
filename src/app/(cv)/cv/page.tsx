@@ -17,10 +17,8 @@ export const revalidate = 86400;
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mt-10">
-      <h2 className="text-xs font-bold uppercase tracking-widest text-neutral-500 border-b border-neutral-300 pb-1 mb-3">
-        {title}
-      </h2>
+    <section className="mt-8 border-t border-black pt-2">
+      <h2 className="mb-3 text-base font-bold uppercase">{title}</h2>
       {children}
     </section>
   );
@@ -31,15 +29,17 @@ export default async function CvPage() {
   const nf = new Intl.NumberFormat('en-US');
 
   return (
-    <main className="max-w-3xl p-6 md:p-12 text-left text-[16px] leading-7 [&_a]:text-[#1a3acc] [&_a]:underline [&_a:hover]:text-[#0b2099]">
+    <main className="max-w-3xl p-6 md:p-12 text-left text-[16px] leading-snug [&_a]:text-[#1a3acc] [&_a]:underline [&_a:hover]:text-[#0b2099]">
       {/* Header */}
       <header className="flex flex-col-reverse gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">{PERSONAL.fullName}</h1>
-          <p className="mt-1 text-neutral-600">
+          <h1 className="text-3xl font-bold uppercase tracking-tight md:text-4xl">
+            {PERSONAL.fullName}
+          </h1>
+          <p className="mt-2">
             {CV_TITLE} · {CV_LOCATION}
           </p>
-          <p className="mt-3 text-sm text-neutral-600">
+          <p className="mt-3 text-sm">
             <a href={`mailto:${PERSONAL.email}`}>{PERSONAL.email}</a>
             {' · '}
             <a href={CV_PGP_URL} target="_blank" rel="noopener noreferrer">
@@ -60,7 +60,7 @@ export default async function CvPage() {
           alt={PERSONAL.fullName}
           width={112}
           height={112}
-          className="h-28 w-28 shrink-0 rounded-md object-cover"
+          className="h-28 w-28 shrink-0 object-cover"
           priority
         />
       </header>
@@ -89,7 +89,7 @@ export default async function CvPage() {
       <a
         href="/api/cv/"
         download="urban-vidovic-cv.pdf"
-        className="mt-6 inline-block rounded-md border border-neutral-400 px-4 py-2 text-sm font-medium !text-black !no-underline transition-colors hover:!bg-black hover:!text-white"
+        className="mt-6 inline-block border border-black px-4 py-2 text-sm font-bold uppercase !text-black !no-underline transition-colors hover:!bg-black hover:!text-white"
       >
         Download PDF
       </a>
