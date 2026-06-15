@@ -1,15 +1,37 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
+import { PERSONAL } from '@/constants/data';
 import { GITHUB_STATS_REVALIDATE_SECONDS, getProjectGithubStats } from '@/lib/github-project-stats';
 
-const monoFontDataPromise = readFile(
-  path.join(process.cwd(), 'public/fonts/IBMPlexMono-Regular.ttf')
-);
-const darkLogoDataUriPromise = readFile(
-  path.join(process.cwd(), 'public/dark-logo.svg'),
-  'utf8'
-).then((svg) => `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`);
+interface OgAssets {
+  monoFontData: Buffer;
+  darkLogoDataUri: string;
+}
+
+// Lazily load + memoize the font and logo. On failure the cached promise is
+// cleared so the next request retries (a one-time read error must not be cached
+// for the whole process lifetime).
+let assetsPromise: Promise<OgAssets> | null = null;
+
+function loadAssets(): Promise<OgAssets> {
+  if (!assetsPromise) {
+    assetsPromise = Promise.all([
+      readFile(path.join(process.cwd(), 'public/fonts/IBMPlexMono-Regular.ttf')),
+      readFile(path.join(process.cwd(), 'public/dark-logo.svg'), 'utf8'),
+    ])
+      .then(([monoFontData, svg]) => ({
+        monoFontData,
+        darkLogoDataUri: `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`,
+      }))
+      .catch((error) => {
+        assetsPromise = null;
+        throw error;
+      });
+  }
+
+  return assetsPromise;
+}
 
 const numberFormatter = new Intl.NumberFormat('en-US');
 const decimalFormatter = new Intl.NumberFormat('en-US', {
@@ -40,9 +62,8 @@ function formatMetricValue(value: number, options?: { prefix?: '+' | '-' }) {
 
 export async function GET() {
   try {
-    const [monoFontData, darkLogoDataUri, stats] = await Promise.all([
-      monoFontDataPromise,
-      darkLogoDataUriPromise,
+    const [{ monoFontData, darkLogoDataUri }, stats] = await Promise.all([
+      loadAssets(),
       getProjectGithubStats(),
     ]);
 
@@ -149,7 +170,7 @@ export async function GET() {
                   maxWidth: 640,
                 }}
               >
-                pseudobun&apos;s portfolio
+                {PERSONAL.fullName}
               </p>
               <div
                 style={{

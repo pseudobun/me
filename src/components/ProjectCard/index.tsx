@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'motion/react';
 import Image, { type StaticImageData } from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { siAppstore, siGithub } from 'simple-icons';
 import ExoticLink from '@/components/ExoticLink';
 import {
   Card,
@@ -16,9 +15,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-
-const githubIcon = siGithub.svg.replace(/<title>.*?<\/title>/, '');
-const appStoreIcon = siAppstore.svg.replace(/<title>.*?<\/title>/, '');
 
 function getProjectMonogram(title: string) {
   return title
@@ -32,10 +28,12 @@ function getProjectMonogram(title: string) {
 
 interface ProjectCardProps {
   appStore?: string;
+  appStoreIconSvg: string;
   delay: number;
   description: string;
   developedAt: string;
   github?: string;
+  githubIconSvg: string;
   highlight?: boolean;
   image?: StaticImageData;
   org: string;
@@ -50,10 +48,12 @@ interface ProjectCardProps {
 
 export default function ProjectCard({
   appStore,
+  appStoreIconSvg,
   delay,
   description,
   developedAt,
   github,
+  githubIconSvg,
   highlight,
   image,
   org,
@@ -323,7 +323,7 @@ export default function ProjectCard({
                     <ExoticLink href={github} ariaLabel={`Open ${title} source code`}>
                       <span
                         className="block h-5 w-5 fill-muted-foreground transition-colors hover:fill-foreground"
-                        dangerouslySetInnerHTML={{ __html: githubIcon }}
+                        dangerouslySetInnerHTML={{ __html: githubIconSvg }}
                       />
                     </ExoticLink>
                   </motion.div>
@@ -333,7 +333,7 @@ export default function ProjectCard({
                     <ExoticLink href={appStore} ariaLabel={`Open ${title} on the App Store`}>
                       <span
                         className="block h-5 w-5 fill-muted-foreground transition-colors hover:fill-foreground"
-                        dangerouslySetInnerHTML={{ __html: appStoreIcon }}
+                        dangerouslySetInnerHTML={{ __html: appStoreIconSvg }}
                       />
                     </ExoticLink>
                   </motion.div>

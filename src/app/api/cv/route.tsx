@@ -23,7 +23,7 @@ import {
   CV_TITLE,
   periodDuration,
 } from '@/constants/cv';
-import { PERSONAL } from '@/constants/data.mjs';
+import { PERSONAL } from '@/constants/data';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';

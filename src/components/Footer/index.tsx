@@ -1,6 +1,6 @@
 import { Mail } from 'lucide-react';
-import { siGithub, siKeybase, siX } from 'simple-icons';
-import { PERSONAL } from '@/constants/data.mjs';
+import { PERSONAL } from '@/constants/data';
+import { githubIconSvg, keybaseIconSvg, xIconSvg } from '@/constants/icons';
 import { cn } from '@/lib/utils';
 import ExoticLink from '../ExoticLink';
 
@@ -9,13 +9,9 @@ interface FooterProps {
 }
 
 const socialLinks = [
-  { href: PERSONAL.github, icon: siGithub.svg.replace(/<title>.*?<\/title>/, ''), label: 'GitHub' },
-  {
-    href: PERSONAL.keybase,
-    icon: siKeybase.svg.replace(/<title>.*?<\/title>/, ''),
-    label: 'Keybase',
-  },
-  { href: PERSONAL.twitter, icon: siX.svg.replace(/<title>.*?<\/title>/, ''), label: 'X' },
+  { href: PERSONAL.github, icon: githubIconSvg, label: 'GitHub' },
+  { href: PERSONAL.keybase, icon: keybaseIconSvg, label: 'Keybase' },
+  { href: PERSONAL.twitter, icon: xIconSvg, label: 'X' },
 ];
 
 export default function Footer({ copyright }: FooterProps) {

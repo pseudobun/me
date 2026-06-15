@@ -11,7 +11,7 @@ import {
   CV_TITLE,
   periodDuration,
 } from '@/constants/cv';
-import { PERSONAL } from '@/constants/data.mjs';
+import { PERSONAL } from '@/constants/data';
 import { getProjectGithubStats } from '@/lib/github-project-stats';
 
 // Must be a static literal (Next segment config); keep in sync with

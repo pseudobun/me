@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import type { Locale } from '@/i18n/config';
-import { PERSONAL } from './data.mjs';
+import { PERSONAL } from './data';
 
 export const SITE_URL = 'https://pseudobun.dev';
 export const SITE_NAME = "Bunny's Den";
@@ -181,7 +181,7 @@ export function createPageMetadata({
           url: ogImageUrl,
           width: 1200,
           height: 630,
-          alt: `pseudobun's portfolio - ${SITE_NAME}`,
+          alt: `${SITE_TITLE} — ${SITE_NAME}`,
         },
       ],
     },

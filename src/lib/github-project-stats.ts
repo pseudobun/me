@@ -11,15 +11,7 @@ export interface GithubProjectStats {
   repos: number;
 }
 
-interface GithubStatsRow {
-  additions: number;
-  commits: number;
-  deletions: number;
-  measured_at: string;
-  repos: number;
-}
-
-async function fetchLatestGithubStats() {
+async function fetchLatestGithubStats(): Promise<GithubProjectStats | null> {
   const supabase = createSupabaseServerClient();
 
   if (!supabase) {
@@ -31,7 +23,7 @@ async function fetchLatestGithubStats() {
     .select('commits, additions, deletions, repos, measured_at')
     .order('measured_at', { ascending: false })
     .limit(1)
-    .maybeSingle<GithubStatsRow>();
+    .maybeSingle();
 
   if (error) {
     throw new Error(`Failed to load GitHub stats snapshot: ${error.message}`);
@@ -41,12 +33,27 @@ async function fetchLatestGithubStats() {
     return null;
   }
 
+  // The query result is untyped; validate the shape at runtime instead of
+  // asserting it, so a malformed/empty snapshot degrades to "unavailable".
+  const commits = Number(data.commits);
+  const additions = Number(data.additions);
+  const deletions = Number(data.deletions);
+  const repos = Number(data.repos);
+  const measuredAt = data.measured_at;
+
+  if (
+    ![commits, additions, deletions, repos].every(Number.isFinite) ||
+    typeof measuredAt !== 'string'
+  ) {
+    return null;
+  }
+
   return {
-    additions: Math.max(0, data.additions),
-    commits: Math.max(0, data.commits),
-    deletions: Math.max(0, data.deletions),
-    measuredAt: data.measured_at,
-    repos: Math.max(0, data.repos),
+    additions: Math.max(0, additions),
+    commits: Math.max(0, commits),
+    deletions: Math.max(0, deletions),
+    measuredAt,
+    repos: Math.max(0, repos),
   } satisfies GithubProjectStats;
 }
 

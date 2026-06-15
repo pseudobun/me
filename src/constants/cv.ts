@@ -188,7 +188,7 @@ export interface CvProject {
 }
 
 // Projects featured on the CV (short blurbs), in display order. Decoupled from
-// data.mjs so the CV stays concise; full project copy lives on /projects.
+// data.ts so the CV stays concise; full project copy lives on /projects.
 export const CV_PROJECTS: CvProject[] = [
   {
     id: 'lutra-id',

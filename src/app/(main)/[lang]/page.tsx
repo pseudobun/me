@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import ExoticLink from '@/components/ExoticLink';
 import JsonLd from '@/components/JsonLd';
-import { PERSONAL } from '@/constants/data.mjs';
+import Link from '@/components/Link';
+import { PERSONAL } from '@/constants/data';
 import {
   createPageMetadata,
   getLocalizedUrl,

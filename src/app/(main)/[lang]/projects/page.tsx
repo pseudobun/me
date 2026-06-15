@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import GithubStatsStatement from '@/components/GithubStatsStatement';
 import JsonLd from '@/components/JsonLd';
 import ProjectCard from '@/components/ProjectCard';
-import { PERSONAL, PROJECTS } from '@/constants/data.mjs';
+import { PERSONAL, PROJECTS } from '@/constants/data';
+import { appStoreIconSvg, githubIconSvg } from '@/constants/icons';
 import { createPageMetadata, getLocalizedUrl, getPageMetadataCopy } from '@/constants/metadata';
 import { defaultLocale, isLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 import { getProjectGithubStats } from '@/lib/github-project-stats';
+import { lookup } from '@/lib/utils';
 
 // Must be a static literal (Next segment config); keep in sync with
 // GITHUB_STATS_REVALIDATE_SECONDS in @/lib/github-project-stats.
@@ -76,8 +78,7 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
             '@type': 'Person',
             name: PERSONAL.fullName,
           },
-          description:
-            d.items[project.id as keyof typeof d.items]?.description ?? project.description,
+          description: lookup(d.items, project.id)?.description ?? project.description,
           keywords: project.tags.join(', '),
           name: project.title,
           url: project.website ?? project.appStore ?? project.github ?? undefined,
@@ -117,14 +118,14 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
               key={project.title}
               delay={index * 0.08}
               appStore={project.appStore}
+              appStoreIconSvg={appStoreIconSvg}
               github={project.github}
+              githubIconSvg={githubIconSvg}
               org={project.org}
               orgUrl={project.orgUrl}
               highlight={project.highlight}
               title={project.title}
-              description={
-                d.items[project.id as keyof typeof d.items]?.description ?? project.description
-              }
+              description={lookup(d.items, project.id)?.description ?? project.description}
               website={project.website}
               image={project.image}
               developedAt={d.developedAt}

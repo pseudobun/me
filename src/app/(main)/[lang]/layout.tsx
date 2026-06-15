@@ -9,6 +9,10 @@ import { getDictionary } from '@/i18n/getDictionary';
 
 export const metadata = SHARED_METADATA;
 
+// Regenerate daily so the footer copyright year (new Date()) doesn't freeze at
+// build time on this statically-generated layout.
+export const revalidate = 86400;
+
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }

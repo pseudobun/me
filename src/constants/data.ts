@@ -1,3 +1,4 @@
+import type { StaticImageData } from 'next/image';
 import chilitrack from '@/project-screenshots/chilitrack.png';
 import coworkmaribor from '@/project-screenshots/cwmb-booking.png';
 import eductxv1 from '@/project-screenshots/eductxv1.png';
@@ -14,7 +15,42 @@ import solo from '@/project-screenshots/solo.png';
 import swaylend from '@/project-screenshots/swaylend.png';
 import tossinger from '@/project-screenshots/tossinger.png';
 
-export const PERSONAL = {
+export interface Personal {
+  name: string;
+  lastName: string;
+  fullName: string;
+  email: string;
+  linkedin: string;
+  telegram: string;
+  farcaster: string;
+  github: string;
+  twitter: string;
+  company: string;
+  companyUrl: string;
+  company2: string;
+  company2Url: string;
+  keybase: string;
+  hey: string;
+  position: string;
+  universityUrl: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  org: string;
+  orgUrl: string;
+  tags: string[];
+  image?: StaticImageData;
+  highlight?: boolean;
+  website?: string;
+  github?: string;
+  githubRepo?: string;
+  appStore?: string;
+}
+
+export const PERSONAL: Personal = {
   name: 'Urban',
   lastName: 'Vidovič',
   fullName: 'Urban Vidovič',
@@ -34,7 +70,7 @@ export const PERSONAL = {
   universityUrl: 'https://feri.um.si/en/',
 };
 
-export const PROJECTS = [
+export const PROJECTS: Project[] = [
   {
     id: 'lutra-id',
     title: 'LutraID',
