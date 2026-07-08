@@ -55,11 +55,20 @@ function LocaleSwitcher({
 
 export default function Navigation({ lang, menus, openMenuLabel, externalHint }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
+
+  // Flush + chrome-less at the very top; detaches into a floating pill on scroll.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) {
@@ -86,10 +95,11 @@ export default function Navigation({ lang, menus, openMenuLabel, externalHint }:
     <nav
       aria-label="Primary navigation"
       className={cn(
-        'fixed top-4 z-50 transition-all duration-300 ease-in-out',
-        'backdrop-blur-xl bg-gradient-to-br from-background/30 to-primary/[0.04] border border-border/40 rounded-2xl shadow-lg',
-        menuOpen ? 'shadow-xl overflow-hidden' : '',
-        'w-[calc(100%-3rem)] max-w-7xl left-1/2 -translate-x-1/2'
+        'fixed z-50 left-1/2 -translate-x-1/2 transition-all duration-300 ease-in-out',
+        scrolled || menuOpen
+          ? 'top-4 w-[calc(100%-3rem)] max-w-7xl rounded-2xl backdrop-blur-xl bg-gradient-to-br from-background/30 to-primary/[0.04] border border-border/40 shadow-lg'
+          : 'top-0 w-full max-w-none rounded-none border border-transparent bg-transparent shadow-none backdrop-blur-none',
+        menuOpen ? 'shadow-xl overflow-hidden' : ''
       )}
     >
       <div className="px-4 w-full">
