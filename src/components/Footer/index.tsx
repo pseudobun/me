@@ -16,7 +16,11 @@ const socialLinks = [
 
 export default function Footer({ copyright }: FooterProps) {
   return (
-    <footer className="w-full relative mt-auto bg-background border-t border-border/60">
+    <footer className="w-full relative mt-auto bg-background">
+      <div
+        aria-hidden="true"
+        className="mx-auto h-px w-full max-w-7xl bg-gradient-to-r from-transparent via-border/60 to-transparent"
+      />
       <div
         className={cn(
           'flex p-4 px-6 max-md:flex-col gap-x-12 gap-y-4 justify-between items-center',
