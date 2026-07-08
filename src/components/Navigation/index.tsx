@@ -95,7 +95,8 @@ export default function Navigation({ lang, menus, openMenuLabel, externalHint }:
     <nav
       aria-label="Primary navigation"
       className={cn(
-        'fixed z-50 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-7xl transition-all duration-300 ease-in-out',
+        'fixed z-50 inset-x-0 mx-auto w-[calc(100%-3rem)] max-w-7xl transition-all duration-300 ease-in-out',
+        'motion-safe:animate-[nav-enter_0.45s_ease-out_both]',
         scrolled || menuOpen
           ? 'top-4 rounded-2xl backdrop-blur-xl bg-gradient-to-br from-background/30 to-primary/[0.04] border border-border/40 shadow-lg'
           : 'top-0 rounded-none border border-transparent bg-transparent shadow-none backdrop-blur-none',

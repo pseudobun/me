@@ -2,6 +2,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* navbar mount entrance — slide down from the top (matches eudi-hub) */
+@keyframes nav-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @theme {
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
