@@ -1,9 +1,9 @@
 'use client';
 
 import { Link as LinkIcon, Menu, X } from 'lucide-react';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import BunnyHead from '@/components/BunnyHead';
 import Link from '@/components/Link';
 import type { MenuInput } from '@/config/menu';
 import { type Locale, locales } from '@/i18n/config';
@@ -107,8 +107,8 @@ export default function Navigation({ lang, menus, openMenuLabel, externalHint }:
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href={`/${lang}/`} className="flex items-center">
-              <Image src="/dark-logo.svg" width={32} height={42} alt="Bunny's Den logo" priority />
+            <Link href={`/${lang}/`} className="flex items-center" aria-label="Bunny's Den home">
+              <BunnyHead className="w-12" />
             </Link>
             <div className="pl-2 flex flex-col leading-tight font-mono text-muted-foreground">
               <span>Bunny's</span>

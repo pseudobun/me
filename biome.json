@@ -20,7 +20,8 @@
       "!**/dist",
       "!**/build",
       "!**/coverage",
-      "!**/.next"
+      "!**/.next",
+      "!src/components/BunnyHead/geometry.ts"
     ]
   },
   "formatter": {
