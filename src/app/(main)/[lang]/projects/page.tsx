@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import GithubStatsStatement from '@/components/GithubStatsStatement';
 import JsonLd from '@/components/JsonLd';
 import ProjectCard from '@/components/ProjectCard';
+import { Reveal } from '@/components/Reveal';
 import { PERSONAL, PROJECTS } from '@/constants/data';
 import { appStoreIconSvg, githubIconSvg } from '@/constants/icons';
 import { createPageMetadata, getLocalizedUrl, getPageMetadataCopy } from '@/constants/metadata';
@@ -91,12 +92,12 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
     <div className="flex flex-1 flex-col h-full w-full gap-y-8 justify-start mb-12 max-w-full">
       <JsonLd data={[breadcrumbSchema, collectionSchema]} />
 
-      <section className="max-w-4xl space-y-2">
+      <Reveal as="section" className="max-w-4xl space-y-2">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{d.title}</h1>
         <p className="text-xl font-bold text-muted-foreground">{d.subtitle}</p>
-      </section>
+      </Reveal>
 
-      <section className="max-w-5xl" aria-label={d.githubStats.ariaLabel}>
+      <Reveal as="section" delay={100} className="max-w-5xl" aria-label={d.githubStats.ariaLabel}>
         <GithubStatsStatement
           additionsLabel={d.githubStats.added}
           acrossLabel={d.githubStats.across}
@@ -109,7 +110,7 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
           unavailableLabel={d.githubStats.unavailable}
           withLabel={d.githubStats.with}
         />
-      </section>
+      </Reveal>
 
       <section aria-label={d.title}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">

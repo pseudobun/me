@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import ExoticLink from '@/components/ExoticLink';
+import FloatingShapes from '@/components/FloatingShapes';
 import JsonLd from '@/components/JsonLd';
 import Link from '@/components/Link';
+import { Reveal } from '@/components/Reveal';
 import { PERSONAL } from '@/constants/data';
 import {
   createPageMetadata,
@@ -85,8 +87,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <div className="mx-auto flex min-h-full w-full max-w-3xl flex-1 flex-col justify-center space-y-12">
       <JsonLd data={[personSchema, websiteSchema]} />
+      <FloatingShapes />
 
-      <section className="mx-auto w-full max-w-2xl space-y-4">
+      <Reveal as="section" className="mx-auto w-full max-w-2xl space-y-4">
         <h1 className="sr-only">{PERSONAL.fullName}</h1>
         <p className="text-2xl font-bold text-foreground">{d.greeting}</p>
         <p className="text-lg leading-8 text-muted-foreground">
@@ -115,9 +118,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {d.bio.university}
           </ExoticLink>
         </p>
-      </section>
+      </Reveal>
 
-      <section className="mx-auto w-full max-w-2xl space-y-3">
+      <Reveal as="section" delay={120} className="mx-auto w-full max-w-2xl space-y-3">
         <h2 className="text-2xl font-bold tracking-tight">{d.projects.title}</h2>
         <p className="text-lg font-bold text-muted-foreground">{d.projects.description}</p>
         <Link
@@ -127,7 +130,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         >
           {d.projects.link}
         </Link>
-      </section>
+      </Reveal>
     </div>
   );
 }
