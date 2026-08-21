@@ -1,5 +1,3 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { mergeVary, PAGE_VARY } from '@/lib/accept';
 
@@ -25,43 +23,15 @@ describe('mergeVary', () => {
   });
 });
 
-// Prerendered pages are served from cache with their own headers, so the
-// authoritative Vary for production lives in vercel.json. Keep it in lockstep
-// with PAGE_VARY — a silent drift here is invisible until a CDN hands an agent
-// the HTML variant for a Markdown request.
-describe('vercel.json Vary rules', () => {
-  const config = JSON.parse(
-    readFileSync(resolve(import.meta.dirname, '../../vercel.json'), 'utf8')
-  ) as { headers: { source: string; headers: { key: string; value: string }[] }[] };
-
-  it('covers both the localized pages and the CV', () => {
-    expect(config.headers.map((rule) => rule.source)).toEqual([
-      '/(en|sl)(/.*)?',
-      '/cv(/.*)?',
-    ]);
-  });
-
-  it('declares exactly PAGE_VARY for every negotiable route', () => {
-    for (const rule of config.headers) {
-      const vary = rule.headers.find((header) => header.key === 'Vary');
-
-      expect(vary).toBeDefined();
-      expect(vary?.value).toBe(PAGE_VARY);
-    }
-  });
-
-  // Diagnostic marker: proves whether the rule is applied at all in production,
-  // separately from whether Vary specifically survives the framework's own.
-  it('carries the X-Vary-Source marker on every rule', () => {
-    for (const rule of config.headers) {
-      expect(rule.headers.find((header) => header.key === 'X-Vary-Source')?.value).toBe(
-        'vercel-json'
-      );
-    }
-  });
-
+// Next.js replaces Vary on prerendered pages with its own router value, and
+// neither next.config headers() nor vercel.json overrides it. PAGE_VARY is the
+// value the proxy aims for on the responses it does control; keep it honest
+// about what a negotiable page has to advertise.
+describe('PAGE_VARY', () => {
   it('includes Accept and every Next router header', () => {
-    const tokens = PAGE_VARY.toLowerCase().split(',').map((part) => part.trim());
+    const tokens = PAGE_VARY.toLowerCase()
+      .split(',')
+      .map((part) => part.trim());
 
     expect(tokens).toEqual([
       'accept',
@@ -71,5 +41,11 @@ describe('vercel.json Vary rules', () => {
       'next-router-segment-prefetch',
       'accept-encoding',
     ]);
+  });
+
+  it('is what mergeVary produces from the Next router value', () => {
+    const nextValue = 'Accept, RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch';
+
+    expect(mergeVary(nextValue, 'Accept-Encoding')).toBe(PAGE_VARY);
   });
 });

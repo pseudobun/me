@@ -55,10 +55,14 @@ function isRscRequest(request: NextRequest) {
  * Append `Vary: Accept` without dropping the values Next.js sets for its own
  * router headers — the CDN needs the union, not the last writer's value.
  *
- * This only reaches responses the proxy actually generates. Prerendered pages
- * are served straight from the cache with their own headers, so `vercel.json`
- * carries the authoritative rule for those; this stays as the dynamic-path
- * equivalent.
+ * This only reaches responses the proxy actually generates — the Markdown
+ * rewrite and the 406. Next.js overwrites `Vary` on prerendered pages with its
+ * own router value, and neither `next.config.ts` `headers()` nor `vercel.json`
+ * can win that (verified in production: a sibling header from the same
+ * vercel.json rule landed while `Vary` did not). Forcing it would mean making
+ * every page dynamic, which is not worth it: negotiation happens here, ahead
+ * of the CDN lookup, so a Markdown request is rewritten to /md and never
+ * consults the HTML cache entry in the first place.
  */
 function withVaryAccept(response: NextResponse) {
   response.headers.set('vary', mergeVary(response.headers.get('vary'), 'Accept'));
