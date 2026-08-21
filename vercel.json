@@ -7,6 +7,10 @@
         {
           "key": "Vary",
           "value": "Accept, RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch, Accept-Encoding"
+        },
+        {
+          "key": "X-Vary-Source",
+          "value": "vercel-json"
         }
       ]
     },
@@ -16,6 +20,10 @@
         {
           "key": "Vary",
           "value": "Accept, RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch, Accept-Encoding"
+        },
+        {
+          "key": "X-Vary-Source",
+          "value": "vercel-json"
         }
       ]
     }

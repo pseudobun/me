@@ -50,6 +50,16 @@ describe('vercel.json Vary rules', () => {
     }
   });
 
+  // Diagnostic marker: proves whether the rule is applied at all in production,
+  // separately from whether Vary specifically survives the framework's own.
+  it('carries the X-Vary-Source marker on every rule', () => {
+    for (const rule of config.headers) {
+      expect(rule.headers.find((header) => header.key === 'X-Vary-Source')?.value).toBe(
+        'vercel-json'
+      );
+    }
+  });
+
   it('includes Accept and every Next router header', () => {
     const tokens = PAGE_VARY.toLowerCase().split(',').map((part) => part.trim());
 
