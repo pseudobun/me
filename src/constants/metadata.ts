@@ -12,10 +12,11 @@ export const TWITTER_HANDLE = '@pseudourban';
 // same @id so search engines resolve one entity instead of one per URL.
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const ORG_ID = `${PERSONAL.company2Url}/#organization`;
 export const PERSON_IMAGE_URL = `${SITE_URL}/urban-vidovic.jpg`;
 
-type SitePath = '/' | '/projects/';
-type MetadataPage = 'home' | 'projects';
+type SitePath = '/' | '/projects/' | '/about/' | '/contact/' | '/privacy/';
+type MetadataPage = 'home' | 'projects' | 'about' | 'contact' | 'privacy';
 
 const ogLocales: Record<Locale, string> = {
   en: 'en_US',
@@ -60,6 +61,36 @@ const pageMetadata: Record<
         'blockchain portfolio',
       ],
     },
+    about: {
+      title: 'About Urban Vidovič | Decentralized Identity and Web3 Engineer',
+      description:
+        'Background, focus areas, and working principles of Urban Vidovič — R&D engineer at Blockchain Lab:UM and co-founder of Lutra Labs, working on decentralized identity and Web3.',
+      keywords: [
+        'about Urban Vidovič',
+        'Urban Vidovic biography',
+        'decentralized identity engineer',
+        'Lutra Labs co-founder',
+        'Blockchain Lab UM engineer',
+      ],
+    },
+    contact: {
+      title: 'Contact Urban Vidovič | Email, PGP, and Verified Profiles',
+      description:
+        'How to reach Urban Vidovič: email, PGP key, and verified GitHub, LinkedIn, X, Telegram, and Farcaster profiles, plus what to reach out about.',
+      keywords: [
+        'contact Urban Vidovič',
+        'Urban Vidovic email',
+        'pseudobun contact',
+        'PGP key',
+        'security disclosure',
+      ],
+    },
+    privacy: {
+      title: 'Privacy | pseudobun.dev',
+      description:
+        'Privacy policy for pseudobun.dev: no cookies, no accounts, no advertising. Only cookieless, aggregate traffic measurement via Vercel Analytics and Speed Insights.',
+      keywords: ['privacy policy', 'cookieless analytics', 'GDPR', 'pseudobun.dev privacy'],
+    },
   },
   sl: {
     home: {
@@ -86,6 +117,41 @@ const pageMetadata: Record<
         'decentralizirana identiteta',
         'preverljive poverilnice',
         'blockchain portfolio',
+      ],
+    },
+    about: {
+      title: 'O Urbanu Vidoviču | Decentralizirana identiteta in Web3',
+      description:
+        'Ozadje, področja dela in načela Urbana Vidoviča — R&R inženirja v Blockchain Lab:UM in soustanovitelja Lutra Labs, ki dela na decentralizirani identiteti in Web3.',
+      keywords: [
+        'o Urbanu Vidoviču',
+        'Urban Vidovič biografija',
+        'decentralizirana identiteta',
+        'Lutra Labs soustanovitelj',
+        'Blockchain Lab UM',
+      ],
+    },
+    contact: {
+      title: 'Kontakt Urban Vidovič | E-pošta, PGP in preverjeni profili',
+      description:
+        'Kako doseči Urbana Vidoviča: e-pošta, PGP ključ ter preverjeni profili GitHub, LinkedIn, X, Telegram in Farcaster, in o čem mu pisati.',
+      keywords: [
+        'kontakt Urban Vidovič',
+        'Urban Vidovič e-pošta',
+        'pseudobun kontakt',
+        'PGP ključ',
+        'prijava ranljivosti',
+      ],
+    },
+    privacy: {
+      title: 'Zasebnost | pseudobun.dev',
+      description:
+        'Politika zasebnosti za pseudobun.dev: brez piškotkov, brez računov, brez oglasov. Samo agregirane meritve obiska brez piškotkov prek Vercel Analytics in Speed Insights.',
+      keywords: [
+        'politika zasebnosti',
+        'analitika brez piškotkov',
+        'GDPR',
+        'zasebnost pseudobun.dev',
       ],
     },
   },

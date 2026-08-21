@@ -13,6 +13,11 @@ export const metadata = SHARED_METADATA;
 // build time on this statically-generated layout.
 export const revalidate = 86400;
 
+// Only real locales resolve here. Without this, `/[lang]` happily matches any
+// single-segment path (`/llms.txt`, `/anything`) and renders the homepage with
+// a 200, which tells crawlers and agents that every URL on the site exists.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
@@ -35,6 +40,14 @@ export default async function RootLayout({
     { label: dict.nav.cv, href: '/cv/', external: true },
   ];
 
+  // Trust-anchor pages live in the footer rather than the primary nav: they are
+  // the pages agents and readers look up deliberately, not primary navigation.
+  const footerLinks = [
+    { label: dict.nav.about, href: `/${locale}/about/` },
+    { label: dict.nav.contact, href: `/${locale}/contact/` },
+    { label: dict.nav.privacy, href: `/${locale}/privacy/` },
+  ];
+
   const copyright = dict.footer.copyright.replace('{year}', String(new Date().getFullYear()));
 
   return (
@@ -49,7 +62,7 @@ export default async function RootLayout({
         <main className="grow flex flex-col no-scrollbar md:pt-32 md:pb-12 pt-28 pb-12 px-8 items-center justify-start max-w-7xl mx-auto w-full">
           {children}
         </main>
-        <Footer copyright={copyright} />
+        <Footer copyright={copyright} links={footerLinks} />
         <Telemetry />
       </body>
     </html>

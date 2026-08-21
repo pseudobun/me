@@ -50,6 +50,10 @@ export interface Project {
   appStore?: string;
 }
 
+// Projects surfaced on the homepage and in llms.txt. Ordered by how well they
+// represent the work, not chronologically.
+export const FEATURED_PROJECT_IDS = ['lutra-id', 'masca', 'swaylend', 'eductx-v2'] as const;
+
 export const PERSONAL: Personal = {
   name: 'Urban',
   lastName: 'Vidovič',

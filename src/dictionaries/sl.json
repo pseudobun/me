@@ -3,6 +3,9 @@
     "openMenu": "Odpri glavni meni",
     "home": "Domov",
     "projects": "Projekti",
+    "about": "O meni",
+    "contact": "Kontakt",
+    "privacy": "Zasebnost",
     "lutraBlog": "Lutra Blog",
     "cv": "CV",
     "langSwitch": "Zamenjaj jezik",
@@ -18,10 +21,41 @@
       "masterDegree": "Sem magister inženir računalništva in informacijskih tehnologij, študiral pa sem na",
       "university": "Fakulteti za elektrotehniko, računalništvo in informatiko, Univerze v Mariboru."
     },
+    "focus": {
+      "title": "Področja dela",
+      "intro": "Skozi večino tega, kar gradim, tečejo tri niti. Prekrivajo se bolj, kot bi pričakoval.",
+      "areas": [
+        {
+          "title": "Decentralizirana identiteta",
+          "body": "Izdajatelji, denarnice in preveritelji, zgrajeni po družini specifikacij OID4VC ter standardih ISO 18013-5/-7 — torej po standardih za mobilna vozniška dovoljenja in evropske denarnice digitalne identitete. Zanimivo delo redko leži na srečni poti: gre za selektivno razkrivanje, registre zaupanja, preklic poverilnic in trmasto nalogo, da denarnica enega ponudnika sprejme poverilnico drugega, ne da bi katera koli stran zrahljala svoj varnostni model."
+        },
+        {
+          "title": "Protokoli in pametne pogodbe",
+          "body": "Načrtovanje in izvedba protokolov v jezikih Solidity in Sway, vključno s posojilnimi trgi in ugledom na verigi. Najbolj me zanimajo lastnosti, ki jih po zagonu ni več mogoče dodati: poti nadgradnje, invariante, ki držijo tudi ob napadu, in obnašanje ob napaki, ki odpove varno in ne tiho. Revizije najdejo napake; ne popravijo pa arhitekture, ki je predpostavljala, da ne bo šlo nikoli nič narobe."
+        },
+        {
+          "title": "Sistemi in orodja",
+          "body": "Infrastruktura, ki vse zgornje naredi uporabno — zaledni sistemi v Rustu in Node.js, indekserji, nadzorne plošče, CI in interna orodja, ki jih nihče ne razkazuje, a so od njih vsi odvisni. Raje prevzamem funkcionalnost od protokola do vmesnika, kot da jo predam med tremi ekipami in se nato pogajam o stikih."
+        }
+      ]
+    },
+    "currently": {
+      "title": "Trenutno",
+      "body": "V Blockchain Lab:UM delam na evropsko financiranih uporabnih raziskavah, kjer je rezultat delujoča referenčna implementacija in ne poročilo — infrastruktura za identiteto, zgrajena po standardih, ki mora biti interoperabilna z vsemi ostalimi. V Lutra Labs, ki sem jo soustanovil leta 2024, vodim operacije in še vedno pišem kodo: LutraID za izdajo in preverjanje digitalne identitete, Swaylend na Fuelu, Replicant Network in endorse.fun.",
+      "more": "Daljša različica vsega tega je na strani o meni."
+    },
     "projects": {
       "title": "Projekti",
       "description": "Nekaj stvari, ki sem jih zgradil na področju identitete, Web3 in produktnega razvoja.",
       "link": "Poglej projekte"
+    },
+    "elsewhere": {
+      "title": "Drugje",
+      "body": "Izvorna koda večine tega dela je na GitHubu. Poklicna zgodovina je na LinkedInu, celoten življenjepis je na voljo kot stran in kot PDF, vsi preverjeni načini za stik z mano pa so na strani s kontaktom.",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "cv": "Življenjepis",
+      "contact": "Kontakt"
     },
     "structuredData": {
       "knowsAbout": [
@@ -108,7 +142,12 @@
     "copyright": "© {year} Urban Vidovič. Vse pravice pridržane."
   },
   "notFound": {
-    "message": "404: Tu ne boš nič našel"
+    "message": "404: Tu ne boš nič našel",
+    "title": "404 — Strani ni mogoče najti",
+    "lead": "Ta URL ne obstaja. Nič ni bilo premaknjeno; ta pot ni bila nikoli veljavna.",
+    "where": "Kam naprej",
+    "agents": "Za agente",
+    "agentsBody": "Vsaka stran je na voljo tudi v obliki Markdown — pošljite glavo Accept: text/markdown. Strojno berljivi kazalniki:"
   },
   "theme": {
     "toggle": "Preklopi temo",

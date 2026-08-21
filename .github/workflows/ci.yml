@@ -39,3 +39,6 @@ jobs:
         run: pnpm typecheck
       - name: Build
         run: pnpm build
+      - name: Test
+        # Runs after build: the HTTP suite boots `next start` against .next.
+        run: pnpm test

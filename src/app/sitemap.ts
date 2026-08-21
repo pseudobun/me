@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { getLocalizedUrl, getXDefaultUrl, SITE_URL } from '@/constants/metadata';
 import { locales } from '@/i18n/config';
 
-const publicPaths = ['/', '/projects/'] as const;
+const publicPaths = ['/', '/projects/', '/about/', '/contact/', '/privacy/'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const localized = publicPaths.flatMap((path) =>
@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: getLocalizedUrl(locale, path),
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
-      priority: path === '/' ? 1 : 0.8,
+      priority: path === '/' ? 1 : path === '/projects/' ? 0.8 : 0.6,
       alternates: {
         languages: {
           en: getLocalizedUrl('en', path),
