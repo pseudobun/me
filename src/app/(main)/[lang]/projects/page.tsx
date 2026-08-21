@@ -5,7 +5,13 @@ import ProjectCard from '@/components/ProjectCard';
 import { Reveal } from '@/components/Reveal';
 import { PERSONAL, PROJECTS } from '@/constants/data';
 import { appStoreIconSvg, githubIconSvg } from '@/constants/icons';
-import { createPageMetadata, getLocalizedUrl, getPageMetadataCopy } from '@/constants/metadata';
+import {
+  createPageMetadata,
+  getLocalizedUrl,
+  getPageMetadataCopy,
+  PERSON_ID,
+  WEBSITE_ID,
+} from '@/constants/metadata';
 import { defaultLocale, isLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
 import { getProjectGithubStats } from '@/lib/github-project-stats';
@@ -41,9 +47,12 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
   const d = dict.projects;
   const statsLocale = locale === 'sl' ? 'sl-SI' : 'en-US';
 
+  const pageUrl = getLocalizedUrl(locale, '/projects/');
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
+    '@id': `${pageUrl}#breadcrumb`,
     itemListElement: [
       {
         '@type': 'ListItem',
@@ -63,18 +72,25 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
   const collectionSchema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
+    '@id': `${pageUrl}#collectionpage`,
     name: d.title,
     description: metadata.description,
-    url: getLocalizedUrl(locale, '/projects/'),
+    url: pageUrl,
     inLanguage: locale,
+    isPartOf: { '@id': WEBSITE_ID },
+    breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+    author: { '@id': PERSON_ID },
     about: PROJECTS.flatMap((project) => project.tags).slice(0, 20),
     mainEntity: {
       '@type': 'ItemList',
+      numberOfItems: PROJECTS.length,
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
       itemListElement: PROJECTS.map((project, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         item: {
           '@type': 'CreativeWork',
+          author: { '@id': PERSON_ID },
           creator: {
             '@type': 'Person',
             name: PERSONAL.fullName,

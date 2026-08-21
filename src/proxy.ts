@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { defaultLocale, isLocale, type Locale, locales } from '@/i18n/config';
+import { fallbackLocale, isLocale, type Locale, locales } from '@/i18n/config';
 
 function getLocale(request: NextRequest): Locale {
   const acceptLanguage = request.headers.get('accept-language');
@@ -25,7 +25,7 @@ function getLocale(request: NextRequest): Locale {
     }
   }
 
-  return defaultLocale;
+  return fallbackLocale;
 }
 
 export function proxy(request: NextRequest) {

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import JsonLd from '@/components/JsonLd';
 import {
   CV_EDUCATION,
   CV_EXPERIENCE,
@@ -12,6 +13,13 @@ import {
   periodDuration,
 } from '@/constants/cv';
 import { PERSONAL } from '@/constants/data';
+import {
+  PERSON_ID,
+  PERSON_IMAGE_URL,
+  personSameAs,
+  SITE_URL,
+  WEBSITE_ID,
+} from '@/constants/metadata';
 import { getProjectGithubStats } from '@/lib/github-project-stats';
 
 // Must be a static literal (Next segment config); keep in sync with
@@ -31,12 +39,77 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+const CV_URL = new URL('/cv/', SITE_URL).toString();
+
+// Same @id as the localized home page so the CV enriches one Person entity
+// instead of registering a second, competing one.
+const cvPersonSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': PERSON_ID,
+  name: PERSONAL.fullName,
+  givenName: PERSONAL.name,
+  familyName: PERSONAL.lastName,
+  alternateName: ['Urban Vidovic', 'pseudobun'],
+  url: `${SITE_URL}/`,
+  image: PERSON_IMAGE_URL,
+  email: `mailto:${PERSONAL.email}`,
+  jobTitle: CV_TITLE,
+  description: CV_SUMMARY,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Maribor',
+    addressCountry: 'SI',
+  },
+  knowsLanguage: CV_LANGUAGES.map((language) => ({
+    '@type': 'Language',
+    name: language.name,
+  })),
+  knowsAbout: CV_SKILLS.flatMap((group) => group.items),
+  hasOccupation: CV_EXPERIENCE.map((role) => ({
+    '@type': 'Occupation',
+    name: role.role,
+    description: role.points.join(' '),
+    occupationLocation: {
+      '@type': 'Place',
+      name: role.location,
+    },
+  })),
+  worksFor: CV_EXPERIENCE.filter((role) => /present/i.test(role.period)).map((role) => ({
+    '@type': 'Organization',
+    name: role.org,
+    ...(role.orgUrl ? { url: role.orgUrl } : {}),
+  })),
+  alumniOf: CV_EDUCATION.map((entry) => ({
+    '@type': 'EducationalOrganization',
+    name: entry.school,
+    ...(entry.schoolUrl ? { url: entry.schoolUrl } : {}),
+  })),
+  sameAs: personSameAs,
+};
+
+const cvProfilePageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${CV_URL}#profilepage`,
+  url: CV_URL,
+  name: `${PERSONAL.fullName} — CV`,
+  description: CV_SUMMARY,
+  inLanguage: 'en',
+  isPartOf: { '@id': WEBSITE_ID },
+  mainEntity: { '@id': PERSON_ID },
+  about: { '@id': PERSON_ID },
+  primaryImageOfPage: PERSON_IMAGE_URL,
+};
+
 export default async function CvPage() {
   const stats = await getProjectGithubStats();
   const nf = new Intl.NumberFormat('en-US');
 
   return (
     <main className="max-w-3xl p-6 md:p-12 text-left text-[16px] leading-snug [&_a]:text-[#1a3acc] [&_a]:underline [&_a:hover]:text-[#0b2099]">
+      <JsonLd data={[cvProfilePageSchema, cvPersonSchema]} />
+
       {/* Header */}
       <header className="flex flex-col-reverse gap-6 sm:flex-row sm:items-start sm:justify-between">
         <div>

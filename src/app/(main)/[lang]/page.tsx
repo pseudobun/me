@@ -9,8 +9,12 @@ import {
   createPageMetadata,
   getLocalizedUrl,
   getPageMetadataCopy,
+  PERSON_ID,
+  PERSON_IMAGE_URL,
   personSameAs,
   SITE_NAME,
+  SITE_URL,
+  WEBSITE_ID,
 } from '@/constants/metadata';
 import { defaultLocale, isLocale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
@@ -25,6 +29,7 @@ export async function generateMetadata({
 
   return createPageMetadata({
     locale,
+    ogType: 'profile',
     page: 'home',
     path: '/',
   });
@@ -37,12 +42,21 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   const metadata = getPageMetadataCopy(locale, 'home');
   const d = dict.home;
 
+  const pageUrl = getLocalizedUrl(locale, '/');
+
   const personSchema = {
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': PERSON_ID,
     name: PERSONAL.fullName,
+    givenName: PERSONAL.name,
+    familyName: PERSONAL.lastName,
     alternateName: ['Urban Vidovic', 'pseudobun'],
-    url: getLocalizedUrl(locale, '/'),
+    url: `${SITE_URL}/`,
+    mainEntityOfPage: { '@id': `${pageUrl}#profilepage` },
+    image: PERSON_IMAGE_URL,
+    email: `mailto:${PERSONAL.email}`,
+    nationality: { '@type': 'Country', name: 'Slovenia' },
     jobTitle: PERSONAL.position,
     description: metadata.description,
     homeLocation: {
@@ -74,23 +88,40 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': WEBSITE_ID,
     name: SITE_NAME,
-    url: getLocalizedUrl(locale, '/'),
+    url: `${SITE_URL}/`,
     inLanguage: locale,
-    author: {
-      '@type': 'Person',
-      name: PERSONAL.fullName,
-    },
+    author: { '@id': PERSON_ID },
+    creator: { '@id': PERSON_ID },
+    publisher: { '@id': PERSON_ID },
+    copyrightHolder: { '@id': PERSON_ID },
     description: metadata.description,
+  };
+
+  // ProfilePage is the type Google expects for a page whose subject is a person;
+  // it is what lets Person show up as an entity rather than page boilerplate.
+  const profilePageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${pageUrl}#profilepage`,
+    url: pageUrl,
+    name: metadata.title,
+    description: metadata.description,
+    inLanguage: locale,
+    isPartOf: { '@id': WEBSITE_ID },
+    mainEntity: { '@id': PERSON_ID },
+    about: { '@id': PERSON_ID },
+    primaryImageOfPage: PERSON_IMAGE_URL,
   };
 
   return (
     <div className="mx-auto flex min-h-full w-full max-w-3xl flex-1 flex-col justify-center space-y-12">
-      <JsonLd data={[personSchema, websiteSchema]} />
+      <JsonLd data={[profilePageSchema, personSchema, websiteSchema]} />
       <FloatingShapes />
 
       <Reveal as="section" className="mx-auto w-full max-w-2xl space-y-4">
-        <h1 className="sr-only">{PERSONAL.fullName}</h1>
+        <h1 className="sr-only">{d.heading}</h1>
         <p className="text-2xl font-bold text-foreground">{d.greeting}</p>
         <p className="text-lg leading-8 text-muted-foreground">
           {d.bio.intro}{' '}

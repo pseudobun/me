@@ -1,11 +1,18 @@
 import type { Metadata } from 'next';
-import type { Locale } from '@/i18n/config';
+import { fallbackLocale, type Locale, locales } from '@/i18n/config';
 import { PERSONAL } from './data';
 
 export const SITE_URL = 'https://pseudobun.dev';
 export const SITE_NAME = "Bunny's Den";
 export const SITE_TITLE = 'Urban Vidovič';
 export const GOOGLE_SITE_VERIFICATION = '6FH2mAeC6dWc9Y5PCXe_dec8X3SvLKRZx-aZ1I7fanY';
+export const TWITTER_HANDLE = '@pseudourban';
+
+// Stable schema.org node ids. Every locale variant and the CV page reference the
+// same @id so search engines resolve one entity instead of one per URL.
+export const PERSON_ID = `${SITE_URL}/#person`;
+export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const PERSON_IMAGE_URL = `${SITE_URL}/urban-vidovic.jpg`;
 
 type SitePath = '/' | '/projects/';
 type MetadataPage = 'home' | 'projects';
@@ -103,10 +110,17 @@ export const SHARED_METADATA: Metadata = {
   verification: {
     google: GOOGLE_SITE_VERIFICATION,
   },
+  manifest: '/site.webmanifest',
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
     shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 };
 
@@ -132,8 +146,11 @@ export function getLocalizedUrl(locale: Locale, path: SitePath) {
   return new URL(getLocalizedPath(locale, path), SITE_URL).toString();
 }
 
+// `x-default` must resolve to a 200, self-canonical, indexable page. The bare
+// `/{path}` 307-redirects through Accept-Language negotiation, so point it at the
+// same locale the proxy falls back to when no language preference is expressed.
 export function getXDefaultUrl(path: SitePath) {
-  return new URL(path, SITE_URL).toString();
+  return getLocalizedUrl(fallbackLocale, path);
 }
 
 function getOgImageUrl() {
@@ -146,10 +163,12 @@ export function getPageMetadataCopy(locale: Locale, page: MetadataPage) {
 
 export function createPageMetadata({
   locale,
+  ogType = 'website',
   page,
   path,
 }: {
   locale: Locale;
+  ogType?: 'profile' | 'website';
   page: MetadataPage;
   path: SitePath;
 }): Metadata {
@@ -175,19 +194,29 @@ export function createPageMetadata({
       url: localizedUrl,
       siteName: SITE_NAME,
       locale: ogLocales[locale],
-      type: 'website',
+      alternateLocale: locales.filter((l) => l !== locale).map((l) => ogLocales[l]),
+      ...(ogType === 'profile'
+        ? {
+            type: 'profile' as const,
+            firstName: PERSONAL.name,
+            lastName: PERSONAL.lastName,
+            username: 'pseudobun',
+          }
+        : { type: 'website' as const }),
       images: [
         {
           url: ogImageUrl,
           width: 1200,
           height: 630,
+          type: 'image/png',
           alt: `${SITE_TITLE} — ${SITE_NAME}`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      creator: '@pseudourban',
+      site: TWITTER_HANDLE,
+      creator: TWITTER_HANDLE,
       title: copy.title,
       description: copy.description,
       images: [ogImageUrl],
