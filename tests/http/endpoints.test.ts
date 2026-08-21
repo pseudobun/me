@@ -175,11 +175,29 @@ describe('acceptmarkdown.com compliance', () => {
     expect(response.headers.get('content-type')).toContain('text/html');
   });
 
-  it('keeps the Next.js router entries in Vary alongside Accept', async () => {
-    const vary = (await get('/en/', { accept: BROWSER_ACCEPT })).headers.get('vary') ?? '';
+  // `next start` serves prerendered pages straight from the ISR cache, so the
+  // proxy's header never reaches them; production gets the rule from
+  // vercel.json instead. Assert what this server can actually guarantee, and
+  // cover the CDN rule in tests/unit/vary.test.ts.
+  it('keeps the Next.js router entries in Vary on HTML responses', async () => {
+    const vary = ((await get('/en/', { accept: BROWSER_ACCEPT })).headers.get('vary') ?? '')
+      .toLowerCase()
+      .split(',')
+      .map((part) => part.trim());
 
-    expect(vary.toLowerCase()).toContain('accept');
-    expect(vary.toLowerCase()).toContain('rsc');
+    expect(vary).toContain('rsc');
+    expect(vary).toContain('next-router-state-tree');
+  });
+
+  it('sets Vary: Accept on every markdown response', async () => {
+    for (const path of pages) {
+      const vary = ((await get(path, { accept: 'text/markdown' })).headers.get('vary') ?? '')
+        .toLowerCase()
+        .split(',')
+        .map((part) => part.trim());
+
+      expect(vary).toContain('accept');
+    }
   });
 
   it('does not negotiate RSC requests', async () => {

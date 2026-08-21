@@ -121,3 +121,33 @@ export function negotiatePageType(header: string | null | undefined): Negotiable
 
   return markdown > html ? 'markdown' : 'html';
 }
+
+/**
+ * Merge a token into a Vary header without dropping what is already there.
+ * Case-insensitive on comparison, order-preserving on output.
+ */
+export function mergeVary(existing: string | null | undefined, token: string): string {
+  const parts = (existing ?? '')
+    .split(',')
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (!parts.some((part) => part.toLowerCase() === token.toLowerCase())) {
+    parts.push(token);
+  }
+
+  return parts.join(', ');
+}
+
+/**
+ * The full Vary a negotiable page must advertise: `Accept` for the Markdown
+ * variant, plus every header the Next.js client router keys its own cache on.
+ */
+export const PAGE_VARY = [
+  'Accept',
+  'RSC',
+  'Next-Router-State-Tree',
+  'Next-Router-Prefetch',
+  'Next-Router-Segment-Prefetch',
+  'Accept-Encoding',
+].join(', ');

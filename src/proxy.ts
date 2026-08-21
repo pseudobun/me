@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { fallbackLocale, isLocale, type Locale, locales } from '@/i18n/config';
-import { negotiatePageType } from '@/lib/accept';
+import { mergeVary, negotiatePageType } from '@/lib/accept';
 import { isCvPath, markdownPath } from '@/lib/md-route';
 
 function getLocale(request: NextRequest): Locale {
@@ -54,21 +54,14 @@ function isRscRequest(request: NextRequest) {
 /**
  * Append `Vary: Accept` without dropping the values Next.js sets for its own
  * router headers — the CDN needs the union, not the last writer's value.
+ *
+ * This only reaches responses the proxy actually generates. Prerendered pages
+ * are served straight from the cache with their own headers, so `vercel.json`
+ * carries the authoritative rule for those; this stays as the dynamic-path
+ * equivalent.
  */
 function withVaryAccept(response: NextResponse) {
-  const existing = response.headers.get('vary');
-  const parts = existing
-    ? existing
-        .split(',')
-        .map((part) => part.trim())
-        .filter(Boolean)
-    : [];
-
-  if (!parts.some((part) => part.toLowerCase() === 'accept')) {
-    parts.push('Accept');
-  }
-
-  response.headers.set('vary', parts.join(', '));
+  response.headers.set('vary', mergeVary(response.headers.get('vary'), 'Accept'));
 
   return response;
 }
