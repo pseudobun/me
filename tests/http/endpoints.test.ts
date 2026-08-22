@@ -134,7 +134,15 @@ describe('404 handling', () => {
 });
 
 describe('acceptmarkdown.com compliance', () => {
-  const pages = ['/en/', '/en/about/', '/en/contact/', '/en/privacy/', '/en/projects/', '/cv/'];
+  const pages = [
+    '/en/',
+    '/en/about/',
+    '/en/contact/',
+    '/en/privacy/',
+    '/en/developers/',
+    '/en/projects/',
+    '/cv/',
+  ];
 
   for (const path of pages) {
     it(`${path} serves text/markdown with Vary: Accept`, async () => {
@@ -220,7 +228,7 @@ describe('acceptmarkdown.com compliance', () => {
 
 describe('trust anchor pages', () => {
   for (const locale of ['en', 'sl']) {
-    for (const page of ['about', 'contact', 'privacy']) {
+    for (const page of ['about', 'contact', 'privacy', 'developers']) {
       it(`/${locale}/${page}/ renders 500+ characters of text with an H1`, async () => {
         const response = await get(`/${locale}/${page}/`, { accept: BROWSER_ACCEPT });
         const html = await response.text();
@@ -248,6 +256,9 @@ describe('homepage rendering without JavaScript', () => {
     const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
 
     const h1 = html.match(/<h1[^>]*>/g) ?? [];
+    // A sr-only H1 reads as "no heading" to visible-text extractors, which is
+    // what made the structure look flat. The element itself must be visible.
+    expect(h1[0]).not.toMatch(/class="[^"]*\bsr-only\b/);
     const h2 = html.match(/<h2[^>]*>/g) ?? [];
     const h3 = html.match(/<h3[^>]*>/g) ?? [];
 
@@ -316,7 +327,7 @@ describe('machine-readable files', () => {
   it('lists the trust anchor pages in the sitemap with hreflang alternates', async () => {
     const body = await (await get('/sitemap.xml')).text();
 
-    for (const page of ['about', 'contact', 'privacy']) {
+    for (const page of ['about', 'contact', 'privacy', 'developers']) {
       expect(body).toContain(`https://pseudobun.dev/en/${page}/`);
       expect(body).toContain(`https://pseudobun.dev/sl/${page}/`);
     }
@@ -370,5 +381,106 @@ describe('structured data', () => {
 
     expect(types).toContain('WebPage');
     expect(types).toContain('BreadcrumbList');
+  });
+});
+
+describe('OpenAPI specification endpoint', () => {
+  it('serves a parseable OpenAPI 3.1 document as JSON', async () => {
+    const response = await get('/openapi.json');
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get('content-type')).toContain('application/json');
+
+    const doc = await response.json();
+
+    expect(doc.openapi).toBe('3.1.0');
+    expect(Object.keys(doc.paths)).toEqual(['/api/cv/', '/api/og/']);
+    expect(doc.paths['/api/cv/'].get.operationId).toBe('getCurriculumVitae');
+    expect(doc.paths['/api/og/'].get.operationId).toBe('getOpenGraphImage');
+  });
+
+  it('is fetchable cross-origin so browser-based agents can read it', async () => {
+    const response = await get('/openapi.json');
+
+    expect(response.headers.get('access-control-allow-origin')).toBe('*');
+  });
+
+  it('is not locale-redirected', async () => {
+    const response = await get('/openapi.json', { accept: BROWSER_ACCEPT });
+
+    expect(response.status).toBe(200);
+  });
+});
+
+describe('JSON error responses', () => {
+  it('returns problem+json for an unknown /api path', async () => {
+    const response = await get('/api/does-not-exist/');
+    const body = await response.json();
+
+    expect(response.status).toBe(404);
+    expect(response.headers.get('content-type')).toContain('application/problem+json');
+    expect(body.error.code).toBe('not_found');
+    expect(body.error.status).toBe(404);
+    expect(body.error.message.length).toBeGreaterThan(0);
+    expect(body.error.hint).toContain('/openapi.json');
+    expect(body.error.documentation_url).toBe('https://pseudobun.dev/en/developers/');
+  });
+
+  it('never returns HTML from an /api failure', async () => {
+    const response = await get('/api/nope/');
+
+    expect(response.headers.get('content-type')).not.toContain('text/html');
+  });
+
+  for (const path of ['/api/cv/', '/api/og/']) {
+    it(`${path} rejects a write method with a JSON 405 and an Allow header`, async () => {
+      const response = await fetch(`${base}${path}`, { method: 'POST', redirect: 'manual' });
+      const body = await response.json();
+
+      expect(response.status).toBe(405);
+      expect(response.headers.get('allow')).toBe('GET, HEAD, OPTIONS');
+      expect(body.error.code).toBe('method_not_allowed');
+      expect(body.error.documentation_url).toBeTruthy();
+    });
+  }
+
+  it('still serves the real endpoints on GET', async () => {
+    const cv = await get('/api/cv/');
+
+    expect(cv.status).toBe(200);
+    expect(cv.headers.get('content-type')).toContain('application/pdf');
+  });
+});
+
+describe('developer resource discoverability', () => {
+  it('links the developer page from the homepage', async () => {
+    const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
+
+    expect(html).toContain('/en/developers/');
+  });
+
+  it('names the developer resources in llms.txt', async () => {
+    const body = await (await get('/llms.txt')).text();
+
+    expect(body).toContain('## Developer resources');
+    expect(body).toContain('/openapi.json');
+    expect(body).toContain('getCurriculumVitae');
+    expect(body).toContain('/en/developers/');
+  });
+
+  // The audit read a CLI into llms.txt that was never there. Keep the file
+  // explicit that no CLI, SDK, or product API exists, so it cannot be inferred.
+  it('states plainly that there is no CLI, SDK, or product API', async () => {
+    const body = await (await get('/llms.txt')).text();
+
+    expect(body).toContain('no first-party CLI or SDK');
+    expect(body).toContain('no API keys');
+  });
+
+  it('carries the product name in the developer page title and H1', async () => {
+    const html = await (await get('/en/developers/', { accept: BROWSER_ACCEPT })).text();
+
+    expect(html).toMatch(/<title>[^<]*pseudobun\.dev[^<]*<\/title>/);
+    expect(html).toMatch(/<h1[^>]*>[^<]*pseudobun\.dev/);
   });
 });

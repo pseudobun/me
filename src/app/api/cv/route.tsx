@@ -24,6 +24,7 @@ import {
   periodDuration,
 } from '@/constants/cv';
 import { PERSONAL } from '@/constants/data';
+import { apiError, methodNotAllowed } from '@/lib/api-errors';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -78,6 +79,23 @@ const styles = StyleSheet.create({
 });
 
 export async function GET() {
+  try {
+    return await renderCv();
+  } catch {
+    return apiError(
+      'internal_error',
+      'Failed to render the CV PDF.',
+      'This is transient; retry once. The same content is available as HTML at /cv/ and as Markdown via Accept: text/markdown.'
+    );
+  }
+}
+
+export const POST = methodNotAllowed;
+export const PUT = methodNotAllowed;
+export const PATCH = methodNotAllowed;
+export const DELETE = methodNotAllowed;
+
+async function renderCv() {
   const photo = readFileSync(path.join(PUBLIC, 'urban-vidovic.jpg'));
 
   const doc = (

@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { isContentPage } from '@/content';
+import { type ContentPage, isContentPage } from '@/content';
 import { defaultLocale, isLocale, type Locale } from '@/i18n/config';
 import { MARKDOWN_CONTENT_TYPE } from '@/lib/accept';
 import { buildPageMarkdown, notFoundMarkdown } from '@/lib/markdown';
@@ -8,7 +8,9 @@ import { buildPageMarkdown, notFoundMarkdown } from '@/lib/markdown';
 // here; it is never linked and never appears in the sitemap.
 export const revalidate = 86400;
 
-type Page = 'home' | 'projects' | 'cv' | 'about' | 'contact' | 'privacy';
+// Derived from ContentPage so adding a content page cannot silently leave its
+// Markdown variant unroutable.
+type Page = 'home' | 'projects' | 'cv' | ContentPage;
 
 function resolve(segments: string[]): { locale: Locale; page: Page } | null {
   // /md/cv

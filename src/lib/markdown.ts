@@ -59,6 +59,7 @@ async function homeMarkdown(locale: Locale): Promise<string> {
     `- [${dict.nav.about}](${getLocalizedUrl(locale, '/about/')})`,
     `- [${dict.nav.contact}](${getLocalizedUrl(locale, '/contact/')})`,
     `- [${dict.nav.privacy}](${getLocalizedUrl(locale, '/privacy/')})`,
+    `- [${dict.nav.developers}](${getLocalizedUrl(locale, '/developers/')})`,
     `- [${dict.nav.cv}](${SITE_URL}/cv/)`,
   ].join('\n');
 
@@ -148,6 +149,7 @@ const CONTENT_PATHS = {
   about: '/about/',
   contact: '/contact/',
   privacy: '/privacy/',
+  developers: '/developers/',
 } as const;
 
 async function contentMarkdown(locale: Locale, page: ContentPage): Promise<string> {

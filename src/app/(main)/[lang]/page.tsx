@@ -160,8 +160,14 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       <FloatingShapes />
 
       <Reveal as="section" className="mx-auto w-full max-w-2xl space-y-4">
-        <h1 className="sr-only">{d.heading}</h1>
-        <p className="text-2xl font-bold text-foreground">{d.greeting}</p>
+        {/* The H1 is the visible hero line, not a hidden duplicate: a sr-only
+            H1 reads as "no heading" to extractors that walk visible text, which
+            made the page look like it started at H2. The descriptive half stays
+            visually hidden so the rendered design is unchanged. */}
+        <h1 className="text-2xl font-bold text-foreground">
+          {d.greeting}
+          <span className="sr-only"> — {d.heading}</span>
+        </h1>
         <p className="text-lg leading-8 text-muted-foreground">
           {d.bio.intro}{' '}
           <ExoticLink

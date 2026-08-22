@@ -2,7 +2,14 @@ import type { MetadataRoute } from 'next';
 import { getLocalizedUrl, getXDefaultUrl, SITE_URL } from '@/constants/metadata';
 import { locales } from '@/i18n/config';
 
-const publicPaths = ['/', '/projects/', '/about/', '/contact/', '/privacy/'] as const;
+const publicPaths = [
+  '/',
+  '/projects/',
+  '/about/',
+  '/contact/',
+  '/privacy/',
+  '/developers/',
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const localized = publicPaths.flatMap((path) =>

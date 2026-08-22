@@ -15,8 +15,8 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const ORG_ID = `${PERSONAL.company2Url}/#organization`;
 export const PERSON_IMAGE_URL = `${SITE_URL}/urban-vidovic.jpg`;
 
-type SitePath = '/' | '/projects/' | '/about/' | '/contact/' | '/privacy/';
-type MetadataPage = 'home' | 'projects' | 'about' | 'contact' | 'privacy';
+type SitePath = '/' | '/projects/' | '/about/' | '/contact/' | '/privacy/' | '/developers/';
+type MetadataPage = 'home' | 'projects' | 'about' | 'contact' | 'privacy' | 'developers';
 
 const ogLocales: Record<Locale, string> = {
   en: 'en_US',
@@ -91,6 +91,19 @@ const pageMetadata: Record<
         'Privacy policy for pseudobun.dev: no cookies, no accounts, no advertising. Only cookieless, aggregate traffic measurement via Vercel Analytics and Speed Insights.',
       keywords: ['privacy policy', 'cookieless analytics', 'GDPR', 'pseudobun.dev privacy'],
     },
+    developers: {
+      title: 'Developers — pseudobun.dev | OpenAPI Spec, Endpoints, and Agent Files',
+      description:
+        'Developer documentation for pseudobun.dev: two public read-only endpoints, an OpenAPI 3.1 specification at /openapi.json, JSON error responses, Markdown content negotiation, and llms.txt.',
+      keywords: [
+        'pseudobun developers',
+        'pseudobun.dev API',
+        'pseudobun openapi',
+        'pseudobun.dev llms.txt',
+        'Urban Vidovič API',
+        'openapi specification',
+      ],
+    },
   },
   sl: {
     home: {
@@ -152,6 +165,19 @@ const pageMetadata: Record<
         'analitika brez piškotkov',
         'GDPR',
         'zasebnost pseudobun.dev',
+      ],
+    },
+    developers: {
+      title: 'Za razvijalce — pseudobun.dev | OpenAPI, končne točke in datoteke za agente',
+      description:
+        'Razvijalska dokumentacija za pseudobun.dev: dve javni končni točki samo za branje, specifikacija OpenAPI 3.1 na /openapi.json, odgovori z napakami v JSON, pogajanje o vsebini Markdown in llms.txt.',
+      keywords: [
+        'pseudobun razvijalci',
+        'pseudobun.dev API',
+        'pseudobun openapi',
+        'pseudobun.dev llms.txt',
+        'Urban Vidovič API',
+        'specifikacija openapi',
       ],
     },
   },

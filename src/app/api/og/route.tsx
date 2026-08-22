@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
 import { PERSONAL } from '@/constants/data';
+import { apiError, methodNotAllowed } from '@/lib/api-errors';
 import { GITHUB_STATS_REVALIDATE_SECONDS, getProjectGithubStats } from '@/lib/github-project-stats';
 
 interface OgAssets {
@@ -281,8 +282,15 @@ export async function GET() {
       }
     );
   } catch {
-    return new Response('Failed to generate image', {
-      status: 500,
-    });
+    return apiError(
+      'internal_error',
+      'Failed to render the social preview image.',
+      'This is transient; retry once. If it persists, the static preview at /urban-vidovic.jpg is always available.'
+    );
   }
 }
+
+export const POST = methodNotAllowed;
+export const PUT = methodNotAllowed;
+export const PATCH = methodNotAllowed;
+export const DELETE = methodNotAllowed;

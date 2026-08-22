@@ -46,6 +46,7 @@ export default async function RootLayout({
     { label: dict.nav.about, href: `/${locale}/about/` },
     { label: dict.nav.contact, href: `/${locale}/contact/` },
     { label: dict.nav.privacy, href: `/${locale}/privacy/` },
+    { label: dict.nav.developers, href: `/${locale}/developers/` },
   ];
 
   const copyright = dict.footer.copyright.replace('{year}', String(new Date().getFullYear()));
