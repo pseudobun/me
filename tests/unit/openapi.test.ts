@@ -18,12 +18,12 @@ describe('buildApiError', () => {
     }
   });
 
-  it('always carries a message, a hint and a documentation url', () => {
+  it('always carries a message and a hint', () => {
     const { body } = buildApiError('not_found', 'No such endpoint.', 'Try /openapi.json.');
 
     expect(body.error.message).toBe('No such endpoint.');
     expect(body.error.hint).toBe('Try /openapi.json.');
-    expect(body.error.documentation_url).toBe('https://pseudobun.dev/en/developers/');
+    expect(Object.keys(body.error)).toEqual(['code', 'message', 'hint', 'status']);
   });
 
   it('lists only the read-only methods as allowed', () => {
@@ -37,6 +37,14 @@ describe('OpenAPI document', () => {
   it('is OpenAPI 3.1.0 with a production server', () => {
     expect(doc.openapi).toBe('3.1.0');
     expect(doc.servers[0].url).toBe('https://pseudobun.dev');
+  });
+
+  // These pointed at the retired /developers page; they must resolve to pages
+  // that still exist.
+  it('points contact and externalDocs at live URLs', () => {
+    expect(doc.info.contact.url).toBe('https://pseudobun.dev/en/contact/');
+    expect(doc.externalDocs.url).toBe('https://pseudobun.dev/llms.txt');
+    expect(JSON.stringify(doc)).not.toContain('/developers/');
   });
 
   it('describes exactly the endpoints that exist', () => {
@@ -93,13 +101,7 @@ describe('OpenAPI document', () => {
   it('defines the Error schema with every field the endpoints return', () => {
     const schema = doc.components.schemas.Error;
 
-    expect(schema.properties.error.required).toEqual([
-      'code',
-      'message',
-      'hint',
-      'status',
-      'documentation_url',
-    ]);
+    expect(schema.properties.error.required).toEqual(['code', 'message', 'hint', 'status']);
     expect(schema.properties.error.properties.code.enum).toEqual([
       'not_found',
       'method_not_allowed',

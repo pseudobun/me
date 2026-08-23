@@ -1,6 +1,5 @@
 import { PERSONAL } from '@/constants/data';
-import { SITE_NAME, SITE_URL } from '@/constants/metadata';
-import { API_DOCS_URL } from '@/lib/api-errors';
+import { getLocalizedUrl, SITE_URL } from '@/constants/metadata';
 
 // OpenAPI 3.1.0 description of the endpoints this site actually exposes.
 // Both are public, unauthenticated, parameterless GETs — the spec says exactly
@@ -13,7 +12,7 @@ const ERROR_SCHEMA = {
   properties: {
     error: {
       type: 'object',
-      required: ['code', 'message', 'hint', 'status', 'documentation_url'],
+      required: ['code', 'message', 'hint', 'status'],
       additionalProperties: false,
       properties: {
         code: {
@@ -33,11 +32,6 @@ const ERROR_SCHEMA = {
           type: 'integer',
           description: 'HTTP status code, repeated in the body for convenience.',
         },
-        documentation_url: {
-          type: 'string',
-          format: 'uri',
-          description: 'Where these endpoints are documented.',
-        },
       },
     },
   },
@@ -54,7 +48,7 @@ export function buildOpenApiDocument() {
   return {
     openapi: '3.1.0',
     info: {
-      title: `${SITE_NAME} public endpoints`,
+      title: 'pseudobun.dev public endpoints',
       version: '1.0.0',
       summary: 'Two read-only endpoints published by the personal site of Urban Vidovič.',
       description: [
@@ -67,11 +61,15 @@ export function buildOpenApiDocument() {
         '',
         'Errors are returned as `application/problem+json` using the `Error` schema below.',
       ].join('\n'),
-      contact: { name: PERSONAL.fullName, email: PERSONAL.email, url: API_DOCS_URL },
+      contact: {
+        name: PERSONAL.fullName,
+        email: PERSONAL.email,
+        url: getLocalizedUrl('en', '/contact/'),
+      },
       license: { name: 'CC BY 4.0', identifier: 'CC-BY-4.0' },
     },
     servers: [{ url: SITE_URL, description: 'Production' }],
-    externalDocs: { description: 'Developer documentation', url: API_DOCS_URL },
+    externalDocs: { description: 'Site index and agent guidance', url: `${SITE_URL}/llms.txt` },
     tags: [
       { name: 'documents', description: 'Generated documents about Urban Vidovič.' },
       { name: 'images', description: 'Generated social preview imagery.' },

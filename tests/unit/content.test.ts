@@ -52,8 +52,8 @@ describe('toPlainText', () => {
 });
 
 describe('trust anchor page content', () => {
-  it('exposes the trust anchor pages and the developer page', () => {
-    expect(CONTENT_PAGES).toEqual(['about', 'contact', 'privacy', 'developers']);
+  it('exposes about, contact and privacy', () => {
+    expect(CONTENT_PAGES).toEqual(['about', 'contact', 'privacy']);
     expect(isContentPage('about')).toBe(true);
     expect(isContentPage('nope')).toBe(false);
   });

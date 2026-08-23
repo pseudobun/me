@@ -202,7 +202,7 @@ export const PROJECTS: Project[] = [
     id: 'masca',
     title: 'Masca',
     description:
-      'A MetaMask snap, bringing decentralized identity capabilites to the MetaMask wallet. Manage your DIDs and VCs, choose where to store received credentials, and share customized VPs.',
+      'A MetaMask snap, bringing decentralized identity capabilities to the MetaMask wallet. Manage your DIDs and VCs, choose where to store received credentials, and share customized VPs.',
     website: 'https://masca.io',
     github: 'https://github.com/blockchain-lab-um/masca',
     githubRepo: 'blockchain-lab-um/masca',

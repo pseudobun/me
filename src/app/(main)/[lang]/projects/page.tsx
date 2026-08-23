@@ -3,8 +3,7 @@ import GithubStatsStatement from '@/components/GithubStatsStatement';
 import JsonLd from '@/components/JsonLd';
 import ProjectCard from '@/components/ProjectCard';
 import { Reveal } from '@/components/Reveal';
-import { PERSONAL, PROJECTS } from '@/constants/data';
-import { appStoreIconSvg, githubIconSvg } from '@/constants/icons';
+import { PROJECTS } from '@/constants/data';
 import {
   createPageMetadata,
   getLocalizedUrl,
@@ -80,7 +79,6 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
     isPartOf: { '@id': WEBSITE_ID },
     breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
     author: { '@id': PERSON_ID },
-    about: PROJECTS.flatMap((project) => project.tags).slice(0, 20),
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: PROJECTS.length,
@@ -88,16 +86,14 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
       itemListElement: PROJECTS.map((project, index) => ({
         '@type': 'ListItem',
         position: index + 1,
+        // Descriptions are omitted deliberately: they are already in the
+        // rendered DOM, and JsonLd server-renders into both the flight payload
+        // and the document, so every byte here is paid for twice.
         item: {
           '@type': 'CreativeWork',
           author: { '@id': PERSON_ID },
-          creator: {
-            '@type': 'Person',
-            name: PERSONAL.fullName,
-          },
-          description: lookup(d.items, project.id)?.description ?? project.description,
-          keywords: project.tags.join(', '),
           name: project.title,
+          keywords: project.tags.join(', '),
           url: project.website ?? project.appStore ?? project.github ?? undefined,
         },
       })),
@@ -135,16 +131,22 @@ export default async function Projects({ params }: { params: Promise<{ lang: str
               key={project.title}
               delay={index * 0.08}
               appStore={project.appStore}
-              appStoreIconSvg={appStoreIconSvg}
               github={project.github}
-              githubIconSvg={githubIconSvg}
               org={project.org}
               orgUrl={project.orgUrl}
               highlight={project.highlight}
               title={project.title}
               description={lookup(d.items, project.id)?.description ?? project.description}
               website={project.website}
-              image={project.image}
+              image={
+                project.image
+                  ? {
+                      src: project.image.src,
+                      width: project.image.width,
+                      height: project.image.height,
+                    }
+                  : undefined
+              }
               developedAt={d.developedAt}
               readMore={d.readMore}
               showLess={d.showLess}

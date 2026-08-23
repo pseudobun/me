@@ -2,9 +2,10 @@
 
 import { Expand, Globe, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { AppStoreIcon, GithubIcon } from '@/components/BrandIcons';
 import ExoticLink from '@/components/ExoticLink';
 import {
   Card,
@@ -28,14 +29,16 @@ function getProjectMonogram(title: string) {
 
 interface ProjectCardProps {
   appStore?: string;
-  appStoreIconSvg: string;
   delay: number;
   description: string;
   developedAt: string;
   github?: string;
-  githubIconSvg: string;
   highlight?: boolean;
-  image?: StaticImageData;
+  /**
+   * Only the fields next/image needs. The full StaticImageData carries a
+   * blurDataURL this card never uses, and it is serialized once per card.
+   */
+  image?: { src: string; width: number; height: number };
   org: string;
   orgUrl: string;
   readMore: string;
@@ -48,12 +51,10 @@ interface ProjectCardProps {
 
 export default function ProjectCard({
   appStore,
-  appStoreIconSvg,
   delay,
   description,
   developedAt,
   github,
-  githubIconSvg,
   highlight,
   image,
   org,
@@ -205,7 +206,7 @@ export default function ProjectCard({
                     src={image}
                     alt={screenshotAlt}
                     fill
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 768px) 384px, 100vw"
                     className="object-cover"
                   />
                   <motion.div
@@ -321,20 +322,14 @@ export default function ProjectCard({
                 {github ? (
                   <motion.div whileHover={{ scale: 1.2, rotate: -5 }} whileTap={{ scale: 0.9 }}>
                     <ExoticLink href={github} ariaLabel={`Open ${title} source code`}>
-                      <span
-                        className="block h-5 w-5 fill-muted-foreground transition-colors hover:fill-foreground"
-                        dangerouslySetInnerHTML={{ __html: githubIconSvg }}
-                      />
+                      <GithubIcon />
                     </ExoticLink>
                   </motion.div>
                 ) : null}
                 {appStore ? (
                   <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                     <ExoticLink href={appStore} ariaLabel={`Open ${title} on the App Store`}>
-                      <span
-                        className="block h-5 w-5 fill-muted-foreground transition-colors hover:fill-foreground"
-                        dangerouslySetInnerHTML={{ __html: appStoreIconSvg }}
-                      />
+                      <AppStoreIcon />
                     </ExoticLink>
                   </motion.div>
                 ) : null}

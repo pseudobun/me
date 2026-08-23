@@ -6,7 +6,6 @@
     "about": "About",
     "contact": "Contact",
     "privacy": "Privacy",
-    "developers": "Developers",
     "lutraBlog": "Lutra Blog",
     "cv": "CV",
     "langSwitch": "Switch language",
@@ -22,41 +21,10 @@
       "masterDegree": "I have a Master's degree in Computer Science acquired at",
       "university": "Faculty of Electrical Engineering and Computer Science, University of Maribor."
     },
-    "focus": {
-      "title": "Focus areas",
-      "intro": "Three threads run through most of what I build. They overlap more than they look like they should.",
-      "areas": [
-        {
-          "title": "Decentralized identity",
-          "body": "Issuers, wallets, and verifiers built to the OID4VC family of specifications and ISO 18013-5/-7 — the standards behind mobile driving licences and EU digital identity wallets. The interesting work is rarely the happy path: it is selective disclosure, trust registries, revocation, and the stubborn business of making one vendor's wallet accept another vendor's credential without either side loosening its security model."
-        },
-        {
-          "title": "Protocols and smart contracts",
-          "body": "Protocol design and implementation in Solidity and Sway, including lending markets and onchain reputation. I care most about the properties that cannot be retrofitted after launch: upgrade paths, invariants that hold under adversarial conditions, and failure behaviour that degrades safely rather than silently. Audits catch bugs; they do not fix an architecture that assumed nothing would ever go wrong."
-        },
-        {
-          "title": "Systems and tooling",
-          "body": "The infrastructure that makes the above usable — Rust and Node backends, indexers, dashboards, CI, and the internal tooling nobody demos but everybody depends on. I would rather own a feature from the protocol layer through to the interface than hand it across three teams and negotiate the seams afterwards."
-        }
-      ]
-    },
-    "currently": {
-      "title": "Currently",
-      "body": "At Blockchain Lab:UM I work on EU-funded applied research where the deliverable is a working reference implementation rather than a report — standards-based identity infrastructure that has to interoperate with everyone else's. At Lutra Labs, which I co-founded in 2024, I run operations and still ship code: LutraID for digital identity issuance and verification, Swaylend on Fuel, Replicant Network, and endorse.fun.",
-      "more": "There is a longer version of all of this on the about page."
-    },
     "projects": {
       "title": "Projects",
       "description": "A few things I've built across identity, Web3, and product work.",
       "link": "Browse projects"
-    },
-    "elsewhere": {
-      "title": "Elsewhere",
-      "body": "Source code for most of this work is on GitHub. Professional history is on LinkedIn, the full CV is available as a page and a PDF, and every verified way to reach me is listed on the contact page.",
-      "github": "GitHub",
-      "linkedin": "LinkedIn",
-      "cv": "CV",
-      "contact": "Contact"
     },
     "structuredData": {
       "knowsAbout": [
@@ -146,9 +114,7 @@
     "message": "404: You ain't gonna find anything here",
     "title": "404 — Page not found",
     "lead": "This URL does not exist. Nothing was moved; this path was never valid.",
-    "where": "Where to go instead",
-    "agents": "For agents",
-    "agentsBody": "Every page here is also available as Markdown — send an Accept: text/markdown header. Machine-readable indexes:"
+    "where": "Where to go instead"
   },
   "theme": {
     "toggle": "Toggle theme",

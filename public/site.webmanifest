@@ -1,14 +1,27 @@
 {
-  "name": "Urban Vidovič — Bunny's Den",
-  "short_name": "Bunny's Den",
+  "name": "Urban Vidovič",
+  "short_name": "Urban Vidovič",
   "description": "Personal site of Urban Vidovič, a software engineer working on decentralized identity, verifiable credentials, and Web3 product engineering.",
   "start_url": "/",
   "scope": "/",
   "lang": "en",
   "icons": [
-    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "theme_color": "#0c0a09",
   "background_color": "#0c0a09",

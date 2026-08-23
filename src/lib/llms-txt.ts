@@ -1,7 +1,7 @@
 import 'server-only';
 import { CV_TITLE } from '@/constants/cv';
 import { FEATURED_PROJECT_IDS, PERSONAL, PROJECTS } from '@/constants/data';
-import { getLocalizedUrl, SITE_NAME, SITE_URL } from '@/constants/metadata';
+import { getLocalizedUrl, SITE_ALTERNATE_NAME, SITE_URL } from '@/constants/metadata';
 
 /**
  * llms.txt per https://llmstxt.org: an H1, a blockquote summary, optional
@@ -13,9 +13,9 @@ export function buildLlmsTxt(): string {
   ).filter((project) => project !== undefined);
 
   return `${[
-    `# ${SITE_NAME} — ${PERSONAL.fullName}`,
+    `# ${PERSONAL.fullName}`,
     '',
-    `> Personal site of ${PERSONAL.fullName} (handle: pseudobun), a software engineer in Maribor, Slovenia. ${CV_TITLE} at Blockchain Lab:UM and COO/co-founder of Lutra Labs, working on decentralized identity, verifiable credentials (OID4VC, ISO mDoc/mDL, W3C VC/DID), DeFi protocols, and Web3 product engineering.`,
+    `> Personal site of ${PERSONAL.fullName} (handle: pseudobun), a software engineer in Maribor, Slovenia. The site is also known as ${SITE_ALTERNATE_NAME}. ${CV_TITLE} at Blockchain Lab:UM and COO/co-founder of Lutra Labs, working on decentralized identity, verifiable credentials (OID4VC, ISO mDoc/mDL, W3C VC/DID), DeFi protocols, and Web3 product engineering.`,
     '',
     'Every page on this site is available as Markdown: send `Accept: text/markdown` to any URL below and you will receive the Markdown representation instead of HTML (see https://acceptmarkdown.com). Responses set `Vary: Accept`. Content is published in English (`/en/`) and Slovene (`/sl/`); the English URLs are listed here and are the `x-default` targets.',
     '',
@@ -55,7 +55,6 @@ export function buildLlmsTxt(): string {
     '',
     '## Developer resources',
     '',
-    `- [Developers](${getLocalizedUrl('en', '/developers/')}): the developer page for pseudobun.dev — public endpoints, error format, Markdown negotiation, and every machine-readable file, in one place.`,
     `- [OpenAPI specification](${SITE_URL}/openapi.json): OpenAPI 3.1.0 describing the two public endpoints, with a unique operationId, a description, and typed response schemas on each. Security is explicitly empty: these are unauthenticated.`,
     `- [GET /api/cv/](${SITE_URL}/api/cv/): operationId \`getCurriculumVitae\` — renders the CV to a PDF. No parameters, no auth.`,
     `- [GET /api/og/](${SITE_URL}/api/og/): operationId \`getOpenGraphImage\` — renders the 1200x630 social preview PNG. No parameters, no auth.`,
@@ -80,23 +79,30 @@ export function buildLlmsTxt(): string {
 }
 
 /**
- * /agent.txt — the same guidance as llms.txt. Kept as a distinct file because
- * some agent tooling probes this path rather than llms.txt.
+ * /agent.txt — a pointer, not a copy. `llms.txt` is the actual published format;
+ * this path exists only because some agent tooling probes it. Keeping it short
+ * also removes the line-index coupling the previous version had to buildLlmsTxt.
  */
 export function buildAgentTxt(): string {
   return `${[
     '# Agent instructions for pseudobun.dev',
     '',
-    `> Canonical agent index: ${SITE_URL}/llms.txt (llmstxt.org format). This file carries the same guidance for tools that probe /agent.txt.`,
+    `> The canonical index is ${SITE_URL}/llms.txt (llmstxt.org format). Read that first — it carries the site summary, when-to-use guidance, and every link. This file only adds protocol notes.`,
     '',
-    '## How to read this site',
+    '## Protocol notes',
     '',
-    '- Send `Accept: text/markdown` to any page URL for a Markdown representation. Responses set `Vary: Accept`; unsupported Accept values get a `406`.',
-    '- Nonexistent paths return a real `404` with a Markdown recovery body listing the sitemap and this file. A `200` is never returned for a URL that does not exist.',
-    `- Start from ${SITE_URL}/llms.txt, then ${SITE_URL}/sitemap.xml for the complete URL set.`,
-    '- Structured data is JSON-LD in the page head: `Person`, `Organization`, `WebSite`, `ProfilePage`, `CollectionPage`, and `BreadcrumbList`, all keyed by stable `@id`.',
-    `- The programmable surface is two unauthenticated GET endpoints, described at ${SITE_URL}/openapi.json and documented at ${SITE_URL}/en/developers/. Errors under /api are application/problem+json, never HTML.`,
+    '- Send `Accept: text/markdown` to any page URL for a Markdown representation of it. Those responses set `Vary: Accept`. An Accept header matching neither `text/html` nor `text/markdown` gets a `406`; q-values are honoured.',
+    '- Nonexistent paths return a real `404` carrying links back to the real pages. Request it with `Accept: text/markdown` and the body also lists the machine-readable indexes. A `200` is never returned for a URL that does not exist.',
+    '- The programmable surface is two unauthenticated GET endpoints, specified at ' +
+      `${SITE_URL}/openapi.json. Errors under /api are application/problem+json with a stable \`code\`, a \`message\` and a \`hint\` — never HTML.`,
+    '- Structured data is JSON-LD in the page head: `Person`, `Organization`, `WebSite`, `ProfilePage`, `CollectionPage` and `BreadcrumbList`, all keyed by stable `@id`.',
+    '- Content is published in English (`/en/`) and Slovene (`/sl/`). The English URLs are the `x-default` targets.',
     '',
-    ...buildLlmsTxt().split('\n').slice(4),
+    '## Links',
+    '',
+    `- ${SITE_URL}/llms.txt`,
+    `- ${SITE_URL}/openapi.json`,
+    `- ${SITE_URL}/sitemap.xml`,
+    `- ${SITE_URL}/robots.txt`,
   ].join('\n')}\n`;
 }

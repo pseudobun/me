@@ -116,9 +116,10 @@ describe('404 handling', () => {
     const body = await response.text();
 
     expect(response.status).toBe(404);
-    expect(body).toContain('/llms.txt');
-    expect(body).toContain('/sitemap.xml');
     expect(body).toContain('/en/projects/');
+    expect(body).toContain('/en/about/');
+    // The machine-readable index lives in the Markdown variant, not here.
+    expect(body).not.toContain('/sitemap.xml');
   });
 
   it('serves a markdown 404 body when markdown is requested', async () => {
@@ -139,7 +140,6 @@ describe('acceptmarkdown.com compliance', () => {
     '/en/about/',
     '/en/contact/',
     '/en/privacy/',
-    '/en/developers/',
     '/en/projects/',
     '/cv/',
   ];
@@ -183,10 +183,10 @@ describe('acceptmarkdown.com compliance', () => {
     expect(response.headers.get('content-type')).toContain('text/html');
   });
 
-  // `next start` serves prerendered pages straight from the ISR cache, so the
-  // proxy's header never reaches them; production gets the rule from
-  // vercel.json instead. Assert what this server can actually guarantee, and
-  // cover the CDN rule in tests/unit/vary.test.ts.
+  // Prerendered pages are served from the ISR cache with Next's own Vary, which
+  // the proxy cannot override (see the note on withVaryAccept in src/proxy.ts).
+  // Assert what actually holds; the Markdown responses carry Accept and are
+  // covered separately below.
   it('keeps the Next.js router entries in Vary on HTML responses', async () => {
     const vary = ((await get('/en/', { accept: BROWSER_ACCEPT })).headers.get('vary') ?? '')
       .toLowerCase()
@@ -221,14 +221,14 @@ describe('acceptmarkdown.com compliance', () => {
 
     const body = await (await get('/en/about/', { accept: 'text/markdown' })).text();
 
-    expect(body).toContain('## Focus areas');
+    expect(body).toContain('## Background');
     expect(body).toContain('Canonical HTML: https://pseudobun.dev/en/about/');
   });
 });
 
 describe('trust anchor pages', () => {
   for (const locale of ['en', 'sl']) {
-    for (const page of ['about', 'contact', 'privacy', 'developers']) {
+    for (const page of ['about', 'contact', 'privacy']) {
       it(`/${locale}/${page}/ renders 500+ characters of text with an H1`, async () => {
         const response = await get(`/${locale}/${page}/`, { accept: BROWSER_ACCEPT });
         const html = await response.text();
@@ -252,20 +252,18 @@ describe('trust anchor pages', () => {
 });
 
 describe('homepage rendering without JavaScript', () => {
-  it('server-renders an H1, nested headings, and 500+ characters', async () => {
+  // The homepage is deliberately short. Heading-count and content-efficiency
+  // thresholds used to live here; they were audit targets that drove the copy
+  // rather than the other way around, and have been dropped on purpose.
+  it('server-renders exactly one visible H1 and real content', async () => {
     const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
 
     const h1 = html.match(/<h1[^>]*>/g) ?? [];
+
+    expect(h1.length).toBe(1);
     // A sr-only H1 reads as "no heading" to visible-text extractors, which is
     // what made the structure look flat. The element itself must be visible.
     expect(h1[0]).not.toMatch(/class="[^"]*\bsr-only\b/);
-    const h2 = html.match(/<h2[^>]*>/g) ?? [];
-    const h3 = html.match(/<h3[^>]*>/g) ?? [];
-
-    expect(h1.length).toBe(1);
-    expect(h2.length).toBeGreaterThanOrEqual(2);
-    // A flat H1-only structure was the audit finding; H3s prove real nesting.
-    expect(h3.length).toBeGreaterThanOrEqual(3);
 
     const text = html
       .replace(/<script[\s\S]*?<\/script>/g, '')
@@ -277,17 +275,6 @@ describe('homepage rendering without JavaScript', () => {
     expect(text.length).toBeGreaterThan(500);
   });
 
-  it('reaches at least 5% content efficiency', async () => {
-    const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
-    const text = html
-      .replace(/<script[\s\S]*?<\/script>/g, '')
-      .replace(/<style[\s\S]*?<\/style>/g, '')
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
-
-    expect((text.length / html.length) * 100).toBeGreaterThanOrEqual(5);
-  });
 });
 
 describe('machine-readable files', () => {
@@ -307,12 +294,12 @@ describe('machine-readable files', () => {
     expect(body).toMatch(/^- \[.+\]\(https?:\/\/.+\): .+$/m);
   });
 
-  it('serves agent.txt with explicit when-to-use guidance', async () => {
+  it('serves agent.txt as a pointer with the protocol notes', async () => {
     const response = await get('/agent.txt');
     const body = await response.text();
 
     expect(response.status).toBe(200);
-    expect(body).toContain('## When to use this site');
+    expect(body).toContain('## Protocol notes');
     expect(body).toContain('Accept: text/markdown');
     expect(body).toContain('/llms.txt');
   });
@@ -327,7 +314,7 @@ describe('machine-readable files', () => {
   it('lists the trust anchor pages in the sitemap with hreflang alternates', async () => {
     const body = await (await get('/sitemap.xml')).text();
 
-    for (const page of ['about', 'contact', 'privacy', 'developers']) {
+    for (const page of ['about', 'contact', 'privacy']) {
       expect(body).toContain(`https://pseudobun.dev/en/${page}/`);
       expect(body).toContain(`https://pseudobun.dev/sl/${page}/`);
     }
@@ -423,7 +410,7 @@ describe('JSON error responses', () => {
     expect(body.error.status).toBe(404);
     expect(body.error.message.length).toBeGreaterThan(0);
     expect(body.error.hint).toContain('/openapi.json');
-    expect(body.error.documentation_url).toBe('https://pseudobun.dev/en/developers/');
+    expect(body.error).not.toHaveProperty('documentation_url');
   });
 
   it('never returns HTML from an /api failure', async () => {
@@ -440,7 +427,7 @@ describe('JSON error responses', () => {
       expect(response.status).toBe(405);
       expect(response.headers.get('allow')).toBe('GET, HEAD, OPTIONS');
       expect(body.error.code).toBe('method_not_allowed');
-      expect(body.error.documentation_url).toBeTruthy();
+      expect(body.error.hint).toContain('GET');
     });
   }
 
@@ -453,19 +440,12 @@ describe('JSON error responses', () => {
 });
 
 describe('developer resource discoverability', () => {
-  it('links the developer page from the homepage', async () => {
-    const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
-
-    expect(html).toContain('/en/developers/');
-  });
-
   it('names the developer resources in llms.txt', async () => {
     const body = await (await get('/llms.txt')).text();
 
     expect(body).toContain('## Developer resources');
     expect(body).toContain('/openapi.json');
     expect(body).toContain('getCurriculumVitae');
-    expect(body).toContain('/en/developers/');
   });
 
   // The audit read a CLI into llms.txt that was never there. Keep the file
@@ -477,10 +457,120 @@ describe('developer resource discoverability', () => {
     expect(body).toContain('no API keys');
   });
 
-  it('carries the product name in the developer page title and H1', async () => {
-    const html = await (await get('/en/developers/', { accept: BROWSER_ACCEPT })).text();
+});
 
-    expect(html).toMatch(/<title>[^<]*pseudobun\.dev[^<]*<\/title>/);
-    expect(html).toMatch(/<h1[^>]*>[^<]*pseudobun\.dev/);
+describe('retired /developers page', () => {
+  // It shipped once, so the removal needs pinning rather than assuming.
+  for (const path of ['/en/developers/', '/sl/developers/']) {
+    it(`${path} is gone`, async () => {
+      const response = await get(path, { accept: BROWSER_ACCEPT });
+
+      expect(response.status).toBe(404);
+    });
+  }
+
+  it('is absent from the sitemap and llms.txt', async () => {
+    const [sitemap, llms] = await Promise.all([
+      (await get('/sitemap.xml')).text(),
+      (await get('/llms.txt')).text(),
+    ]);
+
+    expect(sitemap).not.toContain('/developers/');
+    expect(llms).not.toContain('/developers/');
+  });
+});
+
+describe('projects page payload', () => {
+  // Brand icons used to be threaded through props as raw SVG strings, so React
+  // serialized each one into the RSC payload once per card — ~43 KB for two
+  // icons, including on the 6 cards that render neither. They are client
+  // components now, so the payload references the component and the markup
+  // appears only where it is actually drawn.
+  it('keeps brand icon path data out of the RSC payload', async () => {
+    const html = await (await get('/en/projects/', { accept: BROWSER_ACCEPT })).text();
+    const flight = (html.match(/<script>self\.__next_f[\s\S]*?<\/script>/g) ?? []).join('');
+    const longPaths = flight.match(/d=\\"M[^"]{400,}/g) ?? [];
+
+    // The Footer is a server component and legitimately contributes one icon.
+    expect(longPaths.length).toBeLessThanOrEqual(1);
+  });
+
+  it('renders the App Store icon only where there is an App Store link', async () => {
+    const html = await (await get('/en/projects/', { accept: BROWSER_ACCEPT })).text();
+
+    // Exactly one of the 15 projects has an App Store link. This icon used to
+    // be serialized 15 times regardless — once per card, including the 14 that
+    // never draw it.
+    expect(html.split('M10.445 21.372').length - 1).toBeLessThanOrEqual(2);
+  });
+
+  it('does not ship blurDataURL for images that never use placeholder=blur', async () => {
+    const html = await (await get('/en/projects/', { accept: BROWSER_ACCEPT })).text();
+
+    expect(html).not.toContain('blurDataURL');
+  });
+
+  it('stays under a payload ceiling', async () => {
+    const html = await (await get('/en/projects/', { accept: BROWSER_ACCEPT })).text();
+
+    // 212 KB before the icon/image/srcSet/JSON-LD work, ~148 KB after. The
+    // remainder is 39 KB of Tailwind class attributes and the RSC payload for
+    // 15 interactive cards — structural, and not worth a redesign.
+    expect(html.length).toBeLessThan(155_000);
+  });
+
+  it('still renders every project with its screenshot', async () => {
+    const html = await (await get('/en/projects/', { accept: BROWSER_ACCEPT })).text();
+
+    expect(html).toContain('LutraID');
+    expect((html.match(/<img/g) ?? []).length).toBeGreaterThanOrEqual(14);
+  });
+});
+
+describe('brand identity', () => {
+  async function websiteNode() {
+    const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
+    const blocks = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)];
+    const nodes = blocks.flatMap((match) => {
+      const parsed = JSON.parse(match[1]);
+
+      return Array.isArray(parsed) ? parsed : [parsed];
+    });
+
+    return nodes.find((node) => node['@type'] === 'WebSite');
+  }
+
+  it('leads with the person and keeps the nickname as alternateName', async () => {
+    const site = await websiteNode();
+
+    expect(site.name).toBe('Urban Vidovič');
+    expect(site.alternateName).toBe("Bunny's Den");
+  });
+
+  it('uses the person as og:site_name', async () => {
+    const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
+
+    expect(html).toContain('<meta property="og:site_name" content="Urban Vidovič"/>');
+  });
+
+  it('keeps the visible nav lockup untouched', async () => {
+    const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
+
+    expect(html).toContain('Bunny&#x27;s');
+    expect(html).toContain('aria-label="Bunny&#x27;s Den home"');
+  });
+});
+
+describe('agent.txt', () => {
+  it('is a short pointer to llms.txt, not a copy of it', async () => {
+    const [agent, llms] = await Promise.all([
+      (await get('/agent.txt')).text(),
+      (await get('/llms.txt')).text(),
+    ]);
+
+    expect(agent).toContain('/llms.txt');
+    expect(agent).toContain('Accept: text/markdown');
+    expect(agent.length).toBeLessThan(llms.length / 2);
+    expect(agent).not.toContain('## When to use this site');
   });
 });

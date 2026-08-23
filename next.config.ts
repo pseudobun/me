@@ -12,6 +12,12 @@ const nextConfig = {
     '/api/og': ['./public/fonts/IBMPlexMono-Regular.ttf', './public/dark-logo.svg'],
   },
   images: {
+    // The largest image this site ever displays is the screenshot modal, capped
+    // at 84vh. The default ladder runs to 3840w, which made every card's srcSet
+    // ~800 B and — worse — set the no-srcSet fallback `src` to a 3840w render
+    // for a thumbnail in a 192px-tall box.
+    deviceSizes: [640, 828, 1080, 1920],
+    imageSizes: [256, 384],
     remotePatterns: [
       {
         protocol: 'https',

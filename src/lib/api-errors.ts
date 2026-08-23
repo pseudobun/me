@@ -1,10 +1,6 @@
 // Structured error bodies for the public HTTP endpoints. Agents cannot parse an
 // HTML error page, so every failure path under /api returns this shape.
 
-import { SITE_URL } from '@/constants/metadata';
-
-export const API_DOCS_URL = `${SITE_URL}/en/developers/`;
-
 export type ApiErrorCode =
   | 'not_found'
   | 'method_not_allowed'
@@ -17,7 +13,6 @@ export interface ApiErrorBody {
     message: string;
     hint: string;
     status: number;
-    documentation_url: string;
   };
 }
 
@@ -37,9 +32,7 @@ export function buildApiError(
 
   return {
     status,
-    body: {
-      error: { code, message, hint, status, documentation_url: API_DOCS_URL },
-    },
+    body: { error: { code, message, hint, status } },
   };
 }
 

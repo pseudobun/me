@@ -11,7 +11,14 @@ import {
   CV_TITLE,
 } from '@/constants/cv';
 import { PERSONAL, PROJECTS } from '@/constants/data';
-import { getLocalizedUrl, getPageMetadataCopy, SITE_NAME, SITE_URL } from '@/constants/metadata';
+import {
+  getLocalizedUrl,
+  getPageMetadataCopy,
+  SITE_ALTERNATE_NAME,
+  SITE_NAME,
+  SITE_URL,
+  type SitePath,
+} from '@/constants/metadata';
 import { blocksToMarkdown, type ContentPage, getPageContent } from '@/content';
 import type { Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/getDictionary';
@@ -59,7 +66,6 @@ async function homeMarkdown(locale: Locale): Promise<string> {
     `- [${dict.nav.about}](${getLocalizedUrl(locale, '/about/')})`,
     `- [${dict.nav.contact}](${getLocalizedUrl(locale, '/contact/')})`,
     `- [${dict.nav.privacy}](${getLocalizedUrl(locale, '/privacy/')})`,
-    `- [${dict.nav.developers}](${getLocalizedUrl(locale, '/developers/')})`,
     `- [${dict.nav.cv}](${SITE_URL}/cv/)`,
   ].join('\n');
 
@@ -145,12 +151,12 @@ function cvMarkdown(): string {
   return lines.join('\n') + footer(`${SITE_URL}/cv/`, null);
 }
 
-const CONTENT_PATHS = {
+// Annotated so adding a content page without a path fails to compile.
+const CONTENT_PATHS: Record<ContentPage, SitePath> = {
   about: '/about/',
   contact: '/contact/',
   privacy: '/privacy/',
-  developers: '/developers/',
-} as const;
+};
 
 async function contentMarkdown(locale: Locale, page: ContentPage): Promise<string> {
   const content = getPageContent(locale, page);
@@ -202,7 +208,7 @@ export function notFoundMarkdown(): string {
     '',
     '## Notes for agents',
     '',
-    `Every page on this site is available as Markdown. Send \`Accept: text/markdown\` to any URL above and you will get the Markdown representation instead of HTML. Content exists in Slovene (\`/sl/\`) and English (\`/en/\`); \`${SITE_NAME}\` is the site name.`,
+    `Every page on this site is available as Markdown. Send \`Accept: text/markdown\` to any URL above and you will get the Markdown representation instead of HTML. Content exists in Slovene (\`/sl/\`) and English (\`/en/\`); the site is \`${SITE_NAME}\`, also known as \`${SITE_ALTERNATE_NAME}\`.`,
     '',
   ].join('\n');
 }

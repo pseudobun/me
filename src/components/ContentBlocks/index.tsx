@@ -65,16 +65,6 @@ function renderBlock(block: Block, index: number): ReactNode {
         </ul>
       );
 
-    case 'code':
-      return (
-        <pre
-          key={key}
-          className="mb-4 overflow-x-auto rounded-md border border-border/40 bg-black/30 p-4 text-sm leading-6 text-muted-foreground"
-        >
-          <code>{block.code}</code>
-        </pre>
-      );
-
     case 'definitions':
       return (
         <dl key={key} className="mb-4 space-y-3 text-lg leading-8 text-muted-foreground">

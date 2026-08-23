@@ -7,8 +7,7 @@ export type Block =
   | { kind: 'heading'; level: 2 | 3; text: string }
   | { kind: 'paragraph'; text: string }
   | { kind: 'list'; items: string[] }
-  | { kind: 'definitions'; items: { term: string; description: string }[] }
-  | { kind: 'code'; language: string; code: string };
+  | { kind: 'definitions'; items: { term: string; description: string }[] };
 
 export interface PageContent {
   /** Rendered as the page H1 and the Markdown `#` title. */
@@ -69,8 +68,6 @@ export function contentLength(page: PageContent): number {
       total += toPlainText(block.text).length;
     } else if (block.kind === 'list') {
       total += block.items.reduce((sum, item) => sum + toPlainText(item).length, 0);
-    } else if (block.kind === 'code') {
-      total += block.code.length;
     } else {
       total += block.items.reduce(
         (sum, item) => sum + toPlainText(item.term).length + toPlainText(item.description).length,
@@ -105,9 +102,6 @@ export function blocksToMarkdown(page: PageContent): string {
         for (const item of block.items) {
           lines.push(`- **${item.term}**: ${item.description}`);
         }
-        break;
-      case 'code':
-        lines.push('', `\`\`\`${block.language}`, block.code, '```');
         break;
     }
   }
