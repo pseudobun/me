@@ -544,7 +544,7 @@ describe('brand identity', () => {
     const site = await websiteNode();
 
     expect(site.name).toBe('Urban Vidovič');
-    expect(site.alternateName).toBe("Bunny's Den");
+    expect(site.alternateName).toBe('pseudobun');
   });
 
   it('uses the person as og:site_name', async () => {
@@ -556,8 +556,8 @@ describe('brand identity', () => {
   it('keeps the visible nav lockup untouched', async () => {
     const html = await (await get('/en/', { accept: BROWSER_ACCEPT })).text();
 
-    expect(html).toContain('Bunny&#x27;s');
-    expect(html).toContain('aria-label="Bunny&#x27;s Den home"');
+    expect(html).toContain('>pseudo</span>bun</span>');
+    expect(html).toContain('aria-label="pseudobun home"');
   });
 });
 

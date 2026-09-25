@@ -130,7 +130,7 @@ export async function GET() {
             {/* biome-ignore lint/performance/noImgElement: next/og ImageResponse renders the SVG logo via a data URI. */}
             <img
               src={darkLogoDataUri}
-              alt="Bunny's Den logo"
+              alt="pseudobun logo"
               width={206}
               height={268}
               style={{ display: 'flex' }}

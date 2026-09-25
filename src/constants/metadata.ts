@@ -3,10 +3,10 @@ import { fallbackLocale, type Locale, locales } from '@/i18n/config';
 import { PERSONAL } from './data';
 
 export const SITE_URL = 'https://pseudobun.dev';
-// The person is the brand; "Bunny's Den" survives as the site's nickname and is
+// The person is the brand; "pseudobun" survives as the site's nickname and is
 // published as schema.org alternateName so the association is not lost.
 export const SITE_NAME = 'Urban Vidovič';
-export const SITE_ALTERNATE_NAME = "Bunny's Den";
+export const SITE_ALTERNATE_NAME = 'pseudobun';
 export const GOOGLE_SITE_VERIFICATION = '6FH2mAeC6dWc9Y5PCXe_dec8X3SvLKRZx-aZ1I7fanY';
 export const TWITTER_HANDLE = '@pseudourban';
 

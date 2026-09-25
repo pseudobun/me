@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { COLORS, POSITIONS } from './geometry';
 
 /**
- * The Bunny's Den logo rebuilt as a closed low-poly 3D head and rendered with
+ * The pseudobun logo rebuilt as a closed low-poly 3D head and rendered with
  * three.js. The front facets carry their baked SVG shades; the generated back
  * and sides make it solid from every angle. It's lit with a studio environment
  * for a soft PBR sheen and spring-damped so it turns to face the pointer with a

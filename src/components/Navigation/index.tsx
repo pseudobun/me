@@ -106,15 +106,17 @@ export default function Navigation({ lang, menus, openMenuLabel, externalHint }:
       <div className="px-4 w-full">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link href={`/${lang}/`} className="flex items-center" aria-label="Bunny's Den home">
-              <BunnyHead className="w-12" />
-            </Link>
-            <div className="pl-2 flex flex-col leading-tight font-mono text-muted-foreground">
-              <span>Bunny's</span>
-              <span>Den</span>
-            </div>
-          </div>
+          {/* The head canvas carries ~1/4 empty space either side of the model, so
+              pull the wordmark in to sit against the silhouette, not the canvas. */}
+          <Link href={`/${lang}/`} className="group gap-0 no-underline" aria-label="pseudobun home">
+            <BunnyHead className="w-12" />
+            <span className="-ml-1.5 font-mono text-lg font-medium tracking-tight text-foreground">
+              <span className="text-muted-foreground transition-colors group-hover:text-foreground">
+                pseudo
+              </span>
+              bun
+            </span>
+          </Link>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
