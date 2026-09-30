@@ -7,7 +7,7 @@ import { GITHUB_STATS_REVALIDATE_SECONDS, getProjectGithubStats } from '@/lib/gi
 
 interface OgAssets {
   monoFontData: Buffer;
-  darkLogoDataUri: string;
+  logoDataUri: string;
 }
 
 // Lazily load + memoize the font and logo. On failure the cached promise is
@@ -19,11 +19,11 @@ function loadAssets(): Promise<OgAssets> {
   if (!assetsPromise) {
     assetsPromise = Promise.all([
       readFile(path.join(process.cwd(), 'public/fonts/IBMPlexMono-Regular.ttf')),
-      readFile(path.join(process.cwd(), 'public/dark-logo.svg'), 'utf8'),
+      readFile(path.join(process.cwd(), 'public/pseudobun.svg'), 'utf8'),
     ])
       .then(([monoFontData, svg]) => ({
         monoFontData,
-        darkLogoDataUri: `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`,
+        logoDataUri: `data:image/svg+xml;base64,${Buffer.from(cropLogo(svg)).toString('base64')}`,
       }))
       .catch((error) => {
         assetsPromise = null;
@@ -32,6 +32,20 @@ function loadAssets(): Promise<OgAssets> {
   }
 
   return assetsPromise;
+}
+
+// pseudobun.svg is a 512x512 canvas with the head centred in it; crop to the
+// artwork bounds so the logo fills its slot like the old portrait logo did.
+const LOGO_BOUNDS = { x: 104, y: 15, width: 304, height: 481 };
+const LOGO_HEIGHT = 268;
+const LOGO_WIDTH = Math.round((LOGO_HEIGHT * LOGO_BOUNDS.width) / LOGO_BOUNDS.height);
+
+function cropLogo(svg: string) {
+  const { x, y, width, height } = LOGO_BOUNDS;
+  return svg.replace(
+    /<svg[^>]*>/,
+    `<svg width="${width}" height="${height}" viewBox="${x} ${y} ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">`
+  );
 }
 
 const numberFormatter = new Intl.NumberFormat('en-US');
@@ -63,7 +77,7 @@ function formatMetricValue(value: number, options?: { prefix?: '+' | '-' }) {
 
 export async function GET() {
   try {
-    const [{ monoFontData, darkLogoDataUri }, stats] = await Promise.all([
+    const [{ monoFontData, logoDataUri }, stats] = await Promise.all([
       loadAssets(),
       getProjectGithubStats(),
     ]);
@@ -129,10 +143,10 @@ export async function GET() {
           >
             {/* biome-ignore lint/performance/noImgElement: next/og ImageResponse renders the SVG logo via a data URI. */}
             <img
-              src={darkLogoDataUri}
+              src={logoDataUri}
               alt="pseudobun logo"
-              width={206}
-              height={268}
+              width={LOGO_WIDTH}
+              height={LOGO_HEIGHT}
               style={{ display: 'flex' }}
             />
           </div>
